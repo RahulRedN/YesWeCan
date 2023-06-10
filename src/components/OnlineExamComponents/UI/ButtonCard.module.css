@@ -1,0 +1,91 @@
+.buttonCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: larger ;
+    border: none;
+    width: 40px;
+    height: 40px;
+}
+
+.normal{
+    border: 1px solid rgb(197, 197, 197);
+}
+
+.answered{
+    position: relative;
+    background-color: rgb(39, 234, 39);
+    color: white;
+}
+
+.answered:before{
+    position: absolute;
+    content: " ";
+    top: -0.8px;
+    left: -0.8px;
+    border-top: 15px solid lightblue;
+    border-right: 13px solid transparent;
+} 
+
+.answered:after{
+    position: absolute;
+    content: " ";
+    top: -0.8px;
+    right: -0.8px;
+    border-top: 15px solid lightblue;
+    border-left: 13px solid transparent;
+}
+
+.notAnswered{
+    position: relative;
+    background-color: rgb(255, 51, 51);
+    color: white;
+}
+
+.notAnswered:before{
+    position: absolute;
+    content: " ";
+    bottom: -0.8px;
+    left: -0.8px;
+    border-bottom: 15px solid lightblue;
+    border-right: 13px solid transparent;
+} 
+
+.notAnswered:after{
+    position: absolute;
+    content: " ";
+    bottom: -0.8px;
+    right: -0.8px;
+    border-bottom: 15px solid lightblue;
+    border-left: 13px solid transparent;
+}
+
+.marked{
+    background-color: rgb(66, 0, 114);
+    color: white;
+    border-radius: 50%;
+}
+
+.markedS{
+    position: relative;
+    background-color: rgb(66, 0, 114);
+    color: white;
+    border-radius: 50%;
+}
+
+.markedS::after{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 6px;
+    right: 6px;
+    content: "=";
+    color: white;
+    background-color: lightgreen;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}

@@ -1,0 +1,32 @@
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+}
+
+.container{
+    top: 3rem;
+    width: 80%;
+    left: 5%;
+    height: 80vh;
+    overflow-y: scroll;
+    background-color: white;
+    position: absolute;
+    z-index: 100;
+}
+
+.close{
+    position: absolute;
+    left: 1%;
+}
+
+.close button{
+    background-color: #fff;
+    border: 1px solid grey;
+    padding: 0.1rem;
+    outline: none;
+}

@@ -1,0 +1,52 @@
+.scoreCard{
+    width: 50%;
+}
+
+.scoreCard, .scoreCard th, .scoreCard td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.scoreCard tr:nth-child(1) th{
+    text-align: center;
+    font-weight: 300;
+    background-color: #333;
+    color: whitesmoke;
+}
+
+.scoreCard tr th , .scoreCard tr td {
+    font-size: large;
+    padding: 1rem;
+}
+
+.scoreCard tr th{
+    text-align: left;
+}
+
+.scoreCard tr td{
+    text-align: center;
+}
+
+.resultTable{
+    width: 100%;
+}
+
+.resultTable, .resultTable th, .resultTable td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.resultTable tr:nth-child(1) th{
+    text-align: center;
+    font-weight: 300;
+    background-color: #333;
+    color: whitesmoke;
+}
+
+.resultTable th, .resultTable td{
+    padding: 1rem;
+}
+
+.emptyHeight{
+    height: 100px;
+}

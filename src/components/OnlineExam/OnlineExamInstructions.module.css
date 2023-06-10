@@ -1,0 +1,259 @@
+.view{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    height: 8%;
+  background-color: rgb(15, 15, 205);
+  font-size: 1.2rem;
+  padding: 1rem;
+  color: white;
+}
+
+.container {
+  display: flex;
+  height: 92%;
+}
+
+.instructions {
+    width: 80%;
+    padding: 1rem;
+}
+
+.instructionsContent {
+    height: 85%;
+    border: 1px solid rgb(195, 195, 195);
+    overflow-y: scroll;
+}
+
+.moreInstructions{
+    height: 30%;
+}
+
+.contentBody{
+    padding: 0.5rem 1.7rem;
+}
+
+.contentBody h4{
+    text-decoration: underline;
+}
+
+.contentBody .padding{
+    padding: 0 0 0 3rem;
+}
+
+.contentBody li{
+    padding: 0.1rem;
+}
+
+.contentBody li span{
+    font-weight: 800;
+}
+
+.effect{
+    color: red;
+}
+
+.buttonNavigate{
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.buttonNavigate button{
+    cursor: pointer;
+    background-color: white;
+    font-size: 1.3rem;
+    border: none;
+    outline: none;
+    color: rgb(0, 136, 255);
+}
+
+.buttonNavigate button:hover{
+    text-decoration: underline;
+}
+
+.contentHeader {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.userDetails{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    padding: 3rem 0;
+    align-items: center;
+}
+
+.userDetails i{
+    font-size: 200px;
+}
+
+.confirm{
+    text-align: center;
+}
+
+.confirm label{
+    font-size: 1.2rem;
+}
+
+.confirm button{
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+.paddingPalatte{
+    list-style-type: none;
+    padding-left: 4rem;
+}
+
+.paddingPalatte li{
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.paddingPalatte li:last-child{
+    display: block;
+}
+
+.paddingPalatte .card{
+    position: absolute;
+    left: -45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+.normal{
+    border: 1px solid rgb(197, 197, 197);
+}
+
+.answered{
+    position: relative;
+    background-color: rgb(39, 234, 39);
+    color: white;
+}
+
+.answered:before{
+    position: absolute;
+    content: " ";
+    top: -0.8px;
+    left: -0.8px;
+    border-top: 15px solid white;
+    border-right: 13px solid transparent;
+} 
+
+.answered:after{
+    position: absolute;
+    content: " ";
+    top: -0.8px;
+    right: -0.8px;
+    border-top: 15px solid white;
+    border-left: 13px solid transparent;
+}
+
+.notAnswered{
+    position: relative;
+    background-color: rgb(255, 51, 51);
+    color: white;
+}
+
+.notAnswered:before{
+    position: absolute;
+    content: " ";
+    bottom: -0.8px;
+    left: -0.8px;
+    border-bottom: 15px solid white;
+    border-right: 13px solid transparent;
+} 
+
+.notAnswered:after{
+    position: absolute;
+    content: " ";
+    bottom: -0.8px;
+    right: -0.8px;
+    border-bottom: 15px solid white;
+    border-left: 13px solid transparent;
+}
+
+.marked{
+    background-color: rgb(66, 0, 114);
+    color: white;
+    border-radius: 50%;
+}
+
+.markedS{
+    position: relative;
+    background-color: rgb(66, 0, 114);
+    color: white;
+    border-radius: 50%;
+}
+
+.markedS::after{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 6px;
+    right: 6px;
+    content: '=';
+
+    image-resolution: 10px;
+    color: white;
+    background-color: lightgreen;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.markedS img{
+    height: 50px;
+    width: 50px;
+}
+
+@media screen and (max-width: 950px) {
+    .view{
+        height: auto;
+    }
+
+    .container{
+        flex-direction: column-reverse;
+        height: auto;
+    }
+
+    .userDetails{
+        width: 100%;
+    }
+
+    .userDetails i{
+        font-size: 100px;
+    }
+
+    .instructions{
+        display: flex;
+        flex-direction: column;
+        height: 800px;
+        width: 100%;
+    }
+
+    .instructionsContent.moreInstructions{
+        height: 30%;
+    }
+
+    .instructionsContent{
+        height: 90%;
+    }
+}

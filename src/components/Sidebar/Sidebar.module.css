@@ -1,0 +1,147 @@
+.navigation {
+  height: 100%;
+  background-color: #62CDFF;
+  border-right: 2px solid #333;
+  width: 250px;
+  position: fixed;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+
+.navigation:hover{
+  overflow-y: scroll;
+}
+
+.util a, .courseContent button{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap:1rem;
+  padding: 1rem;
+  font-size: larger;
+  align-items: center;
+  color: black;
+}
+
+.courseContent button{
+  width: 100%;
+  background-color: #62CDFF;
+  justify-content: space-between;
+  outline: none;
+  border: none;
+}
+
+.emptyHeight{
+  min-height: 10rem;
+}
+
+.util a, .courseContent button{
+  color: black;
+}
+
+.course{
+  display: flex;
+  flex-direction: column;
+}
+
+.courseName{
+  font-size: x-large;
+  background-color: #97DEFF;
+  padding: 1rem;
+}
+
+.util:hover a{
+  background-color: white;
+  color: black;
+}
+
+.courseContent button:hover{
+  background-color: hsla(199, 100%, 69%, 0.678);
+}
+
+.util a, .courseContent a{
+  text-decoration: none;
+}
+
+.clicked{
+  transition: 0.2s;
+  rotate: 180deg;
+}
+
+.displayNone{
+  display: none;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.6rem; */
+  list-style-type: disc;
+
+  animation: 1s fadeIn;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+}
+
+.dropdown a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:0.3rem;
+  position: relative;
+  color: black;
+  background-color: #C9EEFF;
+  font-size: large;
+  padding: 0.6rem;
+}
+
+.dropdown a i{
+  font-size: 0.5rem;
+}
+
+.dropdown a:hover, .dropdown a:focus{
+  background-color: white;
+  color: black;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.navigation::-webkit-scrollbar {
+  position: absolute;
+  width: 0.4rem;
+}
+
+/* Track */
+.navigation::-webkit-scrollbar-track {
+  margin: 0.2rem;
+  border-radius: 1rem;
+  background: rgba(65, 64, 64, 0.244);
+}
+/* Handle */
+.navigation::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: #555;
+}
+
+/* Handle on hover */
+.navigation::-webkit-scrollbar-thumb:hover {
+  background: #55555562;
+}
+
+
+@media screen and (max-width: 928px) {
+  .navigation{
+    width: 200px;
+    overflow-y: scroll;
+  }
+}

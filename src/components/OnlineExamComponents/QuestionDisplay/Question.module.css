@@ -1,0 +1,79 @@
+:root {
+  --primary-color: rgb(0, 136, 255);
+}
+
+.options ul li {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.options ul li input[type="radio"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  z-index: 13;
+}
+
+.options ul li label {
+  display: block;
+  position: relative;
+  font-weight: 300;
+  padding: 25px 25px 25px 80px;
+  margin: 10px auto;
+  height: 30px;
+  z-index: 9;
+  cursor: pointer;
+  transition: all 0.25s linear;
+  -webkit-transition: all 0.25s linear;
+}
+
+.options ul li .check {
+  display: block;
+  position: absolute;
+  border: 5px solid #aaaaaa;
+  border-radius: 100%;
+  height: 25px;
+  width: 25px;
+  top: 24px;
+  left: 20px;
+  z-index: 5;
+  transition: border 0.25s linear;
+  -webkit-transition: border 0.25s linear;
+}
+
+.options ul li .check::before {
+  display: block;
+  position: absolute;
+  content: "";
+  border-radius: 100%;
+  height: 13px;
+  width: 13px;
+  top: 2px;
+  left: 2px;
+  margin: auto;
+  transition: background 0.25s linear;
+  -webkit-transition: background 0.25s linear;
+}
+
+.options input[type="radio"]:checked ~ .check {
+  border: 5px solid var(--primary-color);
+}
+
+.options input[type="radio"]:checked ~ .check::before {
+  background: var(--primary-color);
+}
+
+.options input[type="radio"]:checked ~ .text-primary {
+  color: var(--primary-color);
+}
+
+/* To get selected option we are using this checked class */
+.checked {
+  border: 5px solid var(--primary-color) !important;
+}
+
+.checked::before {
+  background: var(--primary-color);
+}

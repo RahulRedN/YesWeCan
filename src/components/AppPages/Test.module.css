@@ -1,0 +1,14 @@
+.header{
+    background-color: navy;
+    color: white;
+    padding: 2rem;
+}
+
+.testContainer{
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}

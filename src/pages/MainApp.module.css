@@ -1,0 +1,59 @@
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+}
+
+.noSidebar {
+  display: none;
+}
+
+.contentDefault {
+  height: 100%;
+}
+
+.contentPage {
+  width: calc(100vw - 250px);
+}
+
+.contentPageNosidebar {
+  width: 100%;
+}
+
+.footer {
+  display: flex;
+  justify-content: end;
+  background-color: navy;
+  color: white;
+  padding: 1rem;
+  width: inherit;
+  position: fixed;
+  bottom: 0;
+}
+
+@media screen and (max-width: 928px) {
+  .noSidebar {
+    display: block;
+    width: 200px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .contentPageNosidebar {
+    width: calc(100vw - 200px);
+  }
+
+  .contentPage {
+    width: 100%;
+  }
+}

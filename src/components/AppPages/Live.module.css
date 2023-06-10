@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: whitesmoke;
+  font-size: 1.3rem;
+  background-color: #333;
+  padding: 1rem;
+  width: 100%;
+}
+.header i {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.liveClasses {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+  gap: 1.2rem;
+  justify-content: space-between;
+}
+
+.emptyHeight {
+  height: 100px;
+}

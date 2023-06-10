@@ -1,0 +1,45 @@
+.testCard {
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  background-color: none;
+  border: 1px solid rgb(236, 236, 236);
+  box-shadow: 0 2px 4px rgba(100, 100, 100, 0.358);
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+hr{
+   border: 1px solid rgba(128, 128, 128, 0.467);
+}
+
+.testTitle {
+  font-size: 1.3rem;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.cardFooter a {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 3px;
+  background-color: rgb(0, 119, 255);
+  text-decoration: none;
+  color: white;
+}
+
+.cardFooter a:hover {
+  background-color: rgb(43, 142, 255);
+}

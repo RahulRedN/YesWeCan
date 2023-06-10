@@ -1,0 +1,612 @@
+.view {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 7vh;
+  background-color: rgb(0, 85, 255);
+  color: white;
+}
+
+.navEle,
+.navEle span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav img {
+  height: 7vh;
+}
+
+.nav div:nth-child(2) {
+  padding-right: 1rem;
+}
+
+.nav div:nth-child(2) button {
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 3px;
+  font-size: large;
+  outline: none;
+  border: none;
+  background-color: rgb(0, 136, 255);
+  color: white;
+}
+
+.addition {
+  display: flex;
+  padding: 0.2rem;
+  height: 3vh;
+  justify-content: end;
+  gap: 2rem;
+  background-color: rgb(62, 62, 62);
+  color: white;
+}
+
+.addBut{
+  cursor: pointer;
+}
+
+.addition .addBut:first-child:hover {
+  cursor: not-allowed;
+}
+
+.examPanel {
+  height: 90vh;
+}
+
+/* Sections styles */
+.examHeader {
+  width: 100%;
+  height: 12vh;
+  display: flex;
+}
+
+.sections {
+  width: 80%;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.section button {
+  position: relative;
+  cursor: pointer;
+  background-color: white;
+  font-size: 1rem;
+  padding: 0.2rem;
+  border: none;
+}
+
+.section button:disabled {
+  cursor: not-allowed;
+  color: black;
+}
+
+.section button:disabled::after{
+  position: absolute;
+  content: 'Disabled';
+  font-size: 10px;
+  color: red;
+  
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  bottom: -4px;
+  white-space: nowrap;
+}
+
+.section button:hover {
+  background-color: whitesmoke;
+}
+
+.components {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  border-bottom: 1px solid rgb(216, 216, 216);
+  border-top: 1px solid rgb(216, 216, 216);
+  overflow-x: scroll;
+}
+
+.components button {
+  cursor: pointer;
+  font-size: 1.1rem;
+  border: none;
+  background-color: white;
+  color: rgb(0, 136, 255);
+}
+
+.components button:disabled {
+  cursor: not-allowed;
+  font-size: 1.1rem;
+  border: none;
+  background-color: white;
+  color: rgb(0, 136, 255);
+}
+
+.components button:disabled::after{
+  position: absolute;
+  content: 'Disabled';
+  font-size: 10px;
+  color: red;
+  
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  bottom: -4px;
+  white-space: nowrap;
+}
+
+.components button:hover {
+  text-decoration: underline;
+}
+
+/* User Details */
+.user {
+  width: 20%;
+  border: 1px solid rgb(207, 207, 207);
+}
+
+/* Exam section */
+
+.mainExam {
+  width: 100%;
+  height: 78vh;
+}
+
+.minMax {
+  position: absolute;
+  z-index: 11;
+  right: 275px;
+  top: 50%;
+}
+
+.minMaxRight{
+  position: absolute;
+  z-index: 11;
+  right: 0;
+  top: 50%;
+}
+
+.minMax button , .minMaxRight button{
+  display: flex;
+  align-items: center;
+  font-size: x-large;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 71vh;
+}
+
+.questionDisplay {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  overflow-y: scroll;
+}
+
+.beforeCollapse {
+  width: calc(100% - 275px);
+}
+
+.afterCollapse {
+  width: 100%;
+}
+
+.questionType {
+  border-top: 1px solid rgb(228, 228, 228);
+  padding: 0.7rem;
+}
+
+.questionHeader {
+  background-color: navy;
+  color: white;
+}
+
+.headerElements {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.element1 {
+  display: flex;
+  align-items: center;
+}
+
+.headerElements .element2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.positive {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  padding: 0.1rem;
+  background-color: rgb(1, 166, 1);
+}
+
+.negative {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  padding: 0.1rem;
+  background-color: red;
+}
+
+.report {
+  cursor: pointer;
+  font-size: smaller;
+  color: red;
+}
+
+.examNavPanel {
+  width: 275px;
+  background-color: lightblue;
+  border: 2px solid black;
+}
+
+.collapse {
+  display: none;
+}
+
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+}
+
+.status span {
+  display: flex;
+  position: relative;
+  justify-content: end;
+  align-items: center;
+  padding: 0.8rem;
+  width: 50%;
+  display: flex;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+span .card {
+  position: absolute;
+  left: 4px;
+}
+
+.status span:nth-child(2) .card,
+.status span:nth-child(4) .card {
+  left: -3px;
+}
+
+.status span:nth-child(4) {
+  font-size: 11px;
+  font-weight: 550;
+}
+
+.status span:last-child {
+  width: 100%;
+}
+
+.navPanelHeading {
+  padding: 0.3rem;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(26, 148, 255);
+  color: white;
+  width: 100%;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.questionButtons {
+  display: grid;
+  max-height: 42vh;
+  padding: 1rem;
+  grid-template-columns: 25% 25% 25% 25%;
+  row-gap: 1rem;
+  overflow-y: scroll;
+}
+
+/* Buttons */
+
+.markOptions {
+  display: flex;
+  height: 7vh;
+  background-color: whitesmoke;
+  border: 1px solid rgb(212, 212, 212);
+  box-shadow: 0 2px 3px rgb(158, 158, 158);
+}
+
+.basic {
+  display: flex;
+  padding: 0.5rem;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.basic button,
+.submit button {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: white;
+  padding: 0.5rem;
+}
+
+.basic button:hover {
+  background-color: rgb(32, 151, 255);
+  color: white;
+  border: 1px solid transparent;
+}
+
+.options1 {
+  display: flex;
+  gap: 1rem;
+}
+
+.options2 {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.options2 button:nth-child(2) {
+  border: none;
+  color: white;
+  background-color: rgb(0, 136, 255);
+}
+
+.options2 button:nth-child(2):hover {
+  background-color: rgb(0, 118, 221);
+}
+
+.submit {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(142, 227, 255);
+  width: 20%;
+  padding: 0.5rem;
+  border: 1px solid rgb(151, 208, 227);
+}
+
+.submit button {
+  background-color: rgb(89, 178, 255);
+  color: white;
+  border: none;
+}
+
+/* Info section */
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  width: 35px;
+  height: 35px;
+}
+
+.normal {
+  border: 1px solid rgb(197, 197, 197);
+}
+
+.answered {
+  position: relative;
+  background-color: rgb(39, 234, 39);
+  color: white;
+}
+
+.answered:before {
+  position: absolute;
+  content: " ";
+  top: -0.8px;
+  left: -0.8px;
+  border-top: 13px solid white;
+  border-right: 11px solid transparent;
+}
+
+.answered:after {
+  position: absolute;
+  content: " ";
+  top: -0.8px;
+  right: -0.8px;
+  border-top: 13px solid white;
+  border-left: 11px solid transparent;
+}
+
+.notAnswered {
+  position: relative;
+  background-color: rgb(255, 51, 51);
+  color: white;
+}
+
+.notAnswered:before {
+  position: absolute;
+  content: " ";
+  bottom: -0.8px;
+  left: -0.8px;
+  border-bottom: 13px solid white;
+  border-right: 11px solid transparent;
+}
+
+.notAnswered:after {
+  position: absolute;
+  content: " ";
+  bottom: -0.8px;
+  right: -0.8px;
+  border-bottom: 13px solid white;
+  border-left: 11px solid transparent;
+}
+
+.marked {
+  background-color: rgb(66, 0, 114);
+  color: white;
+  border-radius: 50%;
+}
+
+.markedS {
+  position: relative;
+  background-color: rgb(66, 0, 114);
+  color: white;
+  border-radius: 50%;
+}
+
+.markedS::after {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 5px;
+  right: 5px;
+  content: "=";
+  color: white;
+  background-color: lightgreen;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 700px) {
+  .view {
+    overflow: scroll;
+  }
+
+  /* Section Header */
+  .examHeader {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+
+  .sections,
+  .user {
+    width: 100%;
+  }
+
+  /* Exam Section */
+  .container {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+
+  .questionDisplay {
+    width: 100%;
+  }
+
+  .minMax {
+    display: none;
+  }
+
+  .headerElements {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .headerElements .element2 {
+    width: 100%;
+    gap: 1.5rem;
+  }
+
+  .examNavPanel {
+    display: block;
+    width: 100%;
+  }
+
+  .questionDisplay {
+    overflow-y: visible;
+  }
+
+  /* Nav Panel */
+  .questionButtons {
+    display: flex;
+    overflow-x: scroll;
+    gap: 1rem;
+  }
+
+  /* info */
+  .status {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
+
+  .status span {
+    flex-direction: column;
+    width: 200px;
+  }
+
+  .info {
+    white-space: nowrap;
+  }
+
+  .status span .card {
+    position: relative;
+    width: 35px;
+  }
+
+  .status span:nth-child(4) {
+    font-size: 13px;
+  }
+
+  /* Buttons */
+  .questionButtons button {
+    min-width: 35px;
+  }
+
+  .markOptions {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .basic,
+  .submit {
+    width: 100%;
+  }
+
+  .basic {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .options1 {
+    justify-content: space-between;
+  }
+
+  .options2 {
+    justify-content: space-between;
+  }
+}
