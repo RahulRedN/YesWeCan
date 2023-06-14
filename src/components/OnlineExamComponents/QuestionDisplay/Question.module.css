@@ -22,7 +22,7 @@
   font-weight: 300;
   padding: 25px 25px 25px 80px;
   margin: 10px auto;
-  height: 30px;
+  min-height: 30px;
   z-index: 9;
   cursor: pointer;
   transition: all 0.25s linear;
@@ -69,6 +69,11 @@
   color: var(--primary-color);
 }
 
+.options label img{
+  min-width: 200px;
+  max-width: 70%;
+}
+
 /* To get selected option we are using this checked class */
 .checked {
   border: 5px solid var(--primary-color) !important;
@@ -76,4 +81,10 @@
 
 .checked::before {
   background: var(--primary-color);
+}
+
+@media screen and (max-width: 630px) {
+  .options label img{
+    max-width: 60vw;
+  }
 }

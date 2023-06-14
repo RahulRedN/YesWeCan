@@ -12,19 +12,21 @@ const IsNormal = ({ question, trace, onSelect, check }) => {
         <div className={classes.questionNum}>
           Question Number: {trace[2] + 1}
         </div>
-        {question?.question.equ ? (
-          <MathJaxRender
-            mathml={question?.question.equ}
-            className={classes.question}
-          />
-        ) : (
-          ""
-        )}
-        {question?.question.img ? (
-          <img src="/assets/Logo.png" className={classes.image} alt="image" />
-        ) : (
-          ""
-        )}
+        <div className={classes.question}>
+          {question?.question.equ ? (
+            <MathJaxRender
+              mathml={question?.question.equ}
+              className={classes.question}
+            />
+          ) : (
+            ""
+          )}
+          {question?.question.img ? (
+            <img src="/assets/Logo.png" className={classes.image} alt="image" />
+          ) : (
+            ""
+          )}
+        </div>
       </div>
       <div className={style.options}>
         <ul>
@@ -42,7 +44,7 @@ const IsNormal = ({ question, trace, onSelect, check }) => {
               <label htmlFor="equation">
                 {option.equ ? <MathJaxRender mathml={option.equ} /> : ""}
                 {option.img ? (
-                  <img src='/assets/Logo.png' alt="/assets/Logo.png"/>
+                  <img src="/assets/Logo.png" alt="/assets/Logo.png" />
                 ) : (
                   ""
                 )}

@@ -35,6 +35,7 @@ const ExamSection = (props) => {
 
   const [component, setComponent] = useState(null);
   const [question, setQuestion] = useState(null);
+  const [direction, setDirection] = useState(null);
   const [isReport, setIsReport] = useState(false);
 
   useEffect(() => {
@@ -45,6 +46,12 @@ const ExamSection = (props) => {
           props.trace[2]
         ]
       );
+      if (props.questions[props.trace[0]].components[props.trace[1]].directions) {
+          setDirection(
+            props.questions[props.trace[0]].components[props.trace[1]]
+              .directions
+          );
+        }
     }
 
     if (props.questions && props.questions.length > 0) {
@@ -233,6 +240,7 @@ const ExamSection = (props) => {
             trace={props.trace}
             check={props.check}
             setCheck={props.setCheck}
+            direction={direction}
           />
         </div>
         <div className={collapse? classes.minMaxRight: classes.minMax}>

@@ -202,6 +202,7 @@ const ExamPanel = (props) => {
               {props.questions?.map((section, idx) => (
                 <button
                   disabled={timeState.isSection[0] || timeState.isComponent[0]}
+                  className={trace[0]==idx ? classes.sectionActive: ""}
                   key={idx}
                   onClick={() => {
                     onSectionClickHandler(idx);
@@ -237,6 +238,7 @@ const ExamPanel = (props) => {
               disabled={timeState.isComponent[0]}
               questions={props.questions}
               trace={trace}
+              activeClass={classes.componentActive}
               onCompClickHandler={onComponentClickHandler}
             />
           </div>
