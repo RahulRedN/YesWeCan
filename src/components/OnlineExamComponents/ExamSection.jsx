@@ -201,7 +201,7 @@ const ExamSection = (props) => {
       <div className={classes.container}>
         <div className={quetionDivClass}>
           <div className={classes.questionType}>
-            Question Type: Multiple Choice Question
+            Question Type: {question?.isInt ? "Integer Type" : "Multiple Choice Question"}
           </div>
           <div className={classes.questionHeader}>
             <div className={classes.headerElements}>

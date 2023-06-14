@@ -202,7 +202,7 @@ const ExamPanel = (props) => {
               {props.questions?.map((section, idx) => (
                 <button
                   disabled={timeState.isSection[0] || timeState.isComponent[0]}
-                  className={trace[0]==idx ? classes.sectionActive: ""}
+                  className={trace[0] == idx ? classes.sectionActive : ""}
                   key={idx}
                   onClick={() => {
                     onSectionClickHandler(idx);
@@ -244,8 +244,19 @@ const ExamPanel = (props) => {
           </div>
         </div>
         <div className={classes.user}>
-          <p>Name</p>
-          <p>Mobile Number</p>
+          <div className={classes.image}>
+            <img
+              src="image"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/assets/user.jpeg";
+              }}
+            />
+          </div>
+          <div className={classes.details}>
+            <p>Name</p>
+            <p>9999999999</p>
+          </div>
         </div>
       </div>
       <div className={classes.mainExam}>

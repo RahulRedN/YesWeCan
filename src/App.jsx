@@ -8,6 +8,7 @@ import Live from "./components/AppPages/Live";
 import Feedback from "./components/AppPages/Feedback";
 import Test from "./components/AppPages/Test";
 import ViewResult from "./components/AppPages/ViewResult";
+import ResultPage from "./pages/ResultPage";
 
 const Root = () => {
   return (<Outlet/>)
@@ -43,7 +44,8 @@ const Router = createBrowserRouter(
         <Route path="/user/feedback" element={<Feedback />} />
         <Route path="/user/Typetest" element={<p>Type Test</p>} />
       </Route>
-      <Route path="/user/online-exam" element={<OnlineExam/>} />
+      <Route path="/online-exam" element={<OnlineExam />} />
+      <Route path="/result" element={<ResultPage />} />
     </Route>
   )
 );

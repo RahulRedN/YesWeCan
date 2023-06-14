@@ -92,8 +92,8 @@
     align-items: center;
 }
 
-.userDetails i{
-    font-size: 200px;
+.userDetails img{
+    width: 70%;
 }
 
 .confirm{
@@ -238,8 +238,8 @@
         width: 100%;
     }
 
-    .userDetails i{
-        font-size: 100px;
+    .userDetails img{
+        width: 40%;
     }
 
     .instructions{

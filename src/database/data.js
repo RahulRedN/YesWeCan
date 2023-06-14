@@ -1,7 +1,7 @@
 export default [
   {
     // totalTime: [1, 0, 3],
-    // sectionTime: [1, 0, 1],
+    sectionTime: [1, 0, 1],
     sectionTitle: "Section 1",
     sectionMark: [4, 0.5],
     components: [
@@ -73,6 +73,42 @@ export default [
           {
             question: {
               equ: "Question 6",
+              img: "sssssssssss",
+            },
+            options: [
+              { equ: "option 1" },
+              { equ: "option 2", img: "ssss" },
+              { equ: "option 3" },
+              { img: "ssss" },
+            ],
+          },
+          {
+            question: {
+              equ: "Question 7",
+              img: "sssssssssss",
+            },
+            options: [
+              { equ: "option 1" },
+              { equ: "option 2", img: "ssss" },
+              { equ: "option 3" },
+              { img: "ssss" },
+            ],
+          },
+          {
+            question: {
+              equ: "Question 7",
+              img: "sssssssssss",
+            },
+            options: [
+              { equ: "option 1" },
+              { equ: "option 2", img: "ssss" },
+              { equ: "option 3" },
+              { img: "ssss" },
+            ],
+          },
+          {
+            question: {
+              equ: "Question 7",
               img: "sssssssssss",
             },
             options: [

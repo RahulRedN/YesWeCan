@@ -71,20 +71,23 @@
 }
 
 .sections {
-  width: 80vw;
+  width: calc(100vw - 275px);
+  height: 100%;
   border-bottom: 1px solid grey;
 }
 
 .section {
   display: flex;
   justify-content: space-between;
-  width: 80vw;
+  height: 35%;
+  width: calc(100vw - 275px);
 }
 
 .section button {
   position: relative;
   cursor: pointer;
   background-color: white;
+  height: 100%;
   font-size: 1rem;
   padding: 0.2rem;
   border: none;
@@ -99,26 +102,29 @@
   background-color: whitesmoke;
 }
 
-.section .sectionActive, .section .sectionActive:disabled{
+.section .sectionActive,
+.section .sectionActive:disabled {
   background-color: navy;
   color: white;
 }
 
-.components .componentActive, .components .componentActive:disabled{
+.components .componentActive,
+.components .componentActive:disabled {
   background-color: rgb(0, 136, 255);
   color: white;
 }
 
 .components {
   display: flex;
-  width: 80vw;
+  height: 65%;
+  width: calc(100vw - 275px);;
   border-bottom: 1px solid rgb(216, 216, 216);
   border-top: 1px solid rgb(216, 216, 216);
   overflow-x: scroll;
 }
 
-
 .components button {
+  white-space: nowrap;
   cursor: pointer;
   padding: 0.3rem;
   font-size: 1.1rem;
@@ -142,8 +148,23 @@
 
 /* User Details */
 .user {
-  width: 20vw;
+  display: flex;
+  gap: 0.2rem;
+  width: 275px;
   border: 1px solid rgb(207, 207, 207);
+}
+
+.user .image {
+  text-align: center;
+  width: 40%;
+}
+
+.image img {
+  max-height: 100%;
+}
+
+.user .details {
+  width: 60%;
 }
 
 /* Exam section */
@@ -360,6 +381,8 @@ span .card {
 .options1 {
   display: flex;
   gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .options2 {
@@ -519,8 +542,6 @@ span .card {
     bottom: -6px;
     white-space: nowrap;
   }
-
-  
 }
 
 @media screen and (max-width: 700px) {
@@ -529,16 +550,26 @@ span .card {
   }
 
   /* Section Header */
-  .section{
+  .section {
     width: 100%;
     flex-direction: column-reverse;
     gap: 0.2rem;
   }
 
-  .section div{
+  .section div:first-child {
     width: 100%;
-    height: 2rem;
+    height: 2.3rem;
     overflow-x: scroll;
+  }
+
+  .section div button {
+    height: 1.8rem;
+  }
+
+  .section div:last-child {
+    text-align: center;
+    font-size: larger;
+    padding: 0.3rem;
   }
 
   .examHeader {
@@ -551,13 +582,18 @@ span .card {
     width: 100%;
   }
 
-  .components{
+  .components {
     width: 100%;
-    height: 60px;
+    height: 50px;
   }
 
-  .components button{
+  .components button {
     padding: 0.2rem;
+  }
+
+  /* User */
+  .image img {
+    max-height: 70px;
   }
 
   /* Exam Section */
@@ -652,5 +688,83 @@ span .card {
 
   .options2 {
     justify-content: space-between;
+  }
+}
+
+
+@media screen and (max-height: 560px) {
+  .view{
+    height: auto;
+    overflow: scroll;
+  }
+
+  .nav{
+    height: 40px;
+  }
+
+  .nav img{
+    height: 40px;
+  }
+
+  .addition{
+    height: 20px;
+  }
+
+  .examHeader{
+    height: auto;
+  }
+
+  .user img{
+    height: 60px;
+  }
+
+  .container{
+    height: auto;
+  }
+
+  .questionDisplay{
+    max-height: 80vh;
+  }
+
+  .examNavPanel{
+    height: 80vh;
+  }
+
+  .questionButtons{
+    max-height: calc(80vh - 172px)
+  }
+
+  .markOptions{
+    height: auto;
+  }
+}
+
+@media screen and (max-height: 200px) {
+  .questionDisplay{
+    max-height: 250px;
+  }
+
+  .examNavPanel{
+    height: 250px;
+  }
+  
+  .questionButtons{
+    max-height: 53px;
+  }
+}
+
+@media screen and (max-height: 560px) and (max-width: 700px) {
+  .examNavPanel{
+    height: fit-content;
+    min-height: 200px;
+  }
+
+  .questionButtons{
+    max-height: 50px;
+    overflow-y: hidden;
+  }
+  
+  .questionDisplay{
+    overflow-x: scroll;
   }
 }

@@ -56,7 +56,13 @@ const OnlineExamInstructions = (props) => {
       <div className={classes.container}>
         <div className={classes.instructions}>{content}</div>
         <div className={classes.userDetails}>
-          <i className="fa-solid fa-user"></i>
+          <img
+            src="image"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/assets/user.jpeg";
+            }}
+          />
           <p>Mobile Number</p>
         </div>
       </div>

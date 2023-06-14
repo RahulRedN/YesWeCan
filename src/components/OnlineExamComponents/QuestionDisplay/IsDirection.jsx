@@ -24,7 +24,7 @@ const IsDirection = ({ question, trace, onSelect, check, direction }) => {
               <img
                 src="asgdfg"
                 className={classes.image}
-                alt="/assets/Logo.png"
+                alt={direction[question?.direction].img}
               />
             ) : (
               ""

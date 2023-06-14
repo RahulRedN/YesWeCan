@@ -83,6 +83,7 @@
     bottom: 6px;
     right: 6px;
     content: "=";
+    font-size: small;
     color: white;
     background-color: lightgreen;
     width: 10px;
