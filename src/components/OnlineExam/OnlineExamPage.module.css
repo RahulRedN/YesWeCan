@@ -108,6 +108,11 @@
   color: white;
 }
 
+.section .sectionActive:hover{
+  background-color: rgba(0, 0, 128, 0.778);
+  color: white;
+}
+
 .components .componentActive,
 .components .componentActive:disabled {
   background-color: rgb(0, 136, 255);
@@ -635,6 +640,10 @@ span .card {
     display: flex;
     overflow-x: scroll;
     gap: 1rem;
+  }
+
+  .questionButtons button{
+    min-width: 50px;
   }
 
   /* info */

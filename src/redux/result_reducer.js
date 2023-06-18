@@ -3,15 +3,11 @@ import { createSlice } from "@reduxjs/toolkit"
 export const resultReducer = createSlice({
     name: 'result',
     initialState: {
-        userId: null,
         result: {},
         status: { '0 0 0': { isVisited: true, isMarked: false, isAnswered: false } },
         timer: {'0 0 0': [0, 0, 0]}
     },
     reducers: {
-        setUserId: (state, action) => {
-            state.userId = action.payload;
-        },
         setVisit: (state, action) => {
             const arr = action.payload;
             const index = `${arr[0]} ${arr[1]} ${arr[2]}`;
@@ -111,6 +107,6 @@ export const resultReducer = createSlice({
     }
 });
 
-export const { setUserId, setVisit, clearQues, saveAnswer, markQuestion, markSave, saveTimer} = resultReducer.actions;
+export const { setVisit, clearQues, saveAnswer, markQuestion, markSave, saveTimer} = resultReducer.actions;
 
 export default resultReducer.reducer;

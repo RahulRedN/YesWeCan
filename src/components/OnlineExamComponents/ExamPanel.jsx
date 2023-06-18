@@ -16,9 +16,11 @@ import {
   reducerTimeState,
 } from "./reducers/reducers";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ExamPanel = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [check, setCheck] = useState(undefined);
 
@@ -104,7 +106,7 @@ const ExamPanel = (props) => {
     },
     timeStateHandler: () => {
       if (timeState.isTotal) {
-        alert("Total Aver");
+        navigate('/result');
         return;
       } else if (timeState.isSection[0]) {
         const index = timeState.isSection[1];
@@ -114,14 +116,7 @@ const ExamPanel = (props) => {
           dispatch(SetSection(index + 1));
         } else {
           saveTimer();
-          props.dispatchAlert({
-            type: "Set",
-            payload: {
-              title: "Alert!",
-              content: "Section time finished",
-              closeContent: "close",
-            },
-          });
+          navigate("/result");
         }
       } else if (timeState.isComponent[0]) {
         const index = [timeState.isComponent[1], timeState.isComponent[2]];
@@ -135,7 +130,7 @@ const ExamPanel = (props) => {
           dispatch(SetSection(index[0] + 1));
         } else {
           saveTimer();
-          alert("Aver");
+          navigate("/result");
         }
       }
     },

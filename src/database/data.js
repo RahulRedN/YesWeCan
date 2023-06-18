@@ -1,6 +1,6 @@
 export default [
   {
-    // totalTime: [1, 0, 3],
+    totalTime: [0, 0, 3],
     sectionTime: [1, 0, 1],
     sectionTitle: "Section 1",
     sectionMark: [4, 0.5],

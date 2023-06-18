@@ -17,7 +17,7 @@ export const useFetchQuestion = () => {
   useEffect(() => {
     setGetData((prev) => ({ ...prev, isLoading: true }));
 
-    // Async funtion ti fetch data
+    // Async funtion to fetch data
     (async () => {
       try {
           let question = data;

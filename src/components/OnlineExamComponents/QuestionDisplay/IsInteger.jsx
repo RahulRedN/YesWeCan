@@ -24,7 +24,12 @@ const IsInteger = ({ question, trace, setCheck, check }) => {
         )}
       </div>
       <div className={classes.inputBox}>
-        <input type="number" step='0.01' onChange={(e) => setCheck(e.target.value)} placeholder={(check || check == 0) ? check : "enter integer" } />
+        <input
+          type="number"
+          step="0.01"
+          onChange={(e) => setCheck(parseInt(e.target.value))}
+          placeholder={check || check == 0 ? check : "enter integer"}
+        />
       </div>
     </div>
   );

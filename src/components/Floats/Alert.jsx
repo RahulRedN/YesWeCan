@@ -2,9 +2,6 @@ import React, {useEffect} from "react";
 import ReactDom from "react-dom";
 import classes from "./Alert.module.css";
 
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
-
-
 const Alert = ({ isAlert, closeHandler, address}) => {
   if (!isAlert[0]) return null;
 
