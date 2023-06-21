@@ -19,6 +19,7 @@ const Feedback = () => {
         ></textarea>
         <button type="submit">Submit</button>
       </form>
+      <div className={classes.emptyHeight}></div>
     </>
   );
 };

@@ -14,7 +14,7 @@
 
 .nav ul{
     display: flex;
-    flex-wrap: wrap;
+    min-width: 640px;
     row-gap: 1rem;
     list-style-type: none;
 }
@@ -54,6 +54,13 @@
 .displayContent{
     display: flex;
     flex-direction: column;
+    overflow-x: scroll;
     gap:1.5rem;
     padding: 2rem;
+}
+
+@media screen and (max-width: 675px) {
+    .nav{
+        overflow-x: scroll;
+    }
 }

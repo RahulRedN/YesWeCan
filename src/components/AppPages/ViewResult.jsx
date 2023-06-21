@@ -4,58 +4,8 @@ import ViewResultContent from "../AppComponents/ViewResultContent";
 
 const ViewResult = () => {
   const [clicked, setClicked] = useState({
-    isScoreCard: true,
-    isResult: false,
-    isPaper: false,
-    isReport: false,
-    isVideo: false,
+    isScoreCard: true
   });
-    
-  const scoreClickHandler = () => {
-    setClicked({
-      isScoreCard: true,
-      isResult: false,
-      isPaper: false,
-      isReport: false,
-      isVideo: false,
-    });
-  };
-  const resultClickHandler = () => {
-    setClicked({
-      isScoreCard: false,
-      isResult: true,
-      isPaper: false,
-      isReport: false,
-      isVideo: false,
-    });
-  };
-  const paperClickHandler = () => {
-    setClicked({
-      isScoreCard: false,
-      isResult: false,
-      isPaper: true,
-      isReport: false,
-      isVideo: false,
-    });
-  };
-  const reportClickHandler = () => {
-    setClicked({
-      isScoreCard: false,
-      isResult: false,
-      isPaper: false,
-      isReport: true,
-      isVideo: false,
-    });
-  };
-  const videoClickHandler = () => {
-    setClicked({
-      isScoreCard: false,
-      isResult: false,
-      isPaper: false,
-      isReport: false,
-      isVideo: true,
-    });
-  };
 
   return (
     <>
@@ -65,7 +15,7 @@ const ViewResult = () => {
           <ul>
             <li>
               <button
-                onClick={scoreClickHandler}
+                onClick={()=>{setClicked({isScoreCard:true})}}
                 className={clicked.isScoreCard ? classes.isActive : ""}
               >
                 Score Card
@@ -73,7 +23,7 @@ const ViewResult = () => {
             </li>
             <li>
               <button
-                onClick={resultClickHandler}
+                onClick={()=>{setClicked({isResult: true})}}
                 className={clicked.isResult ? classes.isActive : ""}
               >
                 Result
@@ -81,7 +31,7 @@ const ViewResult = () => {
             </li>
             <li>
               <button
-                onClick={paperClickHandler}
+                onClick={() => {setClicked({isPaper: true})}}
                 className={clicked.isPaper ? classes.isActive : ""}
               >
                 Question Paper
@@ -89,7 +39,7 @@ const ViewResult = () => {
             </li>
             <li>
               <button
-                onClick={reportClickHandler}
+                onClick={()=>{setClicked({isReport: true})}}
                 className={clicked.isReport ? classes.isActive : ""}
               >
                 Comparitive Report
@@ -97,7 +47,7 @@ const ViewResult = () => {
             </li>
             <li>
               <button
-                onClick={videoClickHandler}
+                onClick={() =>{setClicked({isVideo: true})}}
                 className={clicked.isVideo ? classes.isActive : ""}
               >
                 Explanation Video

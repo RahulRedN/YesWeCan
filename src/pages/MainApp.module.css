@@ -8,24 +8,16 @@
   display: flex;
 }
 
-.sidebar {
+.sidebar, .noSidebar {
   width: 250px;
-}
-
-.noSidebar {
-  display: none;
 }
 
 .contentDefault {
   height: 100%;
 }
 
-.contentPage {
+.contentPage, .contentPageNosidebar {
   width: calc(100vw - 250px);
-}
-
-.contentPageNosidebar {
-  width: 100%;
 }
 
 .footer {

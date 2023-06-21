@@ -31,6 +31,10 @@
   transition: ease-in;
 }
 
+.nav button span{
+  white-space: nowrap;
+}
+
 .nav button:hover {
   transform: translateY(-4px);
   border: 1px solid rgb(0, 208, 255);
@@ -38,7 +42,7 @@
   box-shadow: 0 2px 10px rgb(0, 208, 255);
 }
 
-.isNotActive{
+.isNotActive {
   background-color: none;
   border: 1px solid rgb(236, 236, 236);
   box-shadow: 0 2px 10px rgba(100, 100, 100, 0.358);
@@ -57,6 +61,12 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
+}
+
+.tableDiv {
+  display: flex;
+
+  width: 100%;
 }
 
 .coursesTable {
@@ -105,4 +115,29 @@
 
 .emptyHeight {
   height: 100px;
+}
+
+@media screen and (max-width: 930px) {
+  .nav {
+    gap: 0.5rem;
+  }
+
+  .nav button:hover {
+    transform: none;
+    border: 1px solid rgb(0, 208, 255);
+    background-color: rgb(0, 208, 255);
+    box-shadow: 0 2px 10px rgb(0, 208, 255);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav{
+    overflow-x: scroll;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .tableDiv{
+    overflow-x: scroll;
+  }
 }

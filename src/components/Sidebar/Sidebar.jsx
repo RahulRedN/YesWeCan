@@ -1,10 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
+import { useAuth } from "../../Firebase/AuthContexts";
+
 import CourseTest from "./CourseTest";
 import classes from "./Sidebar.module.css";
 
 const Sidebar = (props) => {
+  const user = useSelector((state) => state.user.data);
+  const {logout} = useAuth();
   const myCourses = props.courses;
   return (
     <ul className={classes.navigation}>
@@ -53,12 +59,15 @@ const Sidebar = (props) => {
           <i className="fa-solid fa-comment"></i> Feedback
         </NavLink>
       </li>
-      <li className={classes.util}>
-        <NavLink
-          to="/logout"
-        >
+      <li
+        className={classes.util}
+        onClick={() => {
+          logout(user?.id);
+        }}
+      >
+        <a>
           <i className="fa-solid fa-arrow-right-from-bracket"></i> Logout
-        </NavLink>
+        </a>
       </li>
       <div className={classes.emptyHeight}></div>
     </ul>

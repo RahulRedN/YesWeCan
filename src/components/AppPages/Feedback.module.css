@@ -33,3 +33,13 @@
 .feedback button:hover{
     background-color: rgb(99, 151, 255);
 }
+
+.emptyHeight{
+    height: 100px;
+}
+
+@media screen and (max-width: 780px) {
+    .feedback{
+        width: 100%;
+    }
+}

@@ -41,44 +41,51 @@ const Dashboard = (props) => {
     content = (
       <>
         <h3>List of Courses Purchased</h3>
-        <table className={classes.coursesTable}>
-          <tbody>
-            <tr>
-              <th>S.NO</th>
-              <th>Course Name</th>
-              <th>Purchased On</th>
-              <th>Expires On</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </tr>
-            <TableData myCourses={MyCourses} />
-          </tbody>
-        </table>
-        <div className={classes.emptyHeight}></div>
+        <div className={classes.tableDiv}>
+          <table className={classes.coursesTable}>
+            <tbody>
+              <tr>
+                <th>S.NO</th>
+                <th>Course Name</th>
+                <th>Purchased On</th>
+                <th>Expires On</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+              <TableData myCourses={MyCourses} />
+            </tbody>
+          </table>
+        </div>
       </>
     );
   } else if (isClicked.isRecent) {
-    content = <>
-      <h3>Recent tests attempted</h3>
-      <table className={classes.coursesTable}>
-        <tbody>
-          <tr>
-            <th>S.NO</th>
-            <th>Test Name</th>
-            <th>Marks Achieved</th>
-            <th>Total Marks</th>
-            <th>Rank</th>
-          </tr>
-          {testDetails.map((test, idx) => <tr key={idx}>
-            <td>{idx + 1}</td>
-            <td>{test.testTitle}</td>
-            <td>{test.scored}</td>
-            <td>{test.total}</td>
-            <td>{test.rank}</td>
-          </tr>)}
-        </tbody>
-      </table>
-    </>;
+    content = (
+      <>
+        <h3>Recent tests attempted</h3>
+        <div className={classes.tableDiv}>
+          <table className={classes.coursesTable}>
+            <tbody>
+              <tr>
+                <th>S.NO</th>
+                <th>Test Name</th>
+                <th>Marks Achieved</th>
+                <th>Total Marks</th>
+                <th>Rank</th>
+              </tr>
+              {testDetails.map((test, idx) => (
+                <tr key={idx}>
+                  <td>{idx + 1}</td>
+                  <td>{test.testTitle}</td>
+                  <td>{test.scored}</td>
+                  <td>{test.total}</td>
+                  <td>{test.rank}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
+    );
   } else {
     content = (
       <>
@@ -96,15 +103,6 @@ const Dashboard = (props) => {
             <li>
               Don't press refresh button / back button while writing online
               exams
-            </li>
-            <li>
-              While writing Online Exams note that,
-              <span>
-                if you are idle for 10 Minutes your exam will be submitted
-                automatically.
-              </span>
-              So Aspirants are advised to change question atleast for every 5
-              minutes.
             </li>
             {/* <li>Previous Online Exam written data will not be available.</li> */}
           </ol>
@@ -124,7 +122,7 @@ const Dashboard = (props) => {
               isClicked.isMycourse ? classes.isActive : classes.isNotActive
             }
           >
-            My Courses
+            <span>My Courses</span>
           </button>
           <button
             onClick={recentClickHandler}
@@ -132,7 +130,7 @@ const Dashboard = (props) => {
               isClicked.isRecent ? classes.isActive : classes.isNotActive
             }
           >
-            Recent Tests
+            <span>Recent Tests</span>
           </button>
           <button
             onClick={instructionClickHandler}
@@ -140,10 +138,13 @@ const Dashboard = (props) => {
               isClicked.isInstruction ? classes.isActive : classes.isNotActive
             }
           >
-            Instructions
+            <span>Instructions</span>
           </button>
         </div>
-        <div className={classes.displayContent}>{content}</div>
+        <div className={classes.displayContent}>
+          {content}
+          <div className={classes.emptyHeight}></div>
+        </div>
       </div>
     </>
   );

@@ -1,9 +1,10 @@
 .testCard {
   display: flex;
   flex-direction: column;
-  min-width: 240px;
+  min-width: 28%;
   background-color: none;
-  border: 1px solid rgb(236, 236, 236);
+  border: 1px solid black;
+  border-radius: 3px;
   box-shadow: 0 2px 4px rgba(100, 100, 100, 0.358);
 }
 
@@ -14,10 +15,13 @@
   gap: 1rem;
   justify-content: center;
   align-items: center;
+
+  background-color: navy;
+  color: white;
 }
 
 hr{
-   border: 1px solid rgba(128, 128, 128, 0.467);
+   border: 1px solid black;
 }
 
 .testTitle {
@@ -28,6 +32,7 @@ hr{
   display: flex;
   justify-content: center;
   padding: 1rem;
+  border-radius: 0 0 3px 3px;
 }
 
 .cardFooter a {
@@ -42,4 +47,17 @@ hr{
 
 .cardFooter a:hover {
   background-color: rgb(43, 142, 255);
+}
+
+
+@media screen and (max-width: 690px) {
+  .testCard{
+    width: 230px;
+  }
+}
+
+@media screen and (max-width: 546px) {
+  .testCard{
+    width: 80%;
+  }
 }
