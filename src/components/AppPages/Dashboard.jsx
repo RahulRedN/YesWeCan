@@ -1,31 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 import TableData from "../AppComponents/TableData";
+
 import classes from "./Dashboard.module.css";
 
-const Dashboard = (props) => {
-  const testDetails = [
-    { testTitle: "Test 1", scored: 21, total: 33, rank: 3 },
-    { testTitle: "Test 2", scored: 21, total: 33, rank: 5 },
-    { testTitle: "Test 3", scored: 21, total: 33, rank: 7 },
-  ];
-  const MyCourses = props.myCourses;
+import { useSelector } from "react-redux";
+
+const Dashboard = () => {
+  const myCourses = useSelector((state) => state.user.myCourses);
+  const allCourses = useSelector((state) => state.user.allCourses);
+
   const [isClicked, setIsClicked] = useState({
     isMycourse: true,
-    isRecent: false,
     isInstruction: false,
   });
-  const init = { isMycourse: false, isRecent: false, isInstruction: false };
+  const init = { isMycourse: false, isInstruction: false };
   const myCourseClickHandler = () => {
     setIsClicked(() => {
       let value = init;
       value.isMycourse = true;
-      return value;
-    });
-  };
-  const recentClickHandler = () => {
-    setIsClicked(() => {
-      let value = init;
-      value.isRecent = true;
       return value;
     });
   };
@@ -42,47 +35,29 @@ const Dashboard = (props) => {
       <>
         <h3>List of Courses Purchased</h3>
         <div className={classes.tableDiv}>
-          <table className={classes.coursesTable}>
-            <tbody>
-              <tr>
-                <th>S.NO</th>
-                <th>Course Name</th>
-                <th>Purchased On</th>
-                <th>Expires On</th>
-                <th>Amount</th>
-                <th>Status</th>
-              </tr>
-              <TableData myCourses={MyCourses} />
-            </tbody>
-          </table>
-        </div>
-      </>
-    );
-  } else if (isClicked.isRecent) {
-    content = (
-      <>
-        <h3>Recent tests attempted</h3>
-        <div className={classes.tableDiv}>
-          <table className={classes.coursesTable}>
-            <tbody>
-              <tr>
-                <th>S.NO</th>
-                <th>Test Name</th>
-                <th>Marks Achieved</th>
-                <th>Total Marks</th>
-                <th>Rank</th>
-              </tr>
-              {testDetails.map((test, idx) => (
-                <tr key={idx}>
-                  <td>{idx + 1}</td>
-                  <td>{test.testTitle}</td>
-                  <td>{test.scored}</td>
-                  <td>{test.total}</td>
-                  <td>{test.rank}</td>
+          {myCourses ? (
+            <table className={classes.coursesTable}>
+              <tbody>
+                <tr>
+                  <th>S.NO</th>
+                  <th>Course Name</th>
+                  <th>Purchased On</th>
+                  <th>Expires On</th>
+                  <th>Amount</th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+                {myCourses ? (
+                  <TableData myCourses={myCourses} allCourses={allCourses} />
+                ) : (
+                  <tr>
+                    <td colSpan={6}>Empty</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          ) : (
+            "No purchases yet! Purchase courses through Courses Page from Home Page!"
+          )}
         </div>
       </>
     );
@@ -104,7 +79,6 @@ const Dashboard = (props) => {
               Don't press refresh button / back button while writing online
               exams
             </li>
-            {/* <li>Previous Online Exam written data will not be available.</li> */}
           </ol>
         </div>
       </>
@@ -123,14 +97,6 @@ const Dashboard = (props) => {
             }
           >
             <span>My Courses</span>
-          </button>
-          <button
-            onClick={recentClickHandler}
-            className={
-              isClicked.isRecent ? classes.isActive : classes.isNotActive
-            }
-          >
-            <span>Recent Tests</span>
           </button>
           <button
             onClick={instructionClickHandler}

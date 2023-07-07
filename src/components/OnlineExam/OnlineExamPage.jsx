@@ -9,13 +9,23 @@ import Alert from "../Floats/Alert";
 import ExamPanel from "../OnlineExamComponents/ExamPanel";
 import classes from "./OnlineExamPage.module.css";
 import { useSelector } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const OnlineExamPage = () => {
+  const [searchParams, setParams] = useSearchParams();
+  const id = searchParams.get("id");
+  const courseName = searchParams.get("courseName");
+
+  const nav = useNavigate();
+
   const [showInstructions, setShowInstructions] = useState(false);
-  const [{ isLoading, apiData, serverError }] = useFetchQuestion();
+  const [{ status }] = useFetchQuestion(id);
   const [isAlert, dispatchAlert] = useReducer(reducerAlert, [false, {}]);
-  if (isLoading) return <h3>Loading...</h3>;
-  if (serverError) return <h3>Server Error</h3>;
+  if (status == "server") {
+    alert("Server Error")
+    nav('/user');
+    return<>Server Error</>
+  }
 
   const getData = useSelector((state) => state.questions.queue);
   const [isFullScreen, setIsFullScreen] = useState(true);
@@ -49,9 +59,9 @@ const OnlineExamPage = () => {
         <div className={classes.nav}>
           <div className={classes.navEle}>
             <span>
-              <img src="/assets/Logo.png" alt="" />
+              <img  style={{paddingTop: "0.2rem"}} src="/assets/AppLogo.png" alt="" />
             </span>{" "}
-            <span>Exam-Name</span>
+            <span>{courseName}</span>
           </div>
           <div className={classes.navEle}>
             <button
@@ -64,9 +74,6 @@ const OnlineExamPage = () => {
           </div>
         </div>
         <div className={classes.addition}>
-          <div className={classes.addBut}>
-            Question Paper
-          </div>
           <div
             className={classes.addBut}
             onClick={() => {
@@ -77,7 +84,7 @@ const OnlineExamPage = () => {
           </div>
         </div>
         <div className={classes.examPanel}>
-          <ExamPanel questions={getData} dispatchAlert={dispatchAlert} />
+          <ExamPanel questions={getData} dispatchAlert={dispatchAlert} courseName={courseName} />
         </div>
       </FullScreen>
     </>

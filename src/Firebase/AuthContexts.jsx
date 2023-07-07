@@ -7,7 +7,7 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
   GoogleAuthProvider,
-  signInWithRedirect,
+  signInWithPopup,
 } from "firebase/auth";
 
 import {
@@ -19,7 +19,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-import { reset, setData } from "../redux/user_reducer";
+import { reset, setData, setCourses } from "../redux/user_reducer";
 import { useDispatch } from "react-redux";
 
 const AuthContext = React.createContext();
@@ -30,18 +30,17 @@ export const AuthContexts = ({ children }) => {
   const [isLoading, setLoading] = useState(true);
 
   const signUp = async (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password).then((res) =>
-      console.log(res.user.uid)
-    );
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const logout = async (id) => {
+  const logout = async (id, nav) => {
     try {
       if (id) {
+        nav('/user')
         const docRef = doc(db, "users", id);
         await updateDoc(docRef, { isLoggedIn: false });
         dispatch(reset());
@@ -58,7 +57,7 @@ export const AuthContexts = ({ children }) => {
 
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
-    return signInWithRedirect(auth, provider);
+    return signInWithPopup(auth, provider);
   };
 
   useEffect(() => {
@@ -74,6 +73,17 @@ export const AuthContexts = ({ children }) => {
               id: doc.id,
             }));
             dispatch(setData(data[0]));
+          }
+
+          const enrollments = collection(db, "enrollments");
+          const query1 = query(enrollments, where("uid", "==", user.uid));
+          const coursesSnapshot = await getDocs(query1);
+          if (coursesSnapshot.docs.length != 0) {
+            const courses = coursesSnapshot.docs.map((doc) => ({
+              ...doc.data(),
+              id: doc.id,
+            }));
+            dispatch(setCourses(courses));
           }
         }
       } catch (err) {

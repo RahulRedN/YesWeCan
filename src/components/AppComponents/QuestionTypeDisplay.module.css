@@ -1,0 +1,69 @@
+.questionDiv {
+  border-bottom: 1px solid rgb(178, 178, 178);
+  font-size: larger;
+  padding: 1rem;
+}
+
+.options {
+  padding: 1rem;
+}
+
+.options ol {
+  padding-left: 2rem;
+}
+
+.options li {
+  padding: 0.3rem;
+}
+
+.cardDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid rgb(72, 72, 72);
+  padding: 0.3rem;
+  border-radius: 3px;
+}
+
+.card.ans {
+  border: 2px solid rgb(9, 170, 0);
+}
+
+.card.valid {
+  border: 2px solid rgb(9, 170, 0);
+}
+
+.card.invalid {
+  border: 2px solid rgb(245, 9, 9);
+}
+
+.card.notAnswered {
+  background-color: rgb(255, 59, 59);
+}
+
+.card.marked {
+  background-color: rgb(140, 9, 255);
+  color: white;
+}
+
+.directionDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.direction {
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+
+.question {
+  width: 100%;
+}
+
+.direction h4,
+.question h4 {
+  border-bottom: 1px solid grey;
+}

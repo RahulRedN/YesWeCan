@@ -106,8 +106,9 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
           email: user.email,
           name: user.displayName,
           photo: user.photoURL,
+          mobile: user.phoneNumber,
           role: "online",
-          isLoggedIn: true,
+          isLoggedIn: false,
         });
       }
       setIsLoading(false);

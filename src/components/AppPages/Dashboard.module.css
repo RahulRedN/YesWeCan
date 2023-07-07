@@ -4,7 +4,7 @@
 }
 
 .header {
-  padding: 2rem;
+  padding: 1rem;
   font-size: x-large;
   background-color: navy;
   color: white;
@@ -40,6 +40,10 @@
   border: 1px solid rgb(0, 208, 255);
   background-color: rgb(0, 208, 255);
   box-shadow: 0 2px 10px rgb(0, 208, 255);
+}
+
+.nav button:focus{
+  transform: none;
 }
 
 .isNotActive {
@@ -120,13 +124,6 @@
 @media screen and (max-width: 930px) {
   .nav {
     gap: 0.5rem;
-  }
-
-  .nav button:hover {
-    transform: none;
-    border: 1px solid rgb(0, 208, 255);
-    background-color: rgb(0, 208, 255);
-    box-shadow: 0 2px 10px rgb(0, 208, 255);
   }
 }
 

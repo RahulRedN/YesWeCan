@@ -45,7 +45,7 @@
   display: flex;
   padding: 0.2rem;
   height: 3vh;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 2rem;
   background-color: rgb(62, 62, 62);
   color: white;
@@ -53,10 +53,6 @@
 
 .addBut {
   cursor: pointer;
-}
-
-.addition .addBut:first-child:hover {
-  cursor: not-allowed;
 }
 
 .examPanel {
@@ -108,7 +104,7 @@
   color: white;
 }
 
-.section .sectionActive:hover{
+.section .sectionActive:hover {
   background-color: rgba(0, 0, 128, 0.778);
   color: white;
 }
@@ -122,10 +118,23 @@
 .components {
   display: flex;
   height: 65%;
-  width: calc(100vw - 275px);;
+  width: calc(100vw - 275px);
   border-bottom: 1px solid rgb(216, 216, 216);
   border-top: 1px solid rgb(216, 216, 216);
-  overflow-x: scroll;
+}
+
+.components .buttonClass {
+  width: calc(22px);
+  background-color: grey;
+  color: black;
+}
+
+.components .buttonClass:hover {
+  text-decoration: none;
+}
+
+.components .componentClass {
+  width: calc(100vw - 275px - 44px);
 }
 
 .components button {
@@ -134,6 +143,7 @@
   padding: 0.3rem;
   font-size: 1.1rem;
   border: none;
+  border-right: 1px solid grey;
   background-color: white;
   color: rgb(0, 136, 255);
 }
@@ -214,7 +224,6 @@
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  overflow-y: scroll;
 }
 
 .beforeCollapse {
@@ -228,11 +237,13 @@
 .questionType {
   border-top: 1px solid rgb(228, 228, 228);
   padding: 0.7rem;
+  height: 40px;
 }
 
 .questionHeader {
   background-color: navy;
   color: white;
+  height: 50px;
 }
 
 .headerElements {
@@ -259,7 +270,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 35px;
+  min-width: 35px;
+  width: fit-content;
   padding: 0.1rem;
   background-color: rgb(1, 166, 1);
 }
@@ -269,7 +281,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 35px;
+  min-width: 35px;
+  width: fit-content;
   padding: 0.1rem;
   background-color: red;
 }
@@ -299,7 +312,7 @@
 .status span {
   display: flex;
   position: relative;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   padding: 0.8rem;
   width: 50%;
@@ -375,6 +388,10 @@ span .card {
   border-radius: 3px;
   background-color: white;
   padding: 0.5rem;
+}
+
+.submit button {
+  cursor: not-allowed;
 }
 
 .basic button:hover {
@@ -596,6 +613,10 @@ span .card {
     padding: 0.2rem;
   }
 
+  .components .componentClass {
+    width: calc(100vw - 44px);
+  }
+
   /* User */
   .image img {
     max-height: 70px;
@@ -614,6 +635,10 @@ span .card {
   .minMax,
   .minMaxRight {
     display: none;
+  }
+
+  .questionHeader{
+    height: 75px;
   }
 
   .headerElements {
@@ -642,7 +667,7 @@ span .card {
     gap: 1rem;
   }
 
-  .questionButtons button{
+  .questionButtons button {
     min-width: 50px;
   }
 
@@ -700,80 +725,79 @@ span .card {
   }
 }
 
-
 @media screen and (max-height: 560px) {
-  .view{
+  .view {
     height: auto;
     overflow: scroll;
   }
 
-  .nav{
+  .nav {
     height: 40px;
   }
 
-  .nav img{
+  .nav img {
     height: 40px;
   }
 
-  .addition{
+  .addition {
     height: 20px;
   }
 
-  .examHeader{
+  .examHeader {
     height: auto;
   }
 
-  .user img{
+  .user img {
     height: 60px;
   }
 
-  .container{
+  .container {
     height: auto;
   }
 
-  .questionDisplay{
+  .questionDisplay {
     max-height: 80vh;
   }
 
-  .examNavPanel{
+  .examNavPanel {
     height: 80vh;
   }
 
-  .questionButtons{
-    max-height: calc(80vh - 172px)
+  .questionButtons {
+    max-height: calc(80vh - 172px);
   }
 
-  .markOptions{
+  .markOptions {
     height: auto;
   }
 }
 
 @media screen and (max-height: 200px) {
-  .questionDisplay{
+  .questionDisplay {
     max-height: 250px;
   }
 
-  .examNavPanel{
+  .examNavPanel {
     height: 250px;
   }
-  
-  .questionButtons{
+
+  .questionButtons {
     max-height: 53px;
   }
 }
 
 @media screen and (max-height: 560px) and (max-width: 700px) {
-  .examNavPanel{
+  .examNavPanel {
     height: fit-content;
     min-height: 200px;
   }
 
-  .questionButtons{
+  .questionButtons {
     max-height: 50px;
     overflow-y: hidden;
   }
-  
-  .questionDisplay{
+
+  .questionDisplay {
     overflow-x: scroll;
   }
 }

@@ -1,21 +1,40 @@
 import React, { useReducer, useState } from "react";
 import classes from "./ViewResult.module.css";
 import ViewResultContent from "../AppComponents/ViewResultContent";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const ViewResult = () => {
+  const nav = useNavigate();
+  const [searchParams, setParams] = useSearchParams();
+  const id = searchParams.get("courseId");
+  const courseName = searchParams.get("courseName");
+
   const [clicked, setClicked] = useState({
-    isScoreCard: true
+    isResult: true
   });
+
 
   return (
     <>
       <div className={classes.container}>
-        <div className={classes.header}>Results of {"Title"}</div>
+        <div className={classes.header}>
+          <span>Results of {courseName}</span>{" "}
+          <div
+            className={classes.backButton}
+            onClick={() => {
+              nav(-1);
+            }}
+          >
+            X
+          </div>
+        </div>
         <div className={classes.nav}>
           <ul>
             <li>
               <button
-                onClick={()=>{setClicked({isScoreCard:true})}}
+                onClick={() => {
+                  setClicked({ isScoreCard: true });
+                }}
                 className={clicked.isScoreCard ? classes.isActive : ""}
               >
                 Score Card
@@ -23,7 +42,9 @@ const ViewResult = () => {
             </li>
             <li>
               <button
-                onClick={()=>{setClicked({isResult: true})}}
+                onClick={() => {
+                  setClicked({ isResult: true });
+                }}
                 className={clicked.isResult ? classes.isActive : ""}
               >
                 Result
@@ -31,7 +52,9 @@ const ViewResult = () => {
             </li>
             <li>
               <button
-                onClick={() => {setClicked({isPaper: true})}}
+                onClick={() => {
+                  setClicked({ isPaper: true });
+                }}
                 className={clicked.isPaper ? classes.isActive : ""}
               >
                 Question Paper
@@ -39,15 +62,19 @@ const ViewResult = () => {
             </li>
             <li>
               <button
-                onClick={()=>{setClicked({isReport: true})}}
-                className={clicked.isReport ? classes.isActive : ""}
+                onClick={() => {
+                  setClicked({ isTest: true });
+                }}
+                className={clicked.isTest ? classes.isActive : ""}
               >
-                Comparitive Report
+                Attempted Tests
               </button>
             </li>
             <li>
               <button
-                onClick={() =>{setClicked({isVideo: true})}}
+                onClick={() => {
+                  setClicked({ isVideo: true });
+                }}
                 className={clicked.isVideo ? classes.isActive : ""}
               >
                 Explanation Video
@@ -55,7 +82,9 @@ const ViewResult = () => {
             </li>
           </ul>
         </div>
-        <div className={classes.displayContent}><ViewResultContent clicked={clicked} /></div>
+        <div className={classes.displayContent}>
+          <ViewResultContent clicked={clicked} courseId={id} />
+        </div>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
@@ -7,16 +7,18 @@ import { useAuth } from "../../Firebase/AuthContexts";
 
 import CourseTest from "./CourseTest";
 import classes from "./Sidebar.module.css";
+import { useCourseFetch } from "../../hooks/setCoursesInfo";
 
-const Sidebar = (props) => {
+const Sidebar = () => {
+  const [data, setData] = useCourseFetch();
+  const nav = useNavigate();
   const user = useSelector((state) => state.user.data);
   const {logout} = useAuth();
-  const myCourses = props.courses;
   return (
     <ul className={classes.navigation}>
       <li className={classes.util}>
         <NavLink
-          to="/user"
+          to={`/user`}
           end
           style={({ isActive }) => {
             return {
@@ -42,8 +44,8 @@ const Sidebar = (props) => {
           <i className="fa-solid fa-wifi"></i> Live
         </NavLink>
       </li>
-      {myCourses.map((course, idx) => (
-        <CourseTest course={course} key={idx} classes={classes} />
+      {data?.map((course, idx) => (
+        <CourseTest course={course} key={idx} classes={classes} role={user.role} />
       ))}
       <li className={classes.util}>
         <NavLink
@@ -60,9 +62,10 @@ const Sidebar = (props) => {
         </NavLink>
       </li>
       <li
+        style={{ cursor: "pointer" }}
         className={classes.util}
         onClick={() => {
-          logout(user?.id);
+          logout(user?.id, nav);
         }}
       >
         <a>

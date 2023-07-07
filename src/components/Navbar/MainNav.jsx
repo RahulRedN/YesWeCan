@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import classes from "./MainNav.module.css";
 
 const MainNav = (props) => {
@@ -13,7 +14,9 @@ const MainNav = (props) => {
         <i className="fa-solid fa-bars"></i>
       </div>
       <div className={classes.navLogo}>
-        <a href="#">Sadhana Government Jobs Academy</a>
+        <Link to={"/"}>
+          <img src="/assets/AppLogo.png" />
+        </Link>
       </div>
       {isDropdown && (
         <div

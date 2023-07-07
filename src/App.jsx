@@ -5,6 +5,7 @@ import {
   Route,
   Outlet,
   RouterProvider,
+  useNavigation,
 } from "react-router-dom";
 import { AuthContexts } from "./Firebase/AuthContexts";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
@@ -13,6 +14,8 @@ import MainApp from "./pages/MainApp";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+
+import HomePage from "./pages/HomePage";
 
 import Dashboard from "./components/AppPages/Dashboard";
 import Live from "./components/AppPages/Live";
@@ -23,31 +26,24 @@ import ViewResult from "./components/AppPages/ViewResult";
 import OnlineExam from "./pages/OnlineExam";
 import ResultPage from "./pages/ResultPage";
 
+import * as Loader from "./Loaders/Loaders";
+
 const Root = () => {
+  const { state } = useNavigation();
+  if (state == "loading") {
+    return (
+      <div>
+        Loadind asddddddddf sd f ads f a dsf a df a df a df a dfa sdf asd fa....
+      </div>
+    );
+  }
   return <Outlet />;
 };
-
-const courses = [
-  {
-    courseTitle: "Course 1",
-    purchased: "1-1-2023",
-    expires: "31-12-2023",
-    amount: 233,
-    status: "Unlocked",
-  },
-  {
-    courseTitle: "Course 2",
-    purchased: "1-1-2023",
-    expires: "31-12-2023",
-    amount: 322,
-    status: "Unlocked",
-  },
-];
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
-      <Route index element={<p>HomePage</p>} />
+      <Route index element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route
@@ -58,10 +54,18 @@ const Router = createBrowserRouter(
           </PrivateRoute>
         }
       >
-        <Route index element={<Dashboard myCourses={courses} />} />
+        <Route index element={<Dashboard />} />
         <Route path="/user/live" element={<Live />} />
-        <Route path="/user/test" element={<Test />} />
-        <Route path="/user/viewResult" element={<ViewResult />} />
+        <Route
+          path="/user/test"
+          element={<Test />}
+          loader={Loader.TestsLoader}
+        />
+        <Route
+          path="/user/viewResult"
+          element={<ViewResult />}
+          loader={Loader.DashboardLoader}
+        />
         <Route path="/user/feedback" element={<Feedback />} />
         <Route path="/user/Typetest" element={<p>Type Test</p>} />
       </Route>

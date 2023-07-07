@@ -26,6 +26,7 @@
 }
 
 .courseContent button{
+  cursor: pointer;
   width: 100%;
   background-color: #62CDFF;
   justify-content: space-between;
@@ -105,6 +106,7 @@
   background-color: white;
   color: black;
 }
+
 
 @keyframes fadeIn {
   0% {

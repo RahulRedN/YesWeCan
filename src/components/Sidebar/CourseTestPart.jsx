@@ -8,7 +8,11 @@ const CourseTestPart = (props) => {
   };
   return (
     <div className={props.classes.courseContent}>
-      <button onClick={toggleViewHandler} style={{justifyContent: "flex-end", gap: "4rem"}}>{props.title}
+      <button
+        onClick={toggleViewHandler}
+        style={{ justifyContent: "flex-end", gap: "4rem" }}
+      >
+        {props.title}
         <div className={dropdown ? props.classes.clicked : ""}>
           <i className="fa-solid fa-angle-down"></i>
         </div>
@@ -19,7 +23,10 @@ const CourseTestPart = (props) => {
         }
       >
         {props.tests.map((test) => (
-          <NavLink to={`/user/test/?:${test.id}`} key={test.id}>
+          <NavLink
+            to={`/user/test?id=${test.id}&courseId=${props.courseId}&user=${props.status}&role=${props.role}`}
+            key={test.id}
+          >
             <i className="fa-solid fa-circle"></i> {test.title}
           </NavLink>
         ))}

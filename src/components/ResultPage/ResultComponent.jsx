@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
-import { useGetResult } from "../../hooks/GetResults";
 import { useEffect } from "react";
 
-const ResultComponent = ({ classes }) => {
-  const [result, setResult] = useGetResult();
+const ResultComponent = ({result,  classes , setScoreCardDetails}) => {
   const [details, setDetails] = useState();
 
   let total = 0, correct = 0, wrong = 0, marks = [0, 0];
@@ -27,6 +25,8 @@ const ResultComponent = ({ classes }) => {
   
   useEffect(() => {
     if (result) {
+      let totalTimeSpent = [0, 0, 0];
+      let totalQuestions = 0;
       const detailsObj = [];
       for (let sec in result.response.sectionDetails) {
         detailsObj.push({
@@ -34,6 +34,7 @@ const ResultComponent = ({ classes }) => {
           components: [],
         });
         for (let comp in result.response.sectionDetails[sec].components) {
+          totalQuestions += result.response.sectionDetails[sec].components[comp].numQues;
           detailsObj[sec].components.push({
             title: result.response.sectionDetails[sec].components[comp].title,
             numQues:
@@ -58,10 +59,17 @@ const ResultComponent = ({ classes }) => {
         } else if (result.response.resObj[key].isMandS) {
           detailsObj[x].components[y].isMandS++;
         }
+        totalTimeSpent = addTimeHandler(
+          [...totalTimeSpent],
+          [...result.response.resObj[key].timeSpent]
+        );
         detailsObj[x].components[y].timeSpent = addTimeHandler(
           [...detailsObj[x].components[y].timeSpent],
           [...result.response.resObj[key].timeSpent]
         );
+      }
+      if (setScoreCardDetails) {
+        setScoreCardDetails({timeSpent: totalTimeSpent, totalQuestions: totalQuestions})
       }
       setDetails(detailsObj);
     }
@@ -136,7 +144,7 @@ const ResultComponent = ({ classes }) => {
               <th>Accuracy Percentage</th>
             </tr>
           </tbody>
-          {result.result.secDet?.map((sec, secIdx) => {
+          {result?.result.secDet?.map((sec, secIdx) => {
             return (
               <tbody key={secIdx}>
                 {sec.components.map((comp, compIdx) => {
@@ -163,7 +171,7 @@ const ResultComponent = ({ classes }) => {
                         <td>0.00</td>
                       ) : (
                         <td>
-                          {(comp.correct / (comp.correct + comp.wrong)).toFixed(
+                          {(comp.correct / (comp.correct + comp.wrong)*100).toFixed(
                             2
                           )}
                         </td>
@@ -186,7 +194,7 @@ const ResultComponent = ({ classes }) => {
               {correct + wrong == 0 ? (
                 <td>0.00</td>
               ) : (
-                <td>{(correct / (correct + wrong)).toFixed(2)}</td>
+                <td>{(correct / (correct + wrong)*100).toFixed(2)}</td>
               )}
             </tr>
           </tbody>

@@ -18,7 +18,11 @@ const IsInteger = ({ question, trace, setCheck, check }) => {
           ""
         )}
         {question?.question.img ? (
-          <img src="/assets/Logo.png" className={classes.image} alt="image" />
+          <img
+            src={question?.question.img}
+            className={classes.image}
+            alt="image"
+          />
         ) : (
           ""
         )}

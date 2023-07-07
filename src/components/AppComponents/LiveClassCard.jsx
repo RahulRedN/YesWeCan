@@ -2,14 +2,15 @@ import React from "react";
 
 import classes from "./LiveClassCard.module.css";
 
-const LiveClassCard = () => {
+const LiveClassCard = ({ title, address }) => {
+  
   return (
-    <div className={classes.cardContainer}>
+    <a className={classes.cardContainer} href={address} target="_blank">
       <div className={classes.img}>
         <img src="/assets/LiveClass.jpg" alt="" />
       </div>
-      <div className={classes.liveClassName}>Name</div>
-    </div>
+      <div className={classes.liveClassName}>{title}</div>
+    </a>
   );
 };
 

@@ -7,7 +7,6 @@ const CourseTest = (props) => {
   const toggleViewHandler = () => {
     setDropdown((prev) => !prev);
   };
-
   let content;
   if (props.course.phases) {
     content = props.course.phases.map((phase, idx) => (
@@ -16,11 +15,14 @@ const CourseTest = (props) => {
         title={phase.title}
         tests={phase.tests}
         classes={props.classes}
+        courseId={props.course.id}
+        status={props.course.status}
+        role={props.role}
       />
     ));
   } else {
     content = props.course.tests.map((test) => (
-      <NavLink to={`/user/test/?:${test.id}`} key={test.id}>
+      <NavLink to={`/user/test?id=${test.id}&courseId=${props.course.id}&user=${props.course?.status}&role=${props.role}`} key={test.id}>
         <i className="fa-solid fa-circle"></i> {test.title}
       </NavLink>
     ));

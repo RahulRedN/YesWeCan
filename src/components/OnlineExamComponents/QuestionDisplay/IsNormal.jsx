@@ -22,7 +22,11 @@ const IsNormal = ({ question, trace, onSelect, check }) => {
             ""
           )}
           {question?.question.img ? (
-            <img src="/assets/Logo.png" className={classes.image} alt="image" />
+            <img
+              src={question?.question.img}
+              className={classes.image}
+              alt="image"
+            />
           ) : (
             ""
           )}
@@ -43,11 +47,7 @@ const IsNormal = ({ question, trace, onSelect, check }) => {
               <input type="radio" value={false} name="options" id={idx} />
               <label htmlFor="equation">
                 {option.equ ? <MathJaxRender mathml={option.equ} /> : ""}
-                {option.img ? (
-                  <img src="/assets/Logo.png" alt="/assets/Logo.png" />
-                ) : (
-                  ""
-                )}
+                {option.img ? <img src={option.img} alt="image" /> : ""}
               </label>
             </li>
           ))}

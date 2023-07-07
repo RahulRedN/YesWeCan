@@ -103,10 +103,23 @@ export const resultReducer = createSlice({
                 ...state,
                 timer: newTimer
             }
+        },
+        resetResult: (state, action) => {
+            return {
+              result: {},
+              status: {
+                "0 0 0": {
+                  isVisited: true,
+                  isMarked: false,
+                  isAnswered: false,
+                },
+              },
+              timer: { "0 0 0": [0, 0, 0] },
+            };
         }
     }
 });
 
-export const { setVisit, clearQues, saveAnswer, markQuestion, markSave, saveTimer} = resultReducer.actions;
+export const { setVisit, clearQues, saveAnswer, markQuestion, markSave, saveTimer, resetResult} = resultReducer.actions;
 
 export default resultReducer.reducer;

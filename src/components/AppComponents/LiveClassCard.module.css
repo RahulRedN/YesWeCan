@@ -1,5 +1,6 @@
 .cardContainer {
     background-color: whitesmoke;
+    text-decoration: none;
     border-radius: 0 0 6px 6px;
     cursor: pointer;
 }

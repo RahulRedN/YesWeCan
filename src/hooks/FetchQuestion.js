@@ -1,45 +1,37 @@
 import { useEffect, useState } from "react";
-import data from "../database/data";
 import { useDispatch } from "react-redux";
 
 // Redux action
 import * as Action from "../redux/question_reducer";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../Firebase/config";
 
 // To fetch API data and set value to store
-export const useFetchQuestion = () => {
+export const useFetchQuestion = (id) => {
   const [getData, setGetData] = useState({
-    isLoading: false,
-    apiData: [],
-    serverError: null,
+    status : "loading"
   });
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setGetData((prev) => ({ ...prev, isLoading: true }));
-
     // Async funtion to fetch data
-    (async () => {
+    const fetch = async () => {
       try {
-          let question = data;
-        if (question.length > 0) {
-          setGetData((prev) => ({ ...prev, isLoading: false }));
-          setGetData((prev) => ({
-            ...prev,
-            apiData: data,
-          })); 
-          dispatch(Action.startExamAction(question));
-        } else {
-          throw new Error("No Question Available");
+        const docRef = doc(db, "exams", id);
+        const res = await getDoc(docRef);
+        if (res.exists) {
+          dispatch(Action.startExamAction(res.data().questions));
+          setGetData({ status: "yes" });
         }
       } catch (error) {
-        setGetData((prev) => ({
-          ...prev,
-          serverError: true,
-          isLoading: false,
-        }));
+        setGetData({ status: "server" });
+        console.log(error);
       }
-    })()
-  }, [dispatch]);
+    }
+
+    fetch()
+  }, []);
+  
   return [getData, setGetData];
 };
 

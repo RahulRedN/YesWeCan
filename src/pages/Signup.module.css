@@ -1,0 +1,245 @@
+.page {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #fde74c;
+background-image: linear-gradient(319deg, #fde74c 0%, #32ff7a 37%, #2fcbe0 100%);
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg img {
+  max-width: 40vw;
+}
+
+.container {
+  width: 90%;
+  height: fit-content;
+  padding: 1rem;
+  margin-top: 1rem;
+
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.inputFields{
+    border-left: 2px solid grey;
+    padding-left: 1rem;
+}
+
+.inputs {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inputs fieldset {
+  border: 2px solid black;
+  border-radius: 2px;
+}
+
+.inputs legend {
+  font-size: 1.3rem;
+  margin-left: 1rem;
+  padding: 0.3rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 1rem;
+  justify-content: space-between;
+}
+
+.group {
+  position: relative;
+}
+
+.group input {
+  background-color: whitesmoke;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  border: 2px solid black;
+  outline: none;
+}
+
+.groupLabel {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  pointer-events: none;
+  transition: 0.15s all ease;
+}
+
+.group input:focus + .groupLabel,
+.group input:not(:placeholder-shown) + .groupLabel {
+  background: rgb(252, 241, 221);
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-radius: 3px;
+  padding: 0.1rem;
+  font-size: 1.2rem;
+  transform: translateY(-1.7rem) translateX(-0.6rem);
+}
+
+.row img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.inputFile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  max-width: 75vw;
+}
+
+.inputFile div span {
+  display: block;
+  height: 100%;
+  background-color: orange;
+}
+
+.inputFile img {
+  max-width: 40px;
+}
+
+.inputFile input {
+  display: none;
+}
+
+.linkLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  background-color: rgba(255, 160, 122, 0.866);
+  border: 2px solid lightsalmon;
+  padding: 0.1rem 2rem;
+  font-size: larger;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.linkLabel:hover {
+  background: lightsalmon;
+
+  box-shadow: gold 0 0px 12px;
+}
+
+.image {
+  text-align: left;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.image img {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.row button {
+  position: relative;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: larger;
+  background-color: rgb(0, 136, 255);
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+.pass{
+    width: 100%;
+    text-align: justify;
+    padding: 0 1rem;
+}
+
+.validation {
+  color: red;
+}
+
+.group .invalid {
+  border: 2px solid red;
+}
+
+.row button:disabled {
+  color: rgb(0, 136, 255);
+}
+
+.row button:disabled:hover {
+  background-color: rgb(0, 136, 255);
+}
+
+.row button:disabled:after {
+  position: absolute;
+  content: "Loading";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}
+
+@media screen and (max-width: 1310px) {
+    .svg img{
+        max-width: 30vw;
+    }
+}
+
+@media screen and (max-width: 1082px) {
+    .group input{
+        max-width: 230px;
+    }
+}
+
+@media screen and (max-width: 963px) {
+    .row{
+        justify-content: center;
+    }
+}
+
+
+@media screen and (max-width: 775px) {
+  .svg {
+    display: none;
+  }
+
+  .inputFields{
+    border-left: none;
+    padding: none;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .row {
+    padding: 1rem 0.4rem;
+  }
+}
+
+@media screen and (max-width: 404px) {
+  .image img {
+    max-width: 235px;
+  }
+}

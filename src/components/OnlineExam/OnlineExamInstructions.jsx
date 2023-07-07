@@ -5,8 +5,10 @@ import MoreInstructions from "../OnlineExamComponents/Instructions/MoreInstructi
 import Alert from '../Floats/Alert';
 
 import classes from "./OnlineExamInstructions.module.css";
+import { useSelector } from "react-redux";
 
 const OnlineExamInstructions = (props) => {
+  const user = useSelector(state => state.user.data);
   const [isAlert, setIsAlert] = useState([false, {}]);
   const checkbox = useRef();
   const select = useRef();
@@ -64,7 +66,7 @@ const OnlineExamInstructions = (props) => {
         </div>
         <div className={classes.confirm}>
           <p>Choose your default language <select ref={select} defaultValue={0}><option value="0">--Select--</option><option value="1">English</option></select> </p>
-          <p>
+          <p style={{color: "red"}}>
             Please note that all questions will appear in your default language.
             This language can be changed for a particular question later on.
           </p>
@@ -93,13 +95,13 @@ const OnlineExamInstructions = (props) => {
         <div className={classes.instructions}>{content}</div>
         <div className={classes.userDetails}>
           <img
-            src="image"
+            src={user?.photo}
             onError={(e) => {
               e.target.onerror = null;
               e.target.src = "/assets/user.jpeg";
             }}
           />
-          <p>Mobile Number</p>
+          <p>{user?.mobile ? user.mobile : "MobileNumber"}</p>
         </div>
       </div>
     </div>

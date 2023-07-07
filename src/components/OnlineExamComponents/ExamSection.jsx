@@ -11,13 +11,13 @@ import {
 } from "../../hooks/SetResult";
 import { reducerStatus, reducerMarks } from "./reducers/reducers";
 
-import Report from '../Floats/Report';
+import Report from "../Floats/Report";
 import Timer from "./Utility/Timer";
 import Status from "./Status";
 import Question from "./QuestionDisplay/Question";
-import ButtonCard from "./UI/ButtonCard";
 
 import classes from "../OnlineExam/OnlineExamPage.module.css";
+import QuestionButtons from "./QuestionButtons";
 
 const ExamSection = (props) => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const ExamSection = (props) => {
     nVisit: 0,
   });
 
-  const [marks, dispatchMarks] = useReducer(reducerMarks, [0, 0])
+  const [marks, dispatchMarks] = useReducer(reducerMarks, [0, 0]);
 
   const [component, setComponent] = useState(null);
   const [question, setQuestion] = useState(null);
@@ -39,19 +39,20 @@ const ExamSection = (props) => {
   const [isReport, setIsReport] = useState(false);
 
   useEffect(() => {
-    if (props.questions && props.questions.length>0) {
+    if (props.questions && props.questions.length > 0) {
       setComponent(props.questions[props.trace[0]].components[props.trace[1]]);
       setQuestion(
         props.questions[props.trace[0]].components[props.trace[1]].questions[
           props.trace[2]
         ]
       );
-      if (props.questions[props.trace[0]].components[props.trace[1]].directions) {
-          setDirection(
-            props.questions[props.trace[0]].components[props.trace[1]]
-              .directions
-          );
-        }
+      if (
+        props.questions[props.trace[0]].components[props.trace[1]].directions
+      ) {
+        setDirection(
+          props.questions[props.trace[0]].components[props.trace[1]].directions
+        );
+      }
     }
 
     if (props.questions && props.questions.length > 0) {
@@ -70,7 +71,11 @@ const ExamSection = (props) => {
               .componentMark,
           ],
         });
-      }else if (props.questions[props.trace[0]].components[props.trace[1]].questions[props.trace[2]].mark) {
+      } else if (
+        props.questions[props.trace[0]].components[props.trace[1]].questions[
+          props.trace[2]
+        ].mark
+      ) {
         dispatchMarks({
           type: "SetMarks",
           payload: [
@@ -80,7 +85,7 @@ const ExamSection = (props) => {
         });
       }
     }
-  },[props.questions, props.trace]);
+  }, [props.questions, props.trace]);
 
   useEffect(() => {
     dispatch(SetVisit(props.trace));
@@ -113,12 +118,16 @@ const ExamSection = (props) => {
       const idx = props.trace[2] + 1;
       props.timeHandlers.quesHandler(idx);
       dispatch(SetQuestion(idx));
-    } else if (props.questions[props.trace[0]].components[props.trace[1] + 1] && !props.timeState.isComponent[0]) {
+    } else if (
+      props.questions[props.trace[0]].components[props.trace[1] + 1] &&
+      !props.timeState.isComponent[0]
+    ) {
       props.timeHandlers.compHandler(props.trace[1] + 1);
       dispatch(SetComp(props.trace[1] + 1));
     } else if (
       props.questions[props.trace[0] + 1] &&
-      (!props.timeState.isComponent[0] && !props.timeState.isSection[0])
+      !props.timeState.isComponent[0] &&
+      !props.timeState.isSection[0]
     ) {
       props.timeHandlers.sectionHandler(props.trace[0] + 1);
       dispatch(SetSection(props.trace[0] + 1));
@@ -201,7 +210,8 @@ const ExamSection = (props) => {
       <div className={classes.container}>
         <div className={quetionDivClass}>
           <div className={classes.questionType}>
-            Question Type: {question?.isInt ? "Integer Type" : "Multiple Choice Question"}
+            Question Type:{" "}
+            {question?.isInt ? "Integer Type" : "Multiple Choice Question"}
           </div>
           <div className={classes.questionHeader}>
             <div className={classes.headerElements}>
@@ -243,7 +253,7 @@ const ExamSection = (props) => {
             direction={direction}
           />
         </div>
-        <div className={collapse? classes.minMaxRight: classes.minMax}>
+        <div className={collapse ? classes.minMaxRight : classes.minMax}>
           <button
             onClick={() => {
               setCollapse((prev) => !prev);
@@ -259,19 +269,12 @@ const ExamSection = (props) => {
           </div>
           <div className={classes.title}>Choose a question</div>
           <div className={classes.questionButtons}>
-            {component?.questions.map((ques, idx) => {
-              return (
-                <ButtonCard
-                  key={`${props.trace[0]} ${props.trace[1]} ${idx}`}
-                  effects={status[`${props.trace[0]} ${props.trace[1]} ${idx}`]}
-                  clickHandler={() => {
-                    onClickHandler(idx);
-                  }}
-                >
-                  {idx + 1}
-                </ButtonCard>
-              );
-            })}
+            <QuestionButtons
+              component={component}
+              trace={props.trace}
+              status={status}
+              onClickHandler={onClickHandler}
+            />
           </div>
         </div>
       </div>

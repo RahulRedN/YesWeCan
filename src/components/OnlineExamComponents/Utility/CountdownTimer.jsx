@@ -5,14 +5,14 @@ const CountdownTimer = ({
   countdown,
   dispatchCountdown,
   dispatchTimer,
-  timeStateHandler
+  timeStateHandler,
 }) => {
   const { hour, minute, second } = countdown;
 
   useEffect(() => {
-    if ((hour == 0 && minute == 0 && second == 0)) {
+    if (hour == 0 && minute == 0 && second == 0) {
       timeStateHandler();
-        return;
+      return;
     }
     let interval;
     if (isRunning) {
@@ -28,7 +28,12 @@ const CountdownTimer = ({
     };
   }, [second, minute, hour]);
 
-  return <span>{`${hour}:${minute}:${second}`}</span>;
+  return (
+    <span>{` ${String(hour).padStart(2, "0")}:${String(minute).padStart(
+      2,
+      "0"
+    )}:${String(second).padStart(2, "0")}`}</span>
+  );
 };
 
 export default CountdownTimer;

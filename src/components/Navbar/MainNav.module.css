@@ -1,14 +1,15 @@
 .navbar {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: #4245fe;
   align-items: center;
-  padding: 1rem 2rem;
-  z-index: 1;
+  padding: 0.2rem 1rem 0 1rem;
+  z-index: 100;
 }
 
-.navLogo {
+.navLogo{
   display: flex;
   justify-content: center;
 }
@@ -17,13 +18,31 @@
   display: none;
 }
 
-.toggleBar i,
-.navLogo a {
+.toggleBar i {
   text-decoration: none;
   color: black;
   font-size: 1.5rem;
   font-weight: 700;
   color: black;
+}
+
+.navLogo a{
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+}
+
+.navLogo img{
+  height: 5rem;
+}
+
+.navLogo .appLogo{
+  display: none;
 }
 
 .navContent ul {
@@ -63,13 +82,6 @@
 @media screen and (max-width: 928px) {
   .toggleBar {
     display: block;
-  }
-}
-
-@media screen and (max-width: 630px) {
-  .navLogo a {
-    padding-left: 1rem;
-    font-size: 1.2rem;
   }
 }
 
@@ -132,8 +144,8 @@
   }
 }
 
-@media screen and (max-width: 498px) {
+@media screen and (max-width: 345px) {
   .navbar{
-    padding: 1rem;
+    padding: 0.2rem 0.5rem 0 0.25rem ;
   }
 }

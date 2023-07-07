@@ -4,17 +4,25 @@ export const userReducer = createSlice({
   name: "user",
   initialState: {
     data: {},
+    myCourses: [],
+    allCourses: [],
   },
   reducers: {
     setData: (state, action) => {
-      return { data: action.payload };
+      return { ...state, data: action.payload };
+    },
+    setCourses: (state, action) => {
+      return { ...state, myCourses: action.payload };
+    },
+    setAllCourses: (state, action) => {
+      return { ...state, allCourses: action.payload };
     },
     reset: (state, action) => {
-      return {data: {}};
+      return { data: {}, myCourses: [], allCourses: [] };
     },
   },
 });
 
-export const { setData, reset } = userReducer.actions;
+export const { setData, setCourses, reset, setAllCourses} = userReducer.actions;
 
 export default userReducer.reducer;
