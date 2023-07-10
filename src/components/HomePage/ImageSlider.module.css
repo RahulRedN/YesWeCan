@@ -58,7 +58,7 @@
   width: 15px;
   height: 15px;
   border: 1px solid black;
-  background: white;
+  background: grey;
   opacity: 0.5;
   margin: 0.2em;
   border-radius: 50%;
@@ -66,6 +66,7 @@
 }
 .active {
   opacity: 1;
+  background-color: black;
 }
 
 @media screen and (max-width: 900px) {

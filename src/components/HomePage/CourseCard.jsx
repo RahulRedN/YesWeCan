@@ -3,7 +3,15 @@ import React from "react";
 import classes from "./Courses.module.css";
 import MathJaxRender from "../OnlineExamComponents/Utility/MathJaxRender";
 
-const CourseCard = ({ title, duration, price, description }) => {
+const CourseCard = ({
+  title,
+  duration,
+  price,
+  description,
+  onClickHandler,
+  courseId,
+  role,
+}) => {
   return (
     <div className={classes.card}>
       <div className={classes.courseTitle}>{title}</div>
@@ -20,7 +28,13 @@ const CourseCard = ({ title, duration, price, description }) => {
         <strong>Price</strong> &nbsp;&nbsp;&nbsp;&nbsp;: Rs. {price}
       </div>
       <div className={classes.buy}>
-        <button>Buy</button>
+        <button
+          onClick={() => {
+            onClickHandler(courseId, role);
+          }}
+        >
+          Buy
+        </button>
       </div>
     </div>
   );

@@ -31,6 +31,7 @@ import * as Loader from "./Loaders/Loaders";
 import ProfilePage from "./pages/ProfilePage";
 
 import loading from "./App.module.css";
+import Buy from "./pages/Buy";
 
 const Root = () => {
   const { state } = useNavigation();
@@ -58,6 +59,14 @@ const Router = createBrowserRouter(
       <Route index element={<HomePage />} loader={Loader.HomePageLoader} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route
+        path="/buy"
+        element={
+          <PrivateRoute>
+            <Buy />
+          </PrivateRoute>
+        }
+      />
       <Route
         path="/profile"
         element={

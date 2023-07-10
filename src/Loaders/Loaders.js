@@ -39,6 +39,13 @@ export const updateInfo = (user) => {
 
 export const HomePageLoader = async () => {
   const returnData = {};
+  const compareDates = (a, b) => {
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+
+    return dateA-dateB;
+  };
+
   try {
     const collRef = collection(db, "courses");
     const docRef = doc(collection(db, "homepage"), "EHUwKuyIsRPKzEY7fcXy");
@@ -46,6 +53,7 @@ export const HomePageLoader = async () => {
     const res = await getDocs(collRef);
     if (!res.empty) {
       const data = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      data.sort(compareDates)
       returnData.courses = data;
     }
     const res1 = await getDoc(docRef);

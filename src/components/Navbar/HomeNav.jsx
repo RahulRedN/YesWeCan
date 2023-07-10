@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./MainNav.module.css";
 
+import { useAuth } from "../../Firebase/AuthContexts";
+
 const HomeNav = () => {
+  const { currentUser } = useAuth();
   const nav = useNavigate();
   const [isDropdown, setIsDropdown] = useState(false);
 
@@ -53,7 +56,7 @@ const HomeNav = () => {
               nav("/login");
             }}
           >
-            Login
+            {currentUser?.uid ? "Dashboard" : "Login"}
           </li>
         </ul>
       </div>
