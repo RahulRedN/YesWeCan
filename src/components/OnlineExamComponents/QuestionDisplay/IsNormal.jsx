@@ -2,7 +2,7 @@ import React from "react";
 
 import MathJaxRender from "../Utility/MathJaxRender";
 
-import classes from "./isNormal.module.css";
+import classes from "./IsNormal.module.css";
 import style from "./Question.module.css";
 
 const IsNormal = ({ question, trace, onSelect, check }) => {
