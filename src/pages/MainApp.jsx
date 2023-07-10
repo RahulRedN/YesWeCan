@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Outlet, useNavigation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import MainNav from "../components/Navbar/MainNav";
 import Sidebar from "../components/Sidebar/Sidebar";
@@ -37,7 +37,7 @@ const MainApp = () => {
         </div>
         <div className={contentClass}>
           <Outlet />
-          <div className={classes.footer}>Footer</div>
+          <div className={classes.footer}>@RedMoon Solutions | Contact: redmoon.sol18@gmail.com</div>
         </div>
       </div>
     </>

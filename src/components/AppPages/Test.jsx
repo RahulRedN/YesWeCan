@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Test.module.css";
 import TestCard from "../AppComponents/TestCard";
-import { useLoaderData, useNavigate, useSearchParams } from "react-router-dom";
+import { useLoaderData, useSearchParams } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { useAuth } from "../../Firebase/AuthContexts";

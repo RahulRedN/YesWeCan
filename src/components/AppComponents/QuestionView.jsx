@@ -2,11 +2,13 @@ import React from "react";
 
 import QuestionTypeDisplay from "./QuestionTypeDisplay";
 
+import './Ques.css'
+
 import classes from "./QuestionView.module.css";
 
 const QuestionView = ({ response, examData, format }) => {
   return (
-    <div className={classes.display}>
+    <div className={classes.display + " effect"}>
       <div className={classes.downloadPaper}>
         <a
           href={examData?.questionPaper}

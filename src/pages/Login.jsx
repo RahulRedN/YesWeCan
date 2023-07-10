@@ -17,7 +17,7 @@ const Login = () => {
 
   useEffect(() => {
     if (currentUser) {
-      nav("/user?user="+currentUser.uid);
+      nav("/user");
     }
   }, [currentUser]);
 

@@ -9,6 +9,12 @@
   z-index: 100;
 }
 
+.navbar.homeBar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
 .navLogo{
   display: flex;
   justify-content: center;
@@ -55,6 +61,14 @@
   list-style-type: none;
   cursor: pointer;
   font-size: 1.4rem;
+  font-weight: 550;
+  color: rgb(255, 251, 0);
+  white-space: nowrap;
+}
+
+.navContent ul li a{
+  text-decoration: none;
+  cursor: pointer;
   color: rgb(255, 251, 0);
 }
 
@@ -124,6 +138,13 @@
   }
   
   .navContent.dropdown ul li{
+    color: black;
+    display: flex;
+    gap: 0.5rem;
+    font-size: large;
+  }
+
+  .navContent.dropdown ul li a{
     color: black;
     display: flex;
     gap: 0.5rem;

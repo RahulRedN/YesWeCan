@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
 import classes from "./ViewResult.module.css";
 import ViewResultContent from "../AppComponents/ViewResultContent";
 import { useNavigate, useSearchParams } from "react-router-dom";

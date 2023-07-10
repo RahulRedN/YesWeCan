@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import ReactDom from "react-dom";
 import classes from "./Alert.module.css";
 

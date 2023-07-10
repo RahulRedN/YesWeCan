@@ -1,0 +1,90 @@
+.container {
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container h2 {
+  width: 100%;
+  text-align: center;
+  background-color: rgb(0, 136, 255);
+  color: white;
+  padding: 1rem;
+}
+
+.courses {
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 1rem;
+}
+
+.card {
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgb(0, 136, 255);
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: large;
+}
+
+.courseDesc {
+  width: 100%;
+  overflow: hidden;
+  max-height: 70px;
+}
+
+.desDiv{
+    width: 100%;
+}
+ 
+.courseDuration, .coursePrice{
+    width: 100%;
+    padding-left: 1rem;
+}
+
+.courseTitle{
+    width: 100%;
+    text-align: center;
+    background-color: navy;
+    color: white;
+    padding: 0.8rem;
+    font-size: larger;
+    border-radius: 4px 4px 0 0;
+}
+
+.buy{
+    padding: 0.4rem;
+}
+
+.buy button{
+    border: none;
+    outline: none;
+    font-size: large;
+    padding: 0.5rem;
+
+    background-color: rgb(0, 136, 255);
+    color: white;
+    border-radius: 3px;
+}
+
+
+@media screen and (width: 1024px) {
+    .container{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 755px) {
+    .courses{
+        justify-content: center;
+    }
+}

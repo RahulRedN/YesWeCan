@@ -37,6 +37,27 @@ export const updateInfo = (user) => {
   });
 };
 
+export const HomePageLoader = async () => {
+  const returnData = {};
+  try {
+    const collRef = collection(db, "courses");
+    const docRef = doc(collection(db, "homepage"), "EHUwKuyIsRPKzEY7fcXy");
+
+    const res = await getDocs(collRef);
+    if (!res.empty) {
+      const data = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      returnData.courses = data;
+    }
+    const res1 = await getDoc(docRef);
+    if (res1.exists) {
+      returnData.images = [...res1.data().images];
+    }
+    return returnData;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const DashboardLoader = async ({ request }) => {
   const url = new URL(request.url);
   const uid = url.searchParams.get("user");

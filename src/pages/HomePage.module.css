@@ -1,4 +1,13 @@
 .view{
     width: 100vw;
     min-height: 100vh;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+}
+
+.body{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }

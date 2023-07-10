@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./MainNav.module.css";
 
 const MainNav = (props) => {
+  const nav = useNavigate();
   const [isDropdown, setIsDropdown] = useState(false);
 
   const toggleHandler = () => {
@@ -44,7 +45,11 @@ const MainNav = (props) => {
           )}
         </div>
         <ul>
-          <li>
+          <li
+            onClick={() => {
+              nav("/");
+            }}
+          >
             <i className="fa-solid fa-house"></i>{" "}
             <span>{isDropdown && "Home"}</span>
           </li>
@@ -52,7 +57,11 @@ const MainNav = (props) => {
             <i className="fa-solid fa-bell"></i>{" "}
             <span>{isDropdown && "Notifications"}</span>
           </li>
-          <li>
+          <li
+            onClick={() => {
+              nav("/profile");
+            }}
+          >
             <i className="fa-solid fa-user"></i>{" "}
             <span>{isDropdown && "Profile"}</span>
           </li>

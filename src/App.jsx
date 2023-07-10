@@ -6,6 +6,7 @@ import {
   Outlet,
   RouterProvider,
   useNavigation,
+  Navigate,
 } from "react-router-dom";
 import { AuthContexts } from "./Firebase/AuthContexts";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
@@ -27,25 +28,44 @@ import OnlineExam from "./pages/OnlineExam";
 import ResultPage from "./pages/ResultPage";
 
 import * as Loader from "./Loaders/Loaders";
+import ProfilePage from "./pages/ProfilePage";
+
+import loading from "./App.module.css";
 
 const Root = () => {
   const { state } = useNavigation();
   if (state == "loading") {
     return (
-      <div>
-        Loadind asddddddddf sd f ads f a dsf a df a df a df a dfa sdf asd fa....
+      <div className={loading.loader}>
+        <div className={loading.dot}></div>
+        <div className={loading.dot}></div>
+        <div className={loading.dot}></div>
+        <div className={loading.dot}></div>
+        <div className={loading.dot}></div>
       </div>
     );
   }
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 };
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
-      <Route index element={<HomePage />} />
+      <Route index element={<HomePage />} loader={Loader.HomePageLoader} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute>
+            <ProfilePage />
+          </PrivateRoute>
+        }
+      />
       <Route
         path="/user"
         element={
@@ -85,6 +105,7 @@ const Router = createBrowserRouter(
           </PrivateRoute>
         }
       />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Route>
   )
 );
