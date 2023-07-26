@@ -83,7 +83,7 @@ const OnlineExamPage = () => {
             Instructions
           </div>
         </div>
-        <div className={classes.examPanel}>
+        <div className={classes.examPanel} onCopy={(e)=>{e.preventDefault()}}>
           <ExamPanel questions={getData} dispatchAlert={dispatchAlert} courseName={courseName} />
         </div>
       </FullScreen>

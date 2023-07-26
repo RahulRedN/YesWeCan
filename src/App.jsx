@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -13,25 +13,27 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 import MainApp from "./pages/MainApp";
 
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
 
-import HomePage from "./pages/HomePage";
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ContactUs = lazy(() => import("./pages/ContactUs"));
+const Policies = lazy(() => import("./pages/Policies"));
 
-import Dashboard from "./components/AppPages/Dashboard";
-import Live from "./components/AppPages/Live";
-import Feedback from "./components/AppPages/Feedback";
-import Test from "./components/AppPages/Test";
-import ViewResult from "./components/AppPages/ViewResult";
+const Dashboard = lazy(() => import("./components/AppPages/Dashboard"));
+const Live = lazy(() => import("./components/AppPages/Live"));
+const Feedback = lazy(() => import("./components/AppPages/Feedback"));
+const Test = lazy(() => import("./components/AppPages/Test"));
+const ViewResult = lazy(() => import("./components/AppPages/ViewResult"));
 
-import OnlineExam from "./pages/OnlineExam";
-import ResultPage from "./pages/ResultPage";
+const OnlineExam = lazy(() => import("./pages/OnlineExam"));
+const ResultPage = lazy(() => import("./pages/ResultPage"));
 
 import * as Loader from "./Loaders/Loaders";
-import ProfilePage from "./pages/ProfilePage";
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 
 import loading from "./App.module.css";
-import Buy from "./pages/Buy";
+const Buy = lazy(() => import("./pages/Buy"));
 
 const Root = () => {
   const { state } = useNavigation();
@@ -47,9 +49,19 @@ const Root = () => {
     );
   }
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className={loading.loader}>
+          <div className={loading.dot}></div>
+          <div className={loading.dot}></div>
+          <div className={loading.dot}></div>
+          <div className={loading.dot}></div>
+          <div className={loading.dot}></div>
+        </div>
+      }
+    >
       <Outlet />
-    </>
+    </Suspense>
   );
 };
 
@@ -57,6 +69,8 @@ const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
       <Route index element={<HomePage />} loader={Loader.HomePageLoader} />
+      <Route path="/contactUs" element={<ContactUs />} />
+      <Route path="/policies" element={<Policies />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route
@@ -120,6 +134,17 @@ const Router = createBrowserRouter(
 );
 
 function App() {
+  useEffect(() => {
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
+
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <AuthContexts>
       <RouterProvider router={Router} />

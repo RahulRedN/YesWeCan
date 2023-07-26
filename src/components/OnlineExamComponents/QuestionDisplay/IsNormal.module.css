@@ -2,6 +2,11 @@
   width: 100%;
 }
 
+.panelDiv{
+  height: calc(71vh - 80px);
+  overflow: scroll;
+}
+
 .questionDiv p {
   font-size: large;
   padding: 0 2rem;

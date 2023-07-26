@@ -178,14 +178,7 @@ const ExamSection = (props) => {
       dispatch(SaveNext(arr));
       nextHandler();
     } else {
-      props.dispatchAlert({
-        type: "Set",
-        payload: {
-          title: "Alert!",
-          content: "Please select an option",
-          closeContent: "close",
-        },
-      });
+      nextHandler();
     }
   };
 

@@ -8,6 +8,8 @@ import { db } from "../Firebase/config";
 import MathJaxRender from "../components/OnlineExamComponents/Utility/MathJaxRender";
 import { useAuth } from "../Firebase/AuthContexts";
 
+import GooglePayButton from '@google-pay/button-react'
+
 const Buy = () => {
   const nav = useNavigate();
 

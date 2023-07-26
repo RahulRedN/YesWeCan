@@ -1,13 +1,179 @@
-.view{
-    width: 100vw;
-    min-height: 100vh;
-    background-color: aliceblue;
-    display: flex;
-    flex-direction: column;
+.view {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
 }
 
-.body{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
+.body {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.bodyDiv {
+  width: 100%;
+  min-height: 65vh;
+  display: flex;
+  padding: 2rem;
+  justify-content: space-around;
+}
+
+.bodyDi {
+  width: 80%;
+  min-height: 65vh;
+  margin: 1rem 0;
+}
+
+.bodyDi .buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.buttons button {
+  background-color: white;
+  border: 2px solid black;
+  padding: 0.4rem 1rem;
+  border-radius: 3px;
+  font-size: larger;
+}
+
+.buttons button.active {
+  background-color: rgb(0, 136, 255);
+  color: white;
+  border: 2px solid rgb(0, 136, 255);
+}
+
+.message {
+  background-color: white;
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.182);
+}
+
+.row {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-around;
+}
+
+.row input {
+  width: 50%;
+}
+
+.row input,
+.row textarea {
+  padding: 1rem;
+  font-size: large;
+}
+
+.row textarea {
+  width: 100%;
+}
+
+.row button {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(0, 136, 255);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  font-size: large;
+}
+
+.details {
+  background-color: white;
+  width: 40%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.182);
+
+  height: fit-content;
+}
+
+.details .col a {
+  color: black;
+}
+
+.footer {
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+
+  background-color: black;
+  color: white;
+
+  padding: 2rem;
+}
+
+.heading {
+  margin-bottom: 1rem;
+  font-size: larger;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.content p {
+  display: flex;
+  gap: 1.5rem;
+  font-size: large;
+}
+
+.content p a {
+  color: white;
+  text-decoration: none;
+}
+
+.content a:hover {
+  text-decoration: underline;
+}
+
+.policy {
+  background-color: white;
+  width: 100%;
+  padding: 3rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.182);
+}
+
+.policy ul {
+  padding-left: 2rem;
+}
+
+.policy p,
+.policy h4,
+.policy ul {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 928px) {
+  .bodyDiv {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .message,
+  .details {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 625px) {
+  .footer {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
 }

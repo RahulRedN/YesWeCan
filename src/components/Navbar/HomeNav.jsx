@@ -46,10 +46,7 @@ const HomeNav = () => {
             <a href="#courses">Courses</a>
           </li>
           <li>
-            <a href="#aboutUs">About Us</a>
-          </li>
-          <li>
-            <a href="#contactUs">Contact Us</a>
+            <a href="/contactUs">Contact Us</a>
           </li>
           <li
             onClick={() => {

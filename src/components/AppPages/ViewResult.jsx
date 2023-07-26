@@ -82,7 +82,7 @@ const ViewResult = () => {
             </li>
           </ul>
         </div>
-        <div className={classes.displayContent}>
+        <div className={classes.displayContent} onCopy={(e)=>{e.preventDefault()}}>
           <ViewResultContent clicked={clicked} courseId={id} />
         </div>
       </div>

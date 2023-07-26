@@ -5,6 +5,8 @@ import IsNormal from "./IsNormal";
 import IsInteger from "./IsInteger";
 import IsDirection from "./IsDirection";
 
+import classes from "./IsNormal.module.css";
+
 const Question = ({ question, trace, check, setCheck, direction }) => {
   const result = useSelector((state) => state.results.result);
   const onSelect = (idx) => {
@@ -34,14 +36,21 @@ const Question = ({ question, trace, check, setCheck, direction }) => {
           direction={direction}
         />
       ) : question?.isInt ? (
-        <IsInteger question={question} trace={trace} setCheck={setCheck} check={check} />
-      ) : (
-        <IsNormal
+        <IsInteger
           question={question}
           trace={trace}
-          onSelect={onSelect}
+          setCheck={setCheck}
           check={check}
         />
+      ) : (
+        <div className={classes.panelDiv}>
+          <IsNormal
+            question={question}
+            trace={trace}
+            onSelect={onSelect}
+            check={check}
+          />
+        </div>
       )}
     </>
   );

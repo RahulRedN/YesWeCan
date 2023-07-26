@@ -51,7 +51,7 @@ export const resultReducer = createSlice({
             const newResult = { ...state.result };
             newResult[index] = arr[3];
 
-            const obj = { ...state.status[index] };
+            const obj = { };
             obj.isAnswered = true;
             
             const newStatus = { ...state.status };

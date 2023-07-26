@@ -37,17 +37,18 @@
 @media screen and (max-width: 700px) {
   .directionDiv {
     flex-direction: column;
+    height: 80vh;
   }
 
   .direction {
     width: 100%;
-    height: auto;
+    height: 45%;
     border-right: none;
     border-bottom: 1px solid black;
   }
 
   .question {
     width: 100%;
-    height: auto;
+    height: 55%;
   }
 }
