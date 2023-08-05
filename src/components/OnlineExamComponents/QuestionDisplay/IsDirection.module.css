@@ -1,11 +1,11 @@
 .directionDiv {
   display: flex;
   flex-direction: row;
-  height: calc(71vh - 80px);
+  height: calc(100% - 80px);
 }
 
 .direction {
-  height: calc(71vh - 90px);
+  height: calc(100%);
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@
 }
 
 .question {
-  height: calc(71vh - 90px);
+  height: calc(100%);
   overflow: scroll;
   width: 50%;
 

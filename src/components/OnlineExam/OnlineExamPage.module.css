@@ -567,6 +567,10 @@ span .card {
 }
 
 @media screen and (max-width: 700px) {
+  .view{
+    overflow-y: scroll;
+  }
+
   .nav{
     height: fit-content;
   }
@@ -614,7 +618,7 @@ span .card {
   }
 
   .components .componentClass {
-    width: calc(100vw - 44px);
+    width: calc(100vw - 54px);
   }
 
   /* User */
@@ -728,6 +732,7 @@ span .card {
 
 @media screen and (max-height: 560px) {
   .view {
+    overflow-y: scroll;
     height: auto;
   }
 
@@ -752,11 +757,7 @@ span .card {
   }
 
   .container {
-    height: auto;
-  }
-
-  .questionDisplay {
-    max-height: 80vh;
+    height: 80vh;
   }
 
   .examNavPanel {
@@ -799,5 +800,10 @@ span .card {
 
   .questionDisplay {
     overflow-x: scroll;
+    height: auto;
+  }
+
+  .container{
+    height: auto;
   }
 }

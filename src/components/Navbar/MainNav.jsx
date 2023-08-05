@@ -12,7 +12,7 @@ const MainNav = (props) => {
   return (
     <nav className={classes.navbar}>
       <div className={classes.toggleBar} onClick={toggleHandler}>
-        <i className="fa-solid fa-bars"></i>
+        <i style={{ color: "white" }} className="fa-solid fa-bars"></i>
       </div>
       <div className={classes.navLogo}>
         <Link to={"/"}>
@@ -39,9 +39,12 @@ const MainNav = (props) => {
           }}
         >
           {isDropdown ? (
-            <i className="fa-solid fa-x"></i>
+            <i style={{ color: "white" }} className="fa-solid fa-x"></i>
           ) : (
-            <i className="fa-solid fa-ellipsis-vertical"></i>
+            <i
+              style={{ color: "white" }}
+              className="fa-solid fa-ellipsis-vertical"
+            ></i>
           )}
         </div>
         <ul>

@@ -125,6 +125,16 @@ const ContactUs = () => {
               </p>
             </div>
           </div>
+          <div className={classes.col}>
+            <div className={classes.heading}>Address:</div>
+            <div className={classes.content}>
+              <p>Sadhana</p>
+              <p>
+                6/43, Dorasanipalli Rd, Beside gopi krishna school,
+                Dorasanipalli, Proddatur, Andhra Pradesh - 516361
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <footer className={classes.footer} id="contactUs">

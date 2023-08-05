@@ -36,9 +36,12 @@ const HomeNav = () => {
           }}
         >
           {isDropdown ? (
-            <i className="fa-solid fa-x"></i>
+            <i style={{ color: "white" }} className="fa-solid fa-x"></i>
           ) : (
-            <i className="fa-solid fa-ellipsis-vertical"></i>
+            <i
+              style={{ color: "white" }}
+              className="fa-solid fa-ellipsis-vertical"
+            ></i>
           )}
         </div>
         <ul>
