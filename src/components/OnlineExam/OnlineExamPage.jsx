@@ -22,9 +22,9 @@ const OnlineExamPage = () => {
   const [{ status }] = useFetchQuestion(id);
   const [isAlert, dispatchAlert] = useReducer(reducerAlert, [false, {}]);
   if (status == "server") {
-    alert("Server Error")
-    nav('/user');
-    return<>Server Error</>
+    alert("Server Error");
+    nav("/user");
+    return <>Server Error</>;
   }
 
   const getData = useSelector((state) => state.questions.queue);
@@ -59,7 +59,11 @@ const OnlineExamPage = () => {
         <div className={classes.nav}>
           <div className={classes.navEle}>
             <span>
-              <img  style={{paddingTop: "0.2rem"}} src="/assets/AppLogo.png" alt="" />
+              <img
+                style={{ paddingTop: "0.2rem" }}
+                src="/assets/AppLogo.png"
+                alt=""
+              />
             </span>{" "}
             <span>{courseName}</span>
           </div>
@@ -83,8 +87,17 @@ const OnlineExamPage = () => {
             Instructions
           </div>
         </div>
-        <div className={classes.examPanel} onCopy={(e)=>{e.preventDefault()}}>
-          <ExamPanel questions={getData} dispatchAlert={dispatchAlert} courseName={courseName} />
+        <div
+          className={classes.examPanel}
+          onCopy={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <ExamPanel
+            questions={getData}
+            dispatchAlert={dispatchAlert}
+            courseName={courseName}
+          />
         </div>
       </FullScreen>
     </>

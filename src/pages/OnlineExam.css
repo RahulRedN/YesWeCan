@@ -5,12 +5,12 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #fcfcfc; 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #8888885c; 
+  background: #888888; 
 }
 
 /* Handle on hover */
