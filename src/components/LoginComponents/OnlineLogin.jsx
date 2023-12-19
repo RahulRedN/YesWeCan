@@ -48,15 +48,9 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
           ...doc.data(),
           id: doc.id,
         }));
-        if (data[0].role == "classroom" || data[0].isLoggedIn) {
-          logout();
-          if (data[0].role == "classroom") {
-            alert("Please select the correct Login Method!");
-          } else {
-            alert(
-              "Already logged in through another device! Make sure to logout of other devices."
-            );
-          }
+        if (data[0].role == "classroom") {
+          await logout();
+          alert("Please select the correct Login Method!");
         } else {
           const docRef = doc(db, "users", data[0].id);
           await updateDoc(docRef, { isLoggedIn: true });
@@ -86,15 +80,9 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
           ...doc.data(),
           id: doc.id,
         }));
-        if (data[0].role == "classroom" || data[0].isLoggedIn) {
-          logout();
-          if (data[0].role == "classroom") {
-            alert("Please select the correct Login Method!");
-          } else {
-            alert(
-              "Already logged in through another device! Make sure to logout of other devices."
-            );
-          }
+        if (data[0].role == "classroom") {
+          await logout();
+          alert("Please select the correct Login Method!");
         } else {
           const docRef = doc(db, "users", data[0].id);
           await updateDoc(docRef, { isLoggedIn: true });

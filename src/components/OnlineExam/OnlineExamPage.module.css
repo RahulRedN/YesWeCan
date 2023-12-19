@@ -358,7 +358,7 @@ span .card {
 
 .questionButtons {
   display: grid;
-  max-height: 42vh;
+  max-height: 40vh;
   padding: 1rem;
   grid-template-columns: 25% 25% 25% 25%;
   row-gap: 1rem;

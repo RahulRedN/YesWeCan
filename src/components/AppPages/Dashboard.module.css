@@ -31,7 +31,7 @@
   transition: ease-in;
 }
 
-.nav button span{
+.nav button span {
   white-space: nowrap;
 }
 
@@ -42,7 +42,7 @@
   box-shadow: 0 2px 10px rgb(0, 208, 255);
 }
 
-.nav button:focus{
+.nav button:focus {
   transform: none;
 }
 
@@ -127,14 +127,11 @@
   }
 }
 
-@media screen and (max-width: 600px) {
-  .nav{
+@media screen and (max-width: 630px) {
+  .nav {
     overflow-x: scroll;
   }
-}
-
-@media screen and (max-width: 575px) {
-  .tableDiv{
+  .tableDiv {
     overflow-x: scroll;
   }
 }

@@ -1,9 +1,16 @@
 import React, { useRef, useState } from "react";
 
 import { db } from "../../Firebase/config";
-import { collection, getDocs, doc, updateDoc, query, where} from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  query,
+  where,
+} from "firebase/firestore";
 
-import {GoogleButton} from 'react-google-button'
+import { GoogleButton } from "react-google-button";
 
 import classes from "./LoginComponents.module.css";
 
@@ -19,7 +26,7 @@ const ClassroomLogin = ({ setState, signIn, signInWithGoogle, logout }) => {
   const siginHandler = async () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     const email = emailRef.current.value.trim();
-    if (email=== "") {
+    if (email === "") {
       setIsError([true, "Please enter Email"]);
       return;
     } else if (!emailRegex.test(email)) {
@@ -32,10 +39,7 @@ const ClassroomLogin = ({ setState, signIn, signInWithGoogle, logout }) => {
     setIsError([false, {}]);
     setIsLoading(true);
     try {
-      const res = await signIn(
-        email,
-        passwordRef.current.value
-      );
+      const res = await signIn(email, passwordRef.current.value);
       const q = query(userDetailsRef, where("uid", "==", res.user.uid));
       const querySnapshot = await getDocs(q);
       if (querySnapshot.docs.length != 0) {
@@ -43,15 +47,9 @@ const ClassroomLogin = ({ setState, signIn, signInWithGoogle, logout }) => {
           ...doc.data(),
           id: doc.id,
         }));
-        if (data[0].role == "online" || data[0].isLoggedIn) {
-          logout();
-          if (data[0].role == "online") {
-            alert("Please select the correct Login Method!");
-          } else {
-            alert(
-              "Already logged in through another device! Make sure to logout of other devices."
-            );
-          }
+        if (data[0].role == "online") {
+          await logout();
+          alert("Please select the correct Login Method!");
         } else {
           const docRef = doc(db, "users", data[0].id);
           await updateDoc(docRef, { isLoggedIn: true });
@@ -65,10 +63,8 @@ const ClassroomLogin = ({ setState, signIn, signInWithGoogle, logout }) => {
       ]);
       setIsLoading(false);
       try {
-        logout()
-      } catch (err) {
-        
-      }
+        logout();
+      } catch (err) {}
     }
   };
 
@@ -83,15 +79,9 @@ const ClassroomLogin = ({ setState, signIn, signInWithGoogle, logout }) => {
           ...doc.data(),
           id: doc.id,
         }));
-        if (data[0].role == "online" || data[0].isLoggedIn) {
-          logout();
-          if (data[0].role == "online") {
-            alert("Please select the correct Login Method!");
-          } else {
-            alert(
-              "Already logged in through another device! Make sure to logout of other devices."
-            );
-          }
+        if (data[0].role == "online") {
+          await logout();
+          alert("Please select the correct Login Method!");
         } else {
           const docRef = doc(db, "users", data[0].id);
           await updateDoc(docRef, { isLoggedIn: true });

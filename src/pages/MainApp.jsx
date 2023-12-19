@@ -12,14 +12,6 @@ const MainApp = () => {
   const { currentUser, logout } = useAuth();
 
   const [isVisableSidebar, setIsVisableSidebar] = useState(false);
-  const sidebarClass =
-    classes.sidebarDefault +
-    " " +
-    (!isVisableSidebar ? classes.sidebar : classes.noSidebar);
-  const contentClass =
-    classes.contentDefault +
-    " " +
-    (!isVisableSidebar ? classes.contentPage : classes.contentPageNosidebar);
 
   useEffect(() => {
     if (!currentUser.uid) {
@@ -32,12 +24,22 @@ const MainApp = () => {
         <MainNav toggleSidebar={setIsVisableSidebar} />
       </div>
       <div className={classes.content}>
-        <div className={sidebarClass}>
+        <div
+          className={
+            classes.sidebar + " " + (isVisableSidebar ? "" : classes.none)
+          }
+        >
           <Sidebar />
         </div>
-        <div className={contentClass}>
+        <div
+          className={isVisableSidebar ? classes.overlay : classes.overlayNone}
+          onClick={() => setIsVisableSidebar((state) => !state)}
+        ></div>
+        <div className={classes.contentDefault}>
           <Outlet />
-          <div className={classes.footer}>@RedMoon Solutions | Contact: redmoon.sol18@gmail.com</div>
+          <div className={classes.footer}>
+            @RedMoon Solutions | Contact: redmoon.sol18@gmail.com
+          </div>
         </div>
       </div>
     </>

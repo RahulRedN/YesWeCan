@@ -50,7 +50,8 @@ const Instructions = () => {
                 The Marked for review status simply acts as a reminder that you
                 have set to look at the question again.{" "}
                 <i className={classes.effect}>
-                  If an answer is selected for a question that is Marked for Review, the answer will be considered in the final evaluation.
+                  If an answer is selected for a question that is Marked for
+                  Review, the answer will be considered in the final evaluation.
                 </i>
               </li>
             </ul>

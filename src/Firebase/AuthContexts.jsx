@@ -40,7 +40,7 @@ export const AuthContexts = ({ children }) => {
   const logout = async (id, nav) => {
     try {
       if (id) {
-        nav('/user')
+        nav("/user");
         const docRef = doc(db, "users", id);
         await updateDoc(docRef, { isLoggedIn: false });
         dispatch(reset());
@@ -83,15 +83,23 @@ export const AuthContexts = ({ children }) => {
               ...doc.data(),
               id: doc.id,
             }));
+            courses.sort((a, b) => {
+              const dateA = new Date(a.enrolledAt).getTime();
+              const dateB = new Date(b.enrolledAt).getTime();
+              return dateB - dateA;
+            });
             dispatch(setCourses(courses));
           }
+          setCurrentUser(user);
+          setLoading(false);
+        } else {
+          setCurrentUser();
+          setLoading(false);
         }
       } catch (err) {
         console.error(err);
       }
-      setCurrentUser(user);
     });
-    setLoading(false);
 
     return unsubscribe;
   }, []);

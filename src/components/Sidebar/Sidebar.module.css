@@ -1,6 +1,6 @@
 .navigation {
   height: 100%;
-  background-color: #62CDFF;
+  background-color: #62cdff;
   border-right: 2px solid #333;
   width: 250px;
   position: fixed;
@@ -10,68 +10,71 @@
   overflow-y: hidden;
 }
 
-.navigation:hover{
+.navigation:hover {
   overflow-y: scroll;
 }
 
-.util a, .courseContent button{
+.util a,
+.courseContent button {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap:1rem;
+  gap: 1rem;
   padding: 1rem;
   font-size: larger;
   align-items: center;
   color: black;
 }
 
-.courseContent button{
+.courseContent button {
   cursor: pointer;
   width: 100%;
-  background-color: #62CDFF;
+  background-color: #62cdff;
   justify-content: space-between;
   outline: none;
   border: none;
 }
 
-.emptyHeight{
+.emptyHeight {
   min-height: 10rem;
 }
 
-.util a, .courseContent button{
+.util a,
+.courseContent button {
   color: black;
 }
 
-.course{
+.course {
   display: flex;
   flex-direction: column;
 }
 
-.courseName{
+.courseName {
   font-size: x-large;
-  background-color: #97DEFF;
+  background-color: #97deff;
   padding: 1rem;
 }
 
-.util:hover a{
+.util:hover a {
   background-color: white;
   color: black;
 }
 
-.courseContent button:hover{
+.courseContent button:hover {
   background-color: hsla(199, 100%, 69%, 0.678);
 }
 
-.util a, .courseContent a{
+.util a,
+.courseContent a {
   text-decoration: none;
 }
 
-.clicked{
+.clicked {
   transition: 0.2s;
   rotate: 180deg;
 }
 
-.displayNone{
+.displayNone {
   display: none;
 }
 
@@ -80,33 +83,38 @@
   flex-direction: column;
   /* gap: 0.6rem; */
   list-style-type: disc;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 
   animation: 1s fadeIn;
   animation-fill-mode: forwards;
   visibility: hidden;
 }
 
-.dropdown a{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap:0.3rem;
-  position: relative;
-  color: black;
-  background-color: #C9EEFF;
-  font-size: large;
-  padding: 0.6rem;
+.wrap{
+  box-shadow: 0 0 10px rgba(132, 132, 132, 0.537);
 }
 
-.dropdown a i{
+.dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  position: relative;
+  color: black;
+  background-color: #c9eeff;
+  font-size: large;
+  padding: 0.6rem 1rem;
+}
+
+.dropdown a i {
   font-size: 0.5rem;
 }
 
-.dropdown a:hover, .dropdown a:focus{
+.dropdown a:hover,
+.dropdown a:focus {
   background-color: white;
   color: black;
 }
-
 
 @keyframes fadeIn {
   0% {
@@ -140,17 +148,15 @@
   background: #55555562;
 }
 
-
 @media screen and (max-width: 928px) {
-  .navigation{
+  .navigation {
     width: 200px;
     overflow-y: scroll;
   }
 }
 
 @media screen and (max-width: 1000px) and (max-height: 800px) {
-  .navigation{
+  .navigation {
     overflow-y: scroll;
   }
-  
 }

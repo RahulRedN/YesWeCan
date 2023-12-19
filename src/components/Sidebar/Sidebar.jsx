@@ -13,7 +13,7 @@ const Sidebar = () => {
   const [data, setData] = useCourseFetch();
   const nav = useNavigate();
   const user = useSelector((state) => state.user.data);
-  const {logout} = useAuth();
+  const { logout } = useAuth();
   return (
     <ul className={classes.navigation}>
       <li className={classes.util}>
@@ -45,7 +45,9 @@ const Sidebar = () => {
         </NavLink>
       </li>
       {data?.map((course, idx) => (
-        <CourseTest course={course} key={idx} classes={classes} role={user.role} />
+        <div key={idx} className={classes.wrap}>
+          <CourseTest course={course} classes={classes} role={user.role} />
+        </div>
       ))}
       <li className={classes.util}>
         <NavLink
