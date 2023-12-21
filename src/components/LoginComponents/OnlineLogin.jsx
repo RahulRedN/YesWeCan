@@ -48,13 +48,8 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
           ...doc.data(),
           id: doc.id,
         }));
-        if (data[0].role == "classroom") {
-          await logout();
-          alert("Please select the correct Login Method!");
-        } else {
-          const docRef = doc(db, "users", data[0].id);
-          await updateDoc(docRef, { isLoggedIn: true });
-        }
+        const docRef = doc(db, "users", data[0].id);
+        await updateDoc(docRef, { isLoggedIn: true });
       }
       setIsLoading(false);
     } catch (err) {
@@ -80,13 +75,8 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
           ...doc.data(),
           id: doc.id,
         }));
-        if (data[0].role == "classroom") {
-          await logout();
-          alert("Please select the correct Login Method!");
-        } else {
-          const docRef = doc(db, "users", data[0].id);
-          await updateDoc(docRef, { isLoggedIn: true });
-        }
+        const docRef = doc(db, "users", data[0].id);
+        await updateDoc(docRef, { isLoggedIn: true });
       } else {
         const user = res.user;
         await addDoc(userDetailsRef, {
@@ -108,16 +98,8 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
 
   return (
     <>
-      <div
-        className={classes.backButton}
-        onClick={() => {
-          setState({ isMain: true });
-        }}
-      >
-        <i className="fa-solid fa-chevron-left"></i> Back
-      </div>
       <div className={`${classes.container} ${classes.loginContent}`}>
-        <div className={classes.header}>Online Student Login</div>
+        <div className={classes.header}>Welcome Back !</div>
         <div className={classes.validation}>
           {isError[0] ? isError[1] : <>&nbsp;</>}
         </div>
@@ -141,7 +123,15 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
           </div>
           <div className={classes.signIn}>
             <button onClick={siginHandler} disabled={isLoading}>
-              Sign In
+              {isLoading ? (
+                <img
+                  src="/assets/loading.svg"
+                  style={{ width: 24 }}
+                  alt="loading..."
+                />
+              ) : (
+                "Sign In"
+              )}
             </button>
             Or
             <span
@@ -156,7 +146,17 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
             Other Login
             <GoogleButton
               disabled={isLoading}
-              label="Sign In / Sign Up"
+              label={
+                isLoading ? (
+                  <img
+                    src="/assets/loading.svg"
+                    style={{ width: 24 }}
+                    alt="loading..."
+                  />
+                ) : (
+                  "Sign In / Sign Up"
+                )
+              }
               onClick={() => {
                 googleHandler();
               }}

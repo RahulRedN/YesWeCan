@@ -7,6 +7,10 @@ import ImageSlider from "../components/HomePage/ImageSlider";
 import Courses from "../components/HomePage/Courses";
 import { useLoaderData } from "react-router-dom";
 
+import { MdMail } from "react-icons/md";
+import { FaPhoneAlt } from "react-icons/fa";
+import { ImFacebook2 } from "react-icons/im";
+
 const HomePage = () => {
   const data = useLoaderData();
   return (
@@ -21,11 +25,11 @@ const HomePage = () => {
           <div className={classes.heading}>Contact us (for any queries):</div>
           <div className={classes.content}>
             <p>
-              <i className="fa-solid fa-envelope"></i>
+              <MdMail size={25}/>
               <span>software.yeswecan@gmail.com</span>
             </p>
             <p>
-              <i className="fa-solid fa-phone"></i> <span>+91 9853324365</span>
+              <FaPhoneAlt size={25}/> <span>+91 9853324365</span>
             </p>
           </div>
           <div className={classes.content} style={{ paddingTop: "1rem" }}>
@@ -38,7 +42,7 @@ const HomePage = () => {
           <div className={classes.heading}>Follow us on Social Media:</div>
           <div className={classes.content}>
             <p>
-              <i className="fa-brands fa-square-facebook"></i>
+              <ImFacebook2 size={25}/>
               <span>
                 <a
                   href="https://www.facebook.com/yeswecansadhana"

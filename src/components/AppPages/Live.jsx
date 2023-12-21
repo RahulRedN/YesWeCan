@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "../../Firebase/config";
 
+import { FaRegCircleDot } from "react-icons/fa6";
+
 const Live = () => {
   const [data, setData] = useState();
 
@@ -21,28 +23,36 @@ const Live = () => {
       try {
         const liveCLassesRef = collection(db, "live_classes");
         const res = await getDocs(liveCLassesRef);
-        const liveCLasses = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const liveCLasses = res.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
 
         liveCLasses.sort(compareDates);
 
         setData(liveCLasses);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
-    fetch()
-  }, [])
+    };
+    fetch();
+  }, []);
 
   return (
     <>
       <div className={classes.container}>
         <div className={classes.header}>
-          <i className="fa-regular fa-circle-dot"></i> Live Classes
+          <FaRegCircleDot color="red" /> Live Classes
         </div>
         <div className={classes.liveClasses}>
           {data?.map((liveCls, idx) => (
-            <LiveClassCard key={idx} title={liveCls.title} address={liveCls.address} />
+            <LiveClassCard
+              key={idx}
+              title={liveCls.title}
+              address={liveCls.address}
+            />
           ))}
+          {data.length == 0 && <>No Live Classes</>}
         </div>
         <div className={classes.emptyHeight}></div>
       </div>

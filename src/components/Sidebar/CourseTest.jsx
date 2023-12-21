@@ -4,6 +4,11 @@ import CourseTestPart from "./CourseTestPart";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { db } from "../../Firebase/config";
 
+import { FaChalkboard } from "react-icons/fa";
+import { PiBooksFill } from "react-icons/pi";
+import { FaCircle } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
+
 const CourseTest = (props) => {
   const [dropdown, setDropdown] = useState(false);
   const [courses, setCourses] = useState();
@@ -29,7 +34,7 @@ const CourseTest = (props) => {
         to={`/user/test?id=${test.id}&courseId=${props.course.id}&user=${props.course?.status}&role=${props.role}`}
         key={test.id}
       >
-        <i className="fa-solid fa-circle"></i> {test.title}
+        <FaCircle size={7}/> {test.title}
       </NavLink>
     ));
   } else if (props.course?.courses?.length > 0) {
@@ -72,10 +77,15 @@ const CourseTest = (props) => {
       <div className={props.classes.courseName}>{props.course.title}</div>
       <div className={props.classes.courseContent}>
         <button onClick={toggleViewHandler}>
-          <i className="fa-solid fa-tv"></i>{" "}
-          {props.course?.courses?.length > 0 ? "Courses" : "Online Exams"}
+          {props.course?.courses?.length > 0 ? (
+            <><PiBooksFill size={25}/> Courses</>
+          ) : (
+            <>
+              <FaChalkboard size={25} strokeWidth={1.2}/> Online Exams
+            </>
+          )}
           <div className={dropdown ? props.classes.clicked : ""}>
-            <i className="fa-solid fa-angle-down"></i>
+            <IoIosArrowDown size={25}/>
           </div>
         </button>
         <div

@@ -1,15 +1,17 @@
-import React, {useState, useRef} from 'react'
+import React, { useState, useRef } from "react";
 
-import classes from './LoginComponents.module.css'
+import classes from "./LoginComponents.module.css";
+
+import { LuArrowLeftFromLine } from "react-icons/lu";
 
 const ForgotPass = ({ change, setState }) => {
   const emailRef = useRef();
   const [isError, setIsError] = useState([false, {}]);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const sendHandler = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    const email = emailRef.current.value.trim();;
+    const email = emailRef.current.value.trim();
     if (email === "") {
       setIsError([true, "Please enter Email"]);
       return;
@@ -18,27 +20,27 @@ const ForgotPass = ({ change, setState }) => {
       return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       change(email);
-      setIsLoading(false)
+      setIsLoading(false);
       setIsError([false, {}]);
       alert("Email sent!");
     } catch (err) {
-      setIsError([true, "Please enter a valid email or Try again!"])
+      setIsError([true, "Please enter a valid email or Try again!"]);
       console.error(err);
     }
-  }
+  };
 
   return (
     <>
       <div
         className={classes.backButton}
         onClick={() => {
-          setState({ isMain: true });
+          setState({ isOnline: true });
         }}
       >
-        <i className="fa-solid fa-chevron-left"></i> Back
+        <LuArrowLeftFromLine size={25} /> Back
       </div>
       <div className={classes.container}>
         <div className={classes.header}>
@@ -61,6 +63,6 @@ const ForgotPass = ({ change, setState }) => {
       </div>
     </>
   );
-}
+};
 
-export default ForgotPass
+export default ForgotPass;

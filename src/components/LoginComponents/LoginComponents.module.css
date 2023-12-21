@@ -1,200 +1,190 @@
-.container{
-    width: 100%;
-    height: 100%;
+.container {
+  width: 100%;
+  height: fit-content;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.header{
-    font-size: x-large;
-    text-align: center;
+.header {
+  font-size: x-large;
+  text-align: center;
 }
 
-.card{
-    cursor: pointer;
-    background-color: #fff;
-    border-radius: 10px;
+.card {
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 10px;
 }
 
-.card:hover{
-    background-color: rgb(64, 166, 255);
-    color: #fff;
+.card:hover {
+  background-color: rgb(64, 166, 255);
+  color: #fff;
 }
 
-.card img{
-    max-height: 13vw;
+.card img {
+  max-height: 13vw;
 }
 
-.card .body{
-    text-align: center;
+.card .body {
+  text-align: center;
 }
 
-.options{
-    display: flex;
-    gap: 2rem;
+.options {
+  display: flex;
+  gap: 2rem;
 
-    flex-wrap: wrap;
-    justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.create{
-    padding-left: 1rem;
+.create {
+  padding-left: 1rem;
 }
 
-.create a{
-    cursor: pointer;
-    font-size: large;
-    color: rgb(0, 136, 255);
-    text-decoration: none;
+.create a {
+  cursor: pointer;
+  font-size: large;
+  color: rgb(0, 136, 255);
+  text-decoration: none;
 }
 
-.create a:hover{
-    text-decoration: underline;
+.create a:hover {
+  text-decoration: underline;
 }
 
-.backButton{
-    cursor: pointer;
-    width: fit-content;
-    margin-left: 1rem;
-    padding: 0.3rem;
-    border-radius: 30px;
+.backButton {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  margin-left: 1rem;
+  padding: 0.3rem;
+  border-radius: 30px;
 }
 
-.backButton:hover{
-    background-color: white;
+.backButton:hover {
+  background-color: white;
 }
 
-.validation{
-    padding: 0 1rem 0 1rem;
-    text-align: center;
-    color: red;
+.validation {
+  padding: 0 1rem 0 1rem;
+  text-align: center;
+  color: red;
 }
 
-.inputs{
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.inputs {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.group{
-    position: relative;
+.group {
+  position: relative;
 }
 
-.group input{
-    background-color: transparent;
-    padding: 0.4rem;
-    font-size: 1.2rem;
-    border-radius: 4px;
-    border: 2px solid black;
-    outline: none;
+.group input {
+  background-color: transparent;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  border: 2px solid black;
+  outline: none;
 }
 
-.group label{
-    position: absolute;
-    top: 0.5rem;
-    left: 1rem;
-    pointer-events: none;
-    transition: 0.15s all ease;
+.group label {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  pointer-events: none;
+  transition: 0.15s all ease;
 }
 
-.group input:focus + .groupLabel, .group input:not(:placeholder-shown) + .groupLabel{
-    background: rgb(252, 241, 221);
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    border-radius: 3px;
-    padding: 0.1rem;
-    font-size: 1.2rem;
-    transform: translateY(-1.7rem) translateX(-0.6rem);
+.group input:focus + .groupLabel,
+.group input:not(:placeholder-shown) + .groupLabel {
+  background: rgb(252, 241, 221);
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-radius: 3px;
+  padding: 0.1rem;
+  font-size: 1.2rem;
+  transform: translateY(-1.7rem) translateX(-0.6rem);
 }
 
-.forgot{
-    text-align: right;
+.forgot {
+  text-align: right;
 }
 
-.forgot span{
-    cursor: pointer;
-    color: rgb(0, 136, 255);
+.forgot span {
+  cursor: pointer;
+  color: rgb(0, 136, 255);
 }
 
-.forgot span:hover{
-    text-decoration: underline;
+.forgot span:hover {
+  text-decoration: underline;
 }
 
-.signIn{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.signIn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.signIn button{
-    position: relative;
-    border: none;
-    outline: none;
-    background-color: rgb(0, 136, 255);
-    color: white;
-    cursor: pointer;
+.signIn button {
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: rgb(0, 136, 255);
+  color: white;
+  cursor: pointer;
 
-    padding:0.7rem;
-    font-size: 1rem;
-    border-radius: 6px;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border-radius: 6px;
 }
 
-.signIn button:hover{
-    background-color: rgba(0, 136, 255, 0.625);
+.signIn button:hover {
+  background-color: rgba(0, 136, 255, 0.625);
 }
 
-.signIn button:disabled{
-    color: rgb(0, 136, 255);
+.signIn button:disabled {
+  color: rgb(0, 136, 255);
 }
 
-.signIn button:disabled:hover{
-    background-color: rgb(0, 136, 255);
+.signIn button:disabled:hover {
+  background-color: rgb(0, 136, 255);
 }
 
-.signIn button:disabled:after{
-    position: absolute;
-    content: 'Loading';
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: red;
+.signIn span:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-.signIn span:hover{
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-
-.googleSignIn{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    border-top: 1px solid grey;
+.googleSignIn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  border-top: 1px solid grey;
 }
 
 @media screen and (max-width: 683px) {
-    .card img{
-        max-height: 1000px;
-        max-width: 270px;
-    }
+  .card img {
+    max-height: 1000px;
+    max-width: 270px;
+  }
 }
 
 @media screen and (max-height: 428px) {
-    .container{
-        justify-content: space-evenly;
-    }
+  .container {
+    justify-content: space-evenly;
+  }
 
-    .container.loginContent{
-        justify-content: start;
-    }
+  .container.loginContent {
+    justify-content: start;
+  }
 }

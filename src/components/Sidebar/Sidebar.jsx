@@ -9,6 +9,11 @@ import CourseTest from "./CourseTest";
 import classes from "./Sidebar.module.css";
 import { useCourseFetch } from "../../hooks/setCoursesInfo";
 
+import { HiMiniHome } from "react-icons/hi2";
+import { FaWifi } from "react-icons/fa6";
+import { IoChatbox } from "react-icons/io5";
+import { TbLogout } from "react-icons/tb";
+
 const Sidebar = () => {
   const [data, setData] = useCourseFetch();
   const nav = useNavigate();
@@ -27,7 +32,7 @@ const Sidebar = () => {
             };
           }}
         >
-          <i className="fa-solid fa-house"></i>Dashboard
+          <HiMiniHome size={25}/>Dashboard
         </NavLink>
       </li>
       <li className={classes.util}>
@@ -41,7 +46,7 @@ const Sidebar = () => {
             };
           }}
         >
-          <i className="fa-solid fa-wifi"></i> Live
+          <FaWifi size={25}/> Live
         </NavLink>
       </li>
       {data?.map((course, idx) => (
@@ -60,7 +65,7 @@ const Sidebar = () => {
             };
           }}
         >
-          <i className="fa-solid fa-comment"></i> Feedback
+          <IoChatbox size={25}/> Feedback
         </NavLink>
       </li>
       <li
@@ -71,7 +76,7 @@ const Sidebar = () => {
         }}
       >
         <a>
-          <i className="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          <TbLogout size={25}/> Logout
         </a>
       </li>
       <div className={classes.emptyHeight}></div>

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+import { FaCircle } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
+
 const CourseTestPart = (props) => {
   const [dropdown, setDropdown] = useState(false);
   const toggleViewHandler = () => {
@@ -14,7 +17,7 @@ const CourseTestPart = (props) => {
       >
         {props.title}
         <div className={dropdown ? props.classes.clicked : ""}>
-          <i className="fa-solid fa-angle-down"></i>
+          <IoIosArrowDown size={25} />
         </div>
       </button>
       <div
@@ -27,7 +30,7 @@ const CourseTestPart = (props) => {
             to={`/user/test?id=${test.id}&courseId=${props.courseId}&user=${props.status}&role=${props.role}`}
             key={test.id}
           >
-            <i className="fa-solid fa-circle"></i> {test.title}
+            <FaCircle size={7} /> {test.title}
           </NavLink>
         ))}
       </div>

@@ -11,6 +11,9 @@ import classes from "./OnlineExamPage.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+import { BsFullscreen } from "react-icons/bs";
+import { BsFullscreenExit } from "react-icons/bs";
+
 const OnlineExamPage = () => {
   const [searchParams, setParams] = useSearchParams();
   const id = searchParams.get("id");
@@ -73,7 +76,11 @@ const OnlineExamPage = () => {
                 setIsFullScreen((prev) => !prev);
               }}
             >
-              <i className="fa-solid fa-expand"></i>
+              {isFullScreen ? (
+                <BsFullscreenExit strokeWidth={1.01} />
+              ) : (
+                <BsFullscreen strokeWidth={1.01} />
+              )}
             </button>
           </div>
         </div>

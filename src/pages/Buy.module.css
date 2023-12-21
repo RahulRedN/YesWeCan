@@ -55,7 +55,7 @@
 }
 
 .container {
-  margin-top: 1rem;
+  margin-top: 2rem;
   width: 90%;
   min-height: 70vh;
 
@@ -80,6 +80,7 @@
   gap: 3rem;
 
   font-size: larger;
+  border-right: 1px solid rgb(179, 179, 179);
 }
 
 .courseDetails ul {
@@ -88,17 +89,13 @@
 
 .price {
   width: 40%;
-  min-height: 70vh;
-  border-left: 1px solid grey;
-
   font-size: x-large;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 1rem;
-  gap: 1rem;
+
+  padding: 2rem 1rem;
+  gap: 3rem;
 }
 
 .price img {
@@ -144,13 +141,12 @@
   .courseDetails {
     width: 100%;
     min-height: 0;
+    border-right: none;
   }
 
   .price {
     min-height: 0;
     width: 100%;
-
-    border-left: none;
     border-top: 1px solid grey;
   }
 }

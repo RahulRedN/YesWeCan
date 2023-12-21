@@ -3,6 +3,8 @@ import classes from "./ViewResult.module.css";
 import ViewResultContent from "../AppComponents/ViewResultContent";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+import { RxCrossCircled } from "react-icons/rx";
+
 const ViewResult = () => {
   const nav = useNavigate();
   const [searchParams, setParams] = useSearchParams();
@@ -10,9 +12,8 @@ const ViewResult = () => {
   const courseName = searchParams.get("courseName");
 
   const [clicked, setClicked] = useState({
-    isResult: true
+    isResult: true,
   });
-
 
   return (
     <>
@@ -25,7 +26,7 @@ const ViewResult = () => {
               nav(-1);
             }}
           >
-            X
+            <RxCrossCircled color="white" size={30} strokeWidth={0.2} />
           </div>
         </div>
         <div className={classes.nav}>
@@ -82,7 +83,12 @@ const ViewResult = () => {
             </li>
           </ul>
         </div>
-        <div className={classes.displayContent} onCopy={(e)=>{e.preventDefault()}}>
+        <div
+          className={classes.displayContent}
+          onCopy={(e) => {
+            e.preventDefault();
+          }}
+        >
           <ViewResultContent clicked={clicked} courseId={id} />
         </div>
       </div>

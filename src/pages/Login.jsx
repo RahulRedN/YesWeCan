@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import { useAuth } from "../Firebase/AuthContexts";
 
-import Main from "../components/LoginComponents/Main";
-import Classroom from "../components/LoginComponents/ClassroomLogin";
 import Online from "../components/LoginComponents/OnlineLogin";
 import PasswordChange from "../components/LoginComponents/ForgotPass";
 
@@ -21,21 +19,10 @@ const Login = () => {
     }
   }, [currentUser]);
 
-  const [state, setState] = useState({ isMain: true });
+  const [state, setState] = useState({ isOnline: true });
 
   let content;
-  if (state.isMain) {
-    content = <Main setState={setState} />;
-  } else if (state.isClassroom) {
-    content = (
-      <Classroom
-        setState={setState}
-        signIn={signIn}
-        logout={logout}
-        signInWithGoogle={signInWithGoogle}
-      />
-    );
-  } else if (state.isOnline) {
+  if (state.isOnline) {
     content = (
       <Online
         setState={setState}

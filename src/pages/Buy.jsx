@@ -8,7 +8,9 @@ import { db } from "../Firebase/config";
 import MathJaxRender from "../components/OnlineExamComponents/Utility/MathJaxRender";
 import { useAuth } from "../Firebase/AuthContexts";
 
-import GooglePayButton from '@google-pay/button-react'
+import toast, { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { setCourses } from "../redux/user_reducer";
 
 const Buy = () => {
   const nav = useNavigate();
@@ -16,9 +18,9 @@ const Buy = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const courseId = searchParams.get("id");
   const { currentUser } = useAuth();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const [course, setCourse] = useState();
-
-  const [transactionId, setTransactionID] = useState("");
 
   if (!courseId) {
     nav("/");
@@ -31,7 +33,7 @@ const Buy = () => {
       const res = await getDoc(courseRef);
 
       if (res.exists) {
-        setCourse({ ...res.data() });
+        setCourse({ ...res.data(), courseId: res.id });
       }
     } catch (err) {
       console.log(err);
@@ -43,29 +45,56 @@ const Buy = () => {
   }, []);
 
   const onClickHandler = async () => {
-    const obj = {
-      courseId: courseId,
-      uid: currentUser.uid,
-      email: currentUser.email,
-      date: new Date().toLocaleString(),
-      transactionId: transactionId,
-    };
+    var options = {
+      key: import.meta.env.VITE_RZRPAY_key,
+      key_secret: import.meta.env.VITE_RZRPAY_secretKey,
+      amount: parseInt(course?.price * 100),
+      currency: "INR",
+      order_receipt: "order_rcptid_" + currentUser.uid,
+      name: "YesWeCan",
+      description: "for testing purpose",
+      handler: async function (response) {
+        // console.log(response)
+        toast.success("Payment Successful");
 
-    try {
-      const requestRef = collection(db, "requests");
-      const res = await addDoc(requestRef, { ...obj });
-      alert(
-        "Request Submitted! Incase you have submitted wrong Transaction ID Submit Again!"
-      );
-      nav("/");
-    } catch (err) {
-      console.log(err);
-      alert("Error: " + err.message);
-    }
+        const paymentId = response.razorpay_payment_id;
+        // store in firebase
+        const currDate = new Date();
+        const futureDate = new Date(currDate);
+        futureDate.setMonth(futureDate.getMonth() + parseInt(course?.duration));
+        const orderInfo = {
+          enrolledAt: currDate.toLocaleString(),
+          limit: futureDate.toLocaleString(),
+          courseId,
+          uid: currentUser.uid,
+          paymentId,
+          status: {},
+          email: user?.data.email,
+          mobile: user?.data.mobile,
+        };
+
+        try {
+          const result = await addDoc(collection(db, "enrollments"), orderInfo);
+          dispatch(setCourses([...user.myCourses, { ...course }]));
+        } catch (error) {
+          console.log(error);
+          toast.error("Unexpected Error Occured!");
+        }
+      },
+
+      theme: {
+        color: "#3399cc",
+      },
+    };
+    var pay = new window.Razorpay(options);
+    pay.open();
+    console.log(pay);
   };
 
+  console.log(user);
   return (
     <div className={classes.view}>
+      <Toaster position="top-center" />
       <nav className={classes.navbar + " " + classes.homeBar}>
         <div className={classes.navLogo}>
           <Link to={"/"}>
@@ -83,27 +112,20 @@ const Buy = () => {
         </div>
         <div className={classes.price}>
           <p style={{ color: "red" }}>
-            Plese pay the required Amount Only! After payment enter the
+            Please pay the required Amount Only! After payment enter the
             transaction Id and Submit Request.(Course will be activated in
             24hrs)
           </p>
           <p>Overall Price: Rs. {course?.price} /-</p>
           <p>
-            <img src="/assets/QRCode.jpeg" alt="" />
-          </p>
-          <p>
-            <input
-              type="text"
-              value={transactionId}
-              onChange={(e) => {
-                setTransactionID(e.target.value);
-              }}
-              placeholder="transaction id"
-            />
-          </p>
-          <p>
-            <button disabled={transactionId == ""} onClick={onClickHandler}>
-              Request
+            <button
+              disabled={
+                user?.data.role != "classroom" ||
+                user?.myCourses.some((course) => course.courseId === courseId)
+              }
+              onClick={onClickHandler}
+            >
+              Purchase
             </button>
           </p>
         </div>

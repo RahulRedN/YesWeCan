@@ -15,7 +15,7 @@
   width: 100%;
 }
 
-.navLogo{
+.navLogo {
   display: flex;
   justify-content: center;
 }
@@ -32,7 +32,7 @@
   color: black;
 }
 
-.navLogo a{
+.navLogo a {
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -43,11 +43,11 @@
   color: white;
 }
 
-.navLogo img{
+.navLogo img {
   height: 5rem;
 }
 
-.navLogo .appLogo{
+.navLogo .appLogo {
   display: none;
 }
 
@@ -66,7 +66,7 @@
   white-space: nowrap;
 }
 
-.navContent ul li a{
+.navContent ul li a {
   text-decoration: none;
   cursor: pointer;
   color: rgb(255, 251, 0);
@@ -79,7 +79,7 @@
 .dropdownIcon {
   display: none;
 
-  width: 20px;
+  width: fit-content;
   font-size: 1.2rem;
   padding-left: 0.2rem;
   padding-right: 0.2rem;
@@ -125,7 +125,7 @@
     border-radius: 4px;
   }
 
-  .navContent.dropdown::before{
+  .navContent.dropdown::before {
     position: absolute;
     content: " ";
     top: 25px;
@@ -136,29 +136,29 @@
     border-left: 10px solid transparent;
     border-right: 5px solid transparent;
   }
-  
-  .navContent.dropdown ul li{
+
+  .navContent.dropdown ul li {
     color: black;
     display: flex;
     gap: 0.5rem;
     font-size: large;
   }
 
-  .navContent.dropdown ul li a{
+  .navContent.dropdown ul li a {
     color: black;
     display: flex;
     gap: 0.5rem;
     font-size: large;
   }
 
-  .navContent.dropdown ul li span{
+  .navContent.dropdown ul li span {
     font-size: medium;
   }
 
   .backdrop {
     display: block;
     position: absolute;
-    top:0;
+    top: 0;
     bottom: -85vh;
     left: 0;
     right: 0;
@@ -166,7 +166,7 @@
 }
 
 @media screen and (max-width: 345px) {
-  .navbar{
-    padding: 0.2rem 0.5rem 0 0.25rem ;
+  .navbar {
+    padding: 0.2rem 0.5rem 0 0.25rem;
   }
 }

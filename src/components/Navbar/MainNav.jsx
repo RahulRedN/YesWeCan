@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./MainNav.module.css";
 
+import { RxCross2 } from "react-icons/rx";
+import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
+import { AiOutlineBars } from "react-icons/ai";
+
+import { HiMiniHome } from "react-icons/hi2";
+import { BsFillBellFill } from "react-icons/bs";
+import { IoPersonCircle } from "react-icons/io5";
+
 const MainNav = (props) => {
   const nav = useNavigate();
   const [isDropdown, setIsDropdown] = useState(false);
@@ -12,7 +20,7 @@ const MainNav = (props) => {
   return (
     <nav className={classes.navbar}>
       <div className={classes.toggleBar} onClick={toggleHandler}>
-        <i style={{ color: "white" }} className="fa-solid fa-bars"></i>
+        <AiOutlineBars color="white" size={30} />
       </div>
       <div className={classes.navLogo}>
         <Link to={"/"}>
@@ -39,12 +47,9 @@ const MainNav = (props) => {
           }}
         >
           {isDropdown ? (
-            <i style={{ color: "white" }} className="fa-solid fa-x"></i>
+            <RxCross2 size={25} color="white" />
           ) : (
-            <i
-              style={{ color: "white" }}
-              className="fa-solid fa-ellipsis-vertical"
-            ></i>
+            <PiDotsThreeOutlineVerticalFill size={25} color="white" />
           )}
         </div>
         <ul>
@@ -53,11 +58,10 @@ const MainNav = (props) => {
               nav("/");
             }}
           >
-            <i className="fa-solid fa-house"></i>{" "}
-            <span>{isDropdown && "Home"}</span>
+            <HiMiniHome size={25} /> <span>{isDropdown && "Home"}</span>
           </li>
           <li>
-            <i className="fa-solid fa-bell"></i>{" "}
+            <BsFillBellFill size={22} />{" "}
             <span>{isDropdown && "Notifications"}</span>
           </li>
           <li
@@ -65,8 +69,7 @@ const MainNav = (props) => {
               nav("/profile");
             }}
           >
-            <i className="fa-solid fa-user"></i>{" "}
-            <span>{isDropdown && "Profile"}</span>
+            <IoPersonCircle size={25} /> <span>{isDropdown && "Profile"}</span>
           </li>
         </ul>
       </div>

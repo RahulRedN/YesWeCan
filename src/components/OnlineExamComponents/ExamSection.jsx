@@ -19,6 +19,10 @@ import Question from "./QuestionDisplay/Question";
 import classes from "../OnlineExam/OnlineExamPage.module.css";
 import QuestionButtons from "./QuestionButtons";
 
+import { BsHandThumbsUpFill, BsHandThumbsDownFill } from "react-icons/bs";
+import { TfiTimer } from "react-icons/tfi";
+import { FaBug } from "react-icons/fa";
+
 const ExamSection = (props) => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.results.status);
@@ -216,16 +220,13 @@ const ExamSection = (props) => {
               </div>
               <div className={classes.element2}>
                 <div className={classes.positive}>
-                  <i className="fa-solid fa-thumbs-up"></i>{" "}
-                  <div>+{marks[0]}</div>
+                  <BsHandThumbsUpFill /> <div>+{marks[0]}</div>
                 </div>
                 <div className={classes.negative}>
-                  <i className="fa-solid fa-thumbs-down"></i>{" "}
-                  <div>-{marks[1]}</div>
+                  <BsHandThumbsDownFill /> <div>-{marks[1]}</div>
                 </div>
                 <div>
-                  <i className="fa-regular fa-clock"></i>{" "}
-                  <Timer timer={props.timer} />
+                  <TfiTimer strokeWidth={1} /> <Timer timer={props.timer} />
                 </div>
                 <div
                   className={classes.report}
@@ -233,7 +234,7 @@ const ExamSection = (props) => {
                     setIsReport(true);
                   }}
                 >
-                  <i className="fa-solid fa-bug"></i> Report
+                  <FaBug /> Report
                 </div>
               </div>
             </div>

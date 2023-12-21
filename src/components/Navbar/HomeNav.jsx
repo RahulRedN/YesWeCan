@@ -4,6 +4,9 @@ import classes from "./MainNav.module.css";
 
 import { useAuth } from "../../Firebase/AuthContexts";
 
+import { RxCross2 } from "react-icons/rx";
+import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
+
 const HomeNav = () => {
   const { currentUser } = useAuth();
   const nav = useNavigate();
@@ -36,12 +39,9 @@ const HomeNav = () => {
           }}
         >
           {isDropdown ? (
-            <i style={{ color: "white" }} className="fa-solid fa-x"></i>
+            <RxCross2 size={25} strokeWidth={1.01} color="white" />
           ) : (
-            <i
-              style={{ color: "white" }}
-              className="fa-solid fa-ellipsis-vertical"
-            ></i>
+            <PiDotsThreeOutlineVerticalFill size={25} color="white" />
           )}
         </div>
         <ul>
