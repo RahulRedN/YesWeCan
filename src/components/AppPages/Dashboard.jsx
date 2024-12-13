@@ -1,14 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import TableData from "../AppComponents/TableData";
 
 import classes from "./Dashboard.module.css";
+
+import Ticker from "./Ticker";
 
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const myCourses = useSelector((state) => state.user.myCourses);
   const allCourses = useSelector((state) => state.user.allCourses);
+
+  const [alerts, setAlerts] = useState([]);
+
+  useEffect(() => {
+    const fecth = async () => {
+      try {
+        const docRef = doc(collection(db), "ArIOZHmeUsA96HRmW8EH");
+        const res = await getDoc(docRef);
+        if (res.exists()) {
+          setAlerts([...res.data().alerts]);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    // fecth();
+  }, []);
 
   const [isClicked, setIsClicked] = useState({
     isMycourse: true,
@@ -33,6 +52,13 @@ const Dashboard = () => {
   if (isClicked.isMycourse) {
     content = (
       <>
+        <h3 style={{ color: "red" }}>
+          Note: If you are an offline student and want to get{" "}
+          <span style={{ color: "green", fontWeight: 600 }}>
+            ALL IN ONE! course
+          </span>
+          , send your registered email with phone number to 9849388993
+        </h3>
         <h3>List of Courses Purchased</h3>
         <div className={classes.tableDiv}>
           {myCourses ? (
@@ -89,6 +115,9 @@ const Dashboard = () => {
     <>
       <div className={classes.container}>
         <div className={classes.header}>Dashboard</div>
+        {alerts?.length != 0 && (
+          <Ticker texts={alerts} direction={"left"} speed={30} />
+        )}
         <div className={classes.nav}>
           <button
             onClick={myCourseClickHandler}

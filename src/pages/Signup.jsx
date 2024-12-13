@@ -73,9 +73,6 @@ const Signup = () => {
     } else if (!image) {
       setError([true, { message: "Please Upload an image", isImage: true }]);
       return;
-    } else if (image.size / 1024 > 100) {
-      setError([true, { message: "Please Upload an image less than 100Kb!" }]);
-      return;
     } else if (pass == "" || conPass == "") {
       setError([
         true,
@@ -197,11 +194,7 @@ const Signup = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      if (e.target.files[0].size / 1024 < 100) {
-                        setImage(e.target.files[0]);
-                      } else {
-                        alert("Please Select image less than 100Kb!");
-                      }
+                      setImage(e.target.files[0]);
                     }}
                   />
                   <label

@@ -60,7 +60,7 @@
 .row {
   display: flex;
   gap: 2rem;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .row input {

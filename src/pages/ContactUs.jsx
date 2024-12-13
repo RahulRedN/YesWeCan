@@ -8,10 +8,12 @@ import { db } from "../Firebase/config";
 import { MdMail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { ImFacebook2 } from "react-icons/im";
+import toast, { Toaster } from "react-hot-toast";
 
 const ContactUs = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
+  const [mobile, setMobile] = useState();
 
   const [message, setMessage] = useState();
 
@@ -19,42 +21,57 @@ const ContactUs = () => {
     e.preventDefault();
     const alphaRegex = /^[a-zA-Z\s]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const mobileRegex = /^[6-9]\d{9}$/; // Indian mobile number format, starting with 6-9 and total 10 digits
 
     if (email === "") {
       alert("Email is required!");
       return;
     } else if (!emailRegex.test(email)) {
-      alert("Please enter a Valid Email!");
+      alert("Please enter a valid Email!");
       return;
-    } else if (name == "") {
+    } else if (name === "") {
       alert("Please enter your Name");
       return;
     } else if (!alphaRegex.test(name)) {
-      alert("Please enter a Valid Name");
+      alert("Please enter a valid Name");
       return;
-    } else if (message.trim() == "") {
-      alert("Please Enter your FeedBack!");
+    } else if (message.trim() === "") {
+      alert("Please Enter your Feedback!");
+      return;
+    } else if (mobile !== "" && !mobileRegex.test(mobile)) {
+      alert("Please enter a valid 10-digit Indian mobile number");
       return;
     }
 
     try {
       const feedbackRef = collection(db, "feedback");
+      const currentDate = new Date().toLocaleString();
       const data = {
-        type: "Feedback",
+        type: "contact",
         name: name,
         email: email,
         message: message,
+        mobile: mobile, 
+        date: currentDate,
       };
       const res = await addDoc(feedbackRef, data);
-      alert("Message sent! Thank you for the feedback.");
+      toast.success(
+        "Message sent! Thank you for the Contacting Us. We will get back to you soon."
+      );
+      setEmail();
+      setMessage();
+      setMobile();
+      setName();
     } catch (err) {
-      console.log(err);
+      console.error("Error adding document: ", err);
+      toast("Failed to send feedback. Please try again later.");
     }
   };
 
   return (
     <div className={classes.view}>
       <HomeNav />
+      <Toaster position="top-center" />
       <div className={classes.bodyDiv}>
         <form className={classes.message}>
           <h3>Enter Your Feedback</h3>
@@ -75,6 +92,17 @@ const ContactUs = () => {
                 setEmail(e.target.value);
               }}
             />
+          </div>
+          <div className={classes.row}>
+            <input
+              type="number"
+              placeholder="Phone Number"
+              value={mobile}
+              onChange={(e) => {
+                setMobile(e.target.value);
+              }}
+            />
+            <input type="text" disabled style={{ display: "hidden" }} />
           </div>
           <div className={classes.row}>
             <textarea

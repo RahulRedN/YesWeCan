@@ -18,16 +18,22 @@ const Feedback = () => {
     } else {
       try {
         const feedbackRef = collection(db, "feedback");
-        const res = await addDoc(feedbackRef, { uid: currentUser.uid, userEmail: currentUser.email, feedback: inputRef.current.value, date: new Date().toLocaleString() });
+        const res = await addDoc(feedbackRef, {
+          uid: currentUser.uid,
+          email: currentUser.email,
+          message: inputRef.current.value,
+          type: "feedback",
+          date: new Date().toLocaleString(),
+        });
         alert("Feedback Submited succesfully!");
-        nav('/user');
+        nav("/user");
       } catch (err) {
         alert("Something went wrong please try again after sometime!");
         console.log(err);
       }
     }
-  }
- 
+  };
+
   return (
     <>
       <div className={classes.header}>
@@ -44,7 +50,14 @@ const Feedback = () => {
           placeholder="Please type your feedback here."
           ref={inputRef}
         ></textarea>
-        <button type="submit" onClick={(e)=>{submitHandler(e)}}>Submit</button>
+        <button
+          type="submit"
+          onClick={(e) => {
+            submitHandler(e);
+          }}
+        >
+          Submit
+        </button>
       </form>
       <div className={classes.emptyHeight}></div>
     </>

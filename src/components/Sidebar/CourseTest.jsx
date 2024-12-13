@@ -31,10 +31,12 @@ const CourseTest = (props) => {
   } else if (props.course.tests) {
     content = props.course.tests.map((test) => (
       <NavLink
-        to={`/user/test?id=${test.id}&courseId=${props.course.id}&user=${props.course?.status}&role=${props.role}`}
+        to={`/user/test?id=${test.id}&courseId=${
+          props.courseId ? props.courseId : props.course.id
+        }&user=${props.course?.status}&role=${props.role}`}
         key={test.id}
       >
-        <FaCircle size={7}/> {test.title}
+        <FaCircle size={7} /> {test.title}
       </NavLink>
     ));
   } else if (props.course?.courses?.length > 0) {
@@ -44,6 +46,7 @@ const CourseTest = (props) => {
         role={props.role}
         course={cor}
         classes={props.classes}
+        courseId={props.course.id}
       />
     ));
   }
@@ -78,14 +81,16 @@ const CourseTest = (props) => {
       <div className={props.classes.courseContent}>
         <button onClick={toggleViewHandler}>
           {props.course?.courses?.length > 0 ? (
-            <><PiBooksFill size={25}/> Courses</>
+            <>
+              <PiBooksFill size={25} /> Courses
+            </>
           ) : (
             <>
-              <FaChalkboard size={25} strokeWidth={1.2}/> Online Exams
+              <FaChalkboard size={25} strokeWidth={1.2} /> Online Exams
             </>
           )}
           <div className={dropdown ? props.classes.clicked : ""}>
-            <IoIosArrowDown size={25}/>
+            <IoIosArrowDown size={25} />
           </div>
         </button>
         <div

@@ -3,13 +3,13 @@ import LiveClassCard from "../AppComponents/LiveClassCard";
 import classes from "./Live.module.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../Firebase/config";
 
 import { FaRegCircleDot } from "react-icons/fa6";
 
 const Live = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const compareDates = (a, b) => {
@@ -52,7 +52,7 @@ const Live = () => {
               address={liveCls.address}
             />
           ))}
-          {data.length == 0 && <>No Live Classes</>}
+          {data?.length == 0 && <>No Live Classes</>}
         </div>
         <div className={classes.emptyHeight}></div>
       </div>

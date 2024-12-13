@@ -14,6 +14,7 @@ import {
 import { GoogleButton } from "react-google-button";
 
 import classes from "./LoginComponents.module.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
   const [isError, setIsError] = useState([false, {}]);
@@ -24,7 +25,8 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const siginHandler = async () => {
+  const siginHandler = async (e) => {
+    e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     const email = emailRef.current.value.trim();
     if (email === "") {
@@ -49,7 +51,26 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
           id: doc.id,
         }));
         const docRef = doc(db, "users", data[0].id);
-        await updateDoc(docRef, { isLoggedIn: true });
+        const now = new Date();
+        if (data[0].time) {
+          const time = new Date(data[0].time);
+          if (time - now > 0) {
+            toast("Logged-in through other device! Try again after some time!");
+            await logout();
+          } else {
+            const newTime = new Date(now.getTime() + 1 * 60 * 60 * 1000);
+            await updateDoc(docRef, {
+              isLoggedIn: true,
+              time: newTime.toLocaleString(),
+            });
+          }
+        } else {
+          const time = new Date(now.getTime() + 1 * 60 * 60 * 1000);
+          await updateDoc(docRef, {
+            isLoggedIn: true,
+            time: time.toLocaleString(),
+          });
+        }
       }
       setIsLoading(false);
     } catch (err) {
@@ -76,7 +97,26 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
           id: doc.id,
         }));
         const docRef = doc(db, "users", data[0].id);
-        await updateDoc(docRef, { isLoggedIn: true });
+        const now = new Date();
+        if (data[0].time) {
+          const time = new Date(data[0].time);
+          if (time > now) {
+            toast("Logged-in through other device! Try again after some time!");
+            await logout();
+          } else {
+            const newTime = new Date(now.getTime() + 1 * 60 * 60 * 1000);
+            await updateDoc(docRef, {
+              isLoggedIn: true,
+              time: newTime.toLocaleString(),
+            });
+          }
+        } else {
+          const time = new Date(now.getTime() + 1 * 60 * 60 * 1000);
+          await updateDoc(docRef, {
+            isLoggedIn: true,
+            time: time.toLocaleString(),
+          });
+        }
       } else {
         const user = res.user;
         await addDoc(userDetailsRef, {
@@ -99,11 +139,12 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
   return (
     <>
       <div className={`${classes.container} ${classes.loginContent}`}>
+        <Toaster position="top-center" />
         <div className={classes.header}>Welcome Back !</div>
         <div className={classes.validation}>
           {isError[0] ? isError[1] : <>&nbsp;</>}
         </div>
-        <div className={classes.inputs}>
+        <form className={classes.inputs}>
           <div className={classes.group}>
             <input type="text" placeholder=" " ref={emailRef} />
             <label className={classes.groupLabel}>Email</label>
@@ -162,7 +203,7 @@ const OnlineLogin = ({ setState, signIn, nav, logout, signInWithGoogle }) => {
               }}
             />
           </div>
-        </div>
+        </form>
       </div>
     </>
   );

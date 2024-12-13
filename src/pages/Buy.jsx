@@ -63,8 +63,8 @@ const Buy = () => {
         const futureDate = new Date(currDate);
         futureDate.setMonth(futureDate.getMonth() + parseInt(course?.duration));
         const orderInfo = {
-          enrolledAt: currDate.toLocaleString(),
-          limit: futureDate.toLocaleString(),
+          enrolledAt: currDate.toLocaleDateString(),
+          limit: futureDate.toLocaleDateString(),
           courseId,
           uid: currentUser.uid,
           paymentId,
@@ -72,10 +72,9 @@ const Buy = () => {
           email: user?.data.email,
           mobile: user?.data.mobile,
         };
-
         try {
           const result = await addDoc(collection(db, "enrollments"), orderInfo);
-          dispatch(setCourses([...user.myCourses, { ...course }]));
+          dispatch(setCourses([...user.myCourses, { ...orderInfo }]));
         } catch (error) {
           console.log(error);
           toast.error("Unexpected Error Occured!");
@@ -91,7 +90,6 @@ const Buy = () => {
     console.log(pay);
   };
 
-  console.log(user);
   return (
     <div className={classes.view}>
       <Toaster position="top-center" />
@@ -120,7 +118,7 @@ const Buy = () => {
           <p>
             <button
               disabled={
-                user?.data.role != "classroom" ||
+                (user?.data.role == "online" && course?.role == "classroom") ||
                 user?.myCourses.some((course) => course.courseId === courseId)
               }
               onClick={onClickHandler}

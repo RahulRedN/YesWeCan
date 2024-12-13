@@ -4,12 +4,15 @@ import classes from "./LoginComponents.module.css";
 
 import { LuArrowLeftFromLine } from "react-icons/lu";
 
+import toast, { Toaster } from "react-hot-toast";
+
 const ForgotPass = ({ change, setState }) => {
   const emailRef = useRef();
   const [isError, setIsError] = useState([false, {}]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const sendHandler = () => {
+  const sendHandler = (e) => {
+    e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     const email = emailRef.current.value.trim();
     if (email === "") {
@@ -25,7 +28,7 @@ const ForgotPass = ({ change, setState }) => {
       change(email);
       setIsLoading(false);
       setIsError([false, {}]);
-      alert("Email sent!");
+      toast.success("Email sent!");
     } catch (err) {
       setIsError([true, "Please enter a valid email or Try again!"]);
       console.error(err);
@@ -34,6 +37,7 @@ const ForgotPass = ({ change, setState }) => {
 
   return (
     <>
+      <Toaster position="top-center" />
       <div
         className={classes.backButton}
         onClick={() => {
@@ -42,7 +46,7 @@ const ForgotPass = ({ change, setState }) => {
       >
         <LuArrowLeftFromLine size={25} /> Back
       </div>
-      <div className={classes.container}>
+      <form className={classes.container}>
         <div className={classes.header}>
           <span>Send password change link to your Mail!</span>
         </div>
@@ -60,7 +64,7 @@ const ForgotPass = ({ change, setState }) => {
             {isError[0] ? isError[1] : <>&nbsp;</>}
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 };

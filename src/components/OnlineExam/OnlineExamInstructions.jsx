@@ -2,13 +2,37 @@ import React, { useRef, useState } from "react";
 import Instructions from "../OnlineExamComponents/Instructions/Instructions";
 import MoreInstructions from "../OnlineExamComponents/Instructions/MoreInstructions";
 
-import Alert from '../Floats/Alert';
+import Alert from "../Floats/Alert";
 
 import classes from "./OnlineExamInstructions.module.css";
 import { useSelector } from "react-redux";
+import { Navigate, useSearchParams } from "react-router-dom";
 
 const OnlineExamInstructions = (props) => {
-  const user = useSelector(state => state.user.data);
+  const user = useSelector((state) => state.user.data);
+
+  const [paramas, setSearchParams] = useSearchParams();
+  const courseId = paramas.get("courseId");
+
+  const compareDates = (course) => {
+    const dateA = new Date(course.limit).getTime();
+    const dateB = new Date().getTime();
+    return dateB - dateA;
+  };
+
+  const course = useSelector(
+    (state) =>
+      state.user.myCourses.filter((course) => course.courseId == courseId)[0]
+  );
+
+  const valid = compareDates(course) > 0 ? "false" : "true";
+
+  if (valid == "false") {
+    alert("Time Expired!");
+    return <Navigate to={"/user"} />;
+  }
+
+
   const [isAlert, setIsAlert] = useState([false, {}]);
   const checkbox = useRef();
   const select = useRef();
@@ -28,12 +52,16 @@ const OnlineExamInstructions = (props) => {
     if (!checkbox.current.checked) {
       setIsAlert([
         true,
-        { title: "Alert", content: "Please accept the conditions", closeContent: "okay" },
+        {
+          title: "Alert",
+          content: "Please accept the conditions",
+          closeContent: "okay",
+        },
       ]);
       return;
     }
     props.onAcceptHandler();
-  }
+  };
   let content;
   if (!next) {
     content = (
@@ -53,7 +81,13 @@ const OnlineExamInstructions = (props) => {
   } else {
     content = (
       <>
-        <Alert isAlert={isAlert} closeHandler={()=>{setIsAlert([false, {}])}} address={"float"}/>
+        <Alert
+          isAlert={isAlert}
+          closeHandler={() => {
+            setIsAlert([false, {}]);
+          }}
+          address={"float"}
+        />
         <MoreInstructions />
         <div className={classes.buttonNavigate}>
           <button
@@ -65,8 +99,14 @@ const OnlineExamInstructions = (props) => {
           </button>
         </div>
         <div className={classes.confirm}>
-          <p>Choose your default language <select ref={select} defaultValue={0}><option value="0">--Select--</option><option value="1">English</option></select> </p>
-          <p style={{color: "red"}}>
+          <p>
+            Choose your default language{" "}
+            <select ref={select} defaultValue={0}>
+              <option value="0">--Select--</option>
+              <option value="1">English</option>
+            </select>{" "}
+          </p>
+          <p style={{ color: "red" }}>
             Please note that all questions will appear in your default language.
             This language can be changed for a particular question later on.
           </p>

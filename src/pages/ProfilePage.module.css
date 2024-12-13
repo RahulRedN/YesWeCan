@@ -7,12 +7,7 @@
   align-items: center;
 
   background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 36%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background-image: linear-gradient(to bottom right, #8360c3, #2ebf91);
 }
 
 .container {
@@ -161,6 +156,7 @@
 @media screen and (max-width: 900px) {
   .container {
     flex-direction: column;
+    margin: 1rem 0;
   }
 
   .photo {

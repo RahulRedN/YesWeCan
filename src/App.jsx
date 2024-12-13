@@ -33,6 +33,7 @@ import * as Loader from "./Loaders/Loaders";
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 
 import loading from "./App.module.css";
+import TypingTest from "./components/AppPages/TypingTest";
 const Buy = lazy(() => import("./pages/Buy"));
 
 const Root = () => {
@@ -104,6 +105,7 @@ const Router = createBrowserRouter(
           element={<Test />}
           loader={Loader.TestsLoader}
         />
+        <Route path="/user/typing" element={<TypingTest />} />
         <Route
           path="/user/viewResult"
           element={<ViewResult />}

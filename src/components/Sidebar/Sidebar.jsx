@@ -9,6 +9,7 @@ import CourseTest from "./CourseTest";
 import classes from "./Sidebar.module.css";
 import { useCourseFetch } from "../../hooks/setCoursesInfo";
 
+import { FaKeyboard } from "react-icons/fa";
 import { HiMiniHome } from "react-icons/hi2";
 import { FaWifi } from "react-icons/fa6";
 import { IoChatbox } from "react-icons/io5";
@@ -32,7 +33,8 @@ const Sidebar = () => {
             };
           }}
         >
-          <HiMiniHome size={25}/>Dashboard
+          <HiMiniHome size={25} />
+          Dashboard
         </NavLink>
       </li>
       <li className={classes.util}>
@@ -46,7 +48,7 @@ const Sidebar = () => {
             };
           }}
         >
-          <FaWifi size={25}/> Live
+          <FaWifi size={25} /> Live
         </NavLink>
       </li>
       {data?.map((course, idx) => (
@@ -54,6 +56,20 @@ const Sidebar = () => {
           <CourseTest course={course} classes={classes} role={user.role} />
         </div>
       ))}
+      <li className={classes.util}>
+        <NavLink
+          to="/user/typing"
+          end
+          style={({ isActive }) => {
+            return {
+              backgroundColor: isActive ? "white" : "",
+              color: isActive ? "black" : "",
+            };
+          }}
+        >
+          <FaKeyboard size={25} /> Typing Test
+        </NavLink>
+      </li>
       <li className={classes.util}>
         <NavLink
           to="/user/feedback"
@@ -65,7 +81,7 @@ const Sidebar = () => {
             };
           }}
         >
-          <IoChatbox size={25}/> Feedback
+          <IoChatbox size={25} /> Feedback
         </NavLink>
       </li>
       <li
@@ -76,7 +92,7 @@ const Sidebar = () => {
         }}
       >
         <a>
-          <TbLogout size={25}/> Logout
+          <TbLogout size={25} /> Logout
         </a>
       </li>
       <div className={classes.emptyHeight}></div>

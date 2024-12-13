@@ -40,9 +40,13 @@ export const AuthContexts = ({ children }) => {
   const logout = async (id, nav) => {
     try {
       if (id) {
+        const time = new Date();
         nav("/user");
         const docRef = doc(db, "users", id);
-        await updateDoc(docRef, { isLoggedIn: false });
+        await updateDoc(docRef, {
+          isLoggedIn: false,
+          time: time.toLocaleString(),
+        });
         dispatch(reset());
       }
     } catch (err) {
