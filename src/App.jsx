@@ -33,7 +33,14 @@ import * as Loader from "./Loaders/Loaders";
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 
 import loading from "./App.module.css";
-import TypingTest from "./components/AppPages/TypingTest";
+const TypingTestSteno = lazy(() =>
+  import("./components/AppComponents/TypingTestSteno")
+);
+const ViewResultType = lazy(() =>
+  import("./components/AppPages/ViewResultType")
+);
+const TypingMain = lazy(() => import("./components/AppPages/TypingMain"));
+const TypingTest = lazy(() => import("./components/AppComponents/TypingTest"));
 const Buy = lazy(() => import("./pages/Buy"));
 
 const Root = () => {
@@ -105,7 +112,10 @@ const Router = createBrowserRouter(
           element={<Test />}
           loader={Loader.TestsLoader}
         />
-        <Route path="/user/typing" element={<TypingTest />} />
+        <Route path="/user/typing" element={<TypingMain />} />
+        <Route path="/user/typingtest" element={<TypingTest />} />
+        <Route path="/user/typingtestSteno" element={<TypingTestSteno />} />
+        <Route path="/user/viewResultType" element={<ViewResultType />} />
         <Route
           path="/user/viewResult"
           element={<ViewResult />}

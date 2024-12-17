@@ -20,6 +20,7 @@ const Sidebar = () => {
   const nav = useNavigate();
   const user = useSelector((state) => state.user.data);
   const { logout } = useAuth();
+  const currDate = new Date();
   return (
     <ul className={classes.navigation}>
       <li className={classes.util}>
@@ -51,11 +52,13 @@ const Sidebar = () => {
           <FaWifi size={25} /> Live
         </NavLink>
       </li>
-      {data?.map((course, idx) => (
-        <div key={idx} className={classes.wrap}>
-          <CourseTest course={course} classes={classes} role={user.role} />
-        </div>
-      ))}
+      {data
+        ?.filter((course) => course.status)
+        .map((course, idx) => (
+          <div key={idx} className={classes.wrap}>
+            <CourseTest course={course} classes={classes} role={user.role} />
+          </div>
+        ))}
       <li className={classes.util}>
         <NavLink
           to="/user/typing"
@@ -67,7 +70,7 @@ const Sidebar = () => {
             };
           }}
         >
-          <FaKeyboard size={25} /> Typing Test
+          <FaKeyboard size={25} /> Skill Typing Test
         </NavLink>
       </li>
       <li className={classes.util}>
