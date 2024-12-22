@@ -100,7 +100,7 @@ const TypingMain = () => {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  width: "30%",
+                  width: "80%",
                 }}
               >
                 <button className={styles.backButton} onClick={handleBack}>
