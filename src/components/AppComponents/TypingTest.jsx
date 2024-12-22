@@ -3,7 +3,7 @@ import { diffChars, diffWordsWithSpace } from "diff";
 import styles from "./TypingTest.module.css";
 import { db } from "../../Firebase/config";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../Firebase/AuthContexts";
 import { setCourses } from "../../redux/user_reducer";
@@ -37,7 +37,7 @@ const TypingTest = () => {
       if (courseDocSnap.exists()) {
         setText(courseDocSnap.data().tests[selectedId].tests[testId].content);
         const duration = courseDocSnap.data().tests[selectedId].duration;
-        // setTimer(duration[0] * 60 + duration[1]);
+        setTimer(duration[0] * 60 + duration[1]);
         setFullTime(duration[0] * 60 + duration[1]);
       }
     };
@@ -106,6 +106,8 @@ const TypingTest = () => {
           halfErrors: halfErrorCount,
           errorRate: calculateErrorRate(fullErrorCount, halfErrorCount),
           totalKeystrokes: inputValue.length,
+          content: text,
+          typedContent: inputValue,
         },
       },
     };
@@ -133,6 +135,8 @@ const TypingTest = () => {
                       halfErrorCount
                     ),
                     totalKeystrokes: inputValue.length,
+                    content: text,
+                    typedContent: inputValue,
                   },
                 },
               },
@@ -450,6 +454,7 @@ const TypingTest = () => {
               disabled={!isActive}
               placeholder="Start typing here..."
               spellCheck={false}
+              onPaste={(e) => e.preventDefault()}
             />
           </div>
         </>
@@ -483,6 +488,25 @@ const TypingTest = () => {
             <span>Total Keystrokes:</span>
             <span>{inputValue.length}</span>
           </div>
+          <Link
+            style={{
+              textDecoration: "none", // Removes underline
+              backgroundColor: "#007BFF", // Button background color
+              color: "white", // Text color
+              padding: "10px 20px", // Padding inside the button
+              borderRadius: "5px", // Rounded corners
+              display: "inline-block", // Makes it behave like a button
+              fontSize: "16px", // Font size for the text
+              fontWeight: "bold", // Bold text
+              textAlign: "center", // Centers the text
+              transition: "background-color 0.3s ease", // Smooth background color transition
+            }}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")} // Hover effect
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#007BFF")}
+            to={`/user/viewResultType?selected=${selectedId}&test=${testId}&type=typing`}
+          >
+            VIEW RESULT
+          </Link>
           <div style={{ color: "red", marginTop: "1rem", fontSize: "01.2rem" }}>
             Disclaimer: The error rate calculation is not 100% accurate and may
             vary by ±1~1.5%.

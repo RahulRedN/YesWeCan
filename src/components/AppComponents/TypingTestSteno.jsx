@@ -2,21 +2,30 @@ import React, { useState, useEffect } from "react";
 import { diffChars, diffWordsWithSpace } from "diff";
 import styles from "./TypingTest.module.css";
 import { db } from "../../Firebase/config";
-import { doc, getDoc } from "firebase/firestore";
-import { useSearchParams } from "react-router-dom";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { Link, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "../../Firebase/AuthContexts";
+import { setCourses } from "../../redux/user_reducer";
 
-const TypingTestSteno = () => {
+const TypingTestSte = () => {
   const [text, setText] = useState(
     "WE, THE PEOPLE OF INDIA, having solemnly resolved to constitute India into a SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC."
   );
   const [inputValue, setInputValue] = useState("");
-  const [timer, setTimer] = useState(600); // timer in seconds
+  const [timer, setTimer] = useState(10); // timer in seconds
   const [fullTime, setFullTime] = useState(600);
   const [isActive, setIsActive] = useState(false);
   const [fullErrors, setFullErrors] = useState(0);
   const [halfErrors, setHalfErrors] = useState(0);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const [showResults, setShowResults] = useState(false);
+
+  const [stenographImages, setStenographImages] = useState([]);
+
+  const userData = useSelector((state) => state.user.myCourses);
+  const { currentUser } = useAuth();
+  const dispatch = useDispatch();
 
   const [useSearchParam] = useSearchParams();
   const selectedId = useSearchParam.get("selected");
@@ -29,6 +38,9 @@ const TypingTestSteno = () => {
 
       if (courseDocSnap.exists()) {
         setText(courseDocSnap.data().tests[selectedId].tests[testId].content);
+        setStenographImages(
+          courseDocSnap.data().tests[selectedId].tests[testId].images
+        );
         const duration = courseDocSnap.data().tests[selectedId].duration;
         setTimer(duration[0] * 60 + duration[1]);
         setFullTime(duration[0] * 60 + duration[1]);
@@ -53,6 +65,98 @@ const TypingTestSteno = () => {
     }
     return () => clearInterval(interval);
   }, [isActive, timer]);
+
+  const saveResultsToFirestore = async (fullErrorCount, halfErrorCount) => {
+    const userId = currentUser?.uid;
+    if (!userId) return;
+
+    const courseId = "kUvMeETRUBmlKMAO0BXt";
+    const enrollId = userData.filter(
+      (course) => course.courseId === courseId
+    )[0]?.id;
+
+    const userDocRef = doc(db, "enrollments", enrollId);
+
+    const statusKey = `status.${selectedId}_${testId}`; // Key in the status object
+
+    // Find the course and check if statusKey already exists
+    const existingCourse = userData.find(
+      (course) => course.courseId === courseId
+    );
+    const existingStatus = existingCourse?.status?.[`${selectedId}_${testId}`];
+    const existingErrorRateString = existingStatus?.result?.errorRate; // e.g., "23.00%"
+    const existingErrorRate = existingErrorRateString
+      ? parseFloat(existingErrorRateString.replace("%", ""))
+      : undefined; // Convert to number: 23.00
+
+    const newErrorRateString = calculateErrorRate(
+      fullErrorCount,
+      halfErrorCount
+    );
+    const newErrorRate = parseFloat(newErrorRateString.replace("%", "")); // Convert to number: 23.00
+
+    // Compare error rates
+    if (existingErrorRate !== undefined && newErrorRate >= existingErrorRate) {
+      console.log("New error rate is not better. No update performed.");
+      return; // Exit the function
+    }
+    const resultData = {
+      [statusKey]: {
+        selectedTest: [selectedId, testId],
+        result: {
+          wpm: calculateWPM(fullErrorCount, halfErrorCount),
+          rawWPM: calculateRawWPM(),
+          accuracy: calculateAccuracy(fullErrorCount, halfErrorCount),
+          fullErrors: fullErrorCount,
+          halfErrors: halfErrorCount,
+          errorRate: calculateErrorRate(fullErrorCount, halfErrorCount),
+          totalKeystrokes: inputValue.length,
+          typedContent: inputValue,
+          content: text,
+          images: stenographImages,
+        },
+      },
+    };
+
+    try {
+      await updateDoc(userDocRef, resultData);
+
+      // Update Redux Store
+      const updatedCourses = userData.map((course) =>
+        course.courseId === courseId
+          ? {
+              ...course,
+              status: {
+                ...course.status,
+                [`${selectedId}_${testId}`]: {
+                  selectedTest: [selectedId, testId],
+                  result: {
+                    wpm: calculateWPM(fullErrorCount, halfErrorCount),
+                    rawWPM: calculateRawWPM(),
+                    accuracy: calculateAccuracy(fullErrorCount, halfErrorCount),
+                    fullErrors: fullErrorCount,
+                    halfErrors: halfErrorCount,
+                    errorRate: calculateErrorRate(
+                      fullErrorCount,
+                      halfErrorCount
+                    ),
+                    totalKeystrokes: inputValue.length,
+                    typedContent: inputValue,
+                    content: text,
+                    images: stenographImages,
+                  },
+                },
+              },
+            }
+          : course
+      );
+
+      dispatch(setCourses(updatedCourses));
+      console.log("Results saved successfully!");
+    } catch (error) {
+      console.error("Error saving results:", error);
+    }
+  };
 
   const splitPreserveSpacing = (text) => {
     // Regular expression to split words while keeping spaces and punctuation
@@ -249,6 +353,8 @@ const TypingTestSteno = () => {
 
     setFullErrors(fullErrorCount);
     setHalfErrors(halfErrorCount);
+
+    saveResultsToFirestore(fullErrorCount, halfErrorCount);
   };
 
   const handleInputChange = (e) => {
@@ -267,7 +373,14 @@ const TypingTestSteno = () => {
     calculateResults();
   };
 
-  const calculateWPM = () => {
+  const calculateWPM = (fullErrorCount, halfErrorCount) => {
+    if (fullErrorCount != undefined && halfErrorCount != undefined) {
+      const elapsedMinutes = (fullTime - timer) / 60;
+      const correctCharacters =
+        text.length - fullErrorCount - halfErrorCount / 2;
+      const wpm = correctCharacters / 5 / elapsedMinutes;
+      return isNaN(wpm) ? 0 : wpm.toFixed(2);
+    }
     const elapsedMinutes = (fullTime - timer) / 60;
     const correctCharacters = text.length - fullErrors - halfErrors / 2;
     const wpm = correctCharacters / 5 / elapsedMinutes;
@@ -280,13 +393,24 @@ const TypingTestSteno = () => {
     return isNaN(rawWPM) ? 0 : rawWPM.toFixed(2);
   };
 
-  const calculateAccuracy = () => {
+  const calculateAccuracy = (fullErrorCount, halfErrorCount) => {
+    if (fullErrorCount != undefined && halfErrorCount != undefined) {
+      const accuracy =
+        ((text.length - fullErrorCount - halfErrorCount / 2) / text.length) *
+        100;
+      return isNaN(accuracy) ? 0 : accuracy.toFixed(2);
+    }
     const accuracy =
       ((text.length - fullErrors - halfErrors / 2) / text.length) * 100;
     return isNaN(accuracy) ? 0 : accuracy.toFixed(2);
   };
 
-  const calculateErrorRate = () => {
+  const calculateErrorRate = (fullErrorCount, halfErrorCount) => {
+    if (fullErrorCount != undefined && halfErrorCount != undefined) {
+      const errorRate =
+        ((fullErrorCount + halfErrorCount / 2) / text.length) * 100;
+      return isNaN(errorRate) ? 0 : errorRate.toFixed(2);
+    }
     const errorRate = ((fullErrors + halfErrors / 2) / text.length) * 100;
     return isNaN(errorRate) ? 0 : errorRate.toFixed(2);
   };
@@ -302,42 +426,47 @@ const TypingTestSteno = () => {
     <div className={styles.container}>
       {!showResults ? (
         <>
-          <div className={styles.contentSection}>
-            <div className={styles.textContainer}>
-              {text.split(" ").map((word, index) => (
-                <span
+          <div className={styles.typingTestWrapper}>
+            {/* LEFT SIDE: SCROLLABLE IMAGES */}
+            <div className={styles.imageContainer}>
+              {stenographImages?.map((image, index) => (
+                <img
                   key={index}
-                  className={`${styles.word} ${
-                    index === highlightedIndex ? styles.highlighted : ""
-                  }`}
-                >
-                  {word}{" "}
-                </span>
+                  src={image}
+                  alt={`Stenograph Page ${index + 1}`}
+                  className={styles.stenoImage}
+                />
               ))}
             </div>
-          </div>
-          <div className={styles.optionSection}>
-            <div className={styles.timerContainer}>
-              <span>Time Remaining: {formatTime(timer)}</span>
-              <button className={styles.startButton} onClick={handleStartTest}>
-                Start
-              </button>
-              <button
-                className={styles.submitButton}
-                onClick={handleSubmit}
+
+            {/* RIGHT SIDE: TYPING TEST */}
+            <div className={styles.testContainer}>
+              <div className={styles.timerContainer}>
+                <span>Time Remaining: {formatTime(timer)}</span>
+                <button
+                  className={styles.startButton}
+                  onClick={handleStartTest}
+                >
+                  Start
+                </button>
+                <button
+                  className={styles.submitButton}
+                  onClick={handleSubmit}
+                  disabled={!isActive}
+                >
+                  Submit
+                </button>
+              </div>
+              <textarea
+                className={styles.inputArea}
+                value={inputValue}
+                onChange={handleInputChange}
                 disabled={!isActive}
-              >
-                Submit
-              </button>
+                placeholder="Start typing here..."
+                spellCheck={false}
+                onPaste={(e) => e.preventDefault()}
+              />
             </div>
-            <textarea
-              className={styles.inputArea}
-              value={inputValue}
-              onChange={handleInputChange}
-              disabled={!isActive}
-              placeholder="Start typing here..."
-              spellCheck={false}
-            />
           </div>
         </>
       ) : (
@@ -370,6 +499,25 @@ const TypingTestSteno = () => {
             <span>Total Keystrokes:</span>
             <span>{inputValue.length}</span>
           </div>
+          <Link
+            style={{
+              textDecoration: "none", // Removes underline
+              backgroundColor: "#007BFF", // Button background color
+              color: "white", // Text color
+              padding: "10px 20px", // Padding inside the button
+              borderRadius: "5px", // Rounded corners
+              display: "inline-block", // Makes it behave like a button
+              fontSize: "16px", // Font size for the text
+              fontWeight: "bold", // Bold text
+              textAlign: "center", // Centers the text
+              transition: "background-color 0.3s ease", // Smooth background color transition
+            }}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")} // Hover effect
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#007BFF")}
+            to={`/user/viewResultType?selected=${selectedId}&test=${testId}&type=steno`}
+          >
+            VIEW RESULT
+          </Link>
           <div style={{ color: "red", marginTop: "1rem", fontSize: "01.2rem" }}>
             Disclaimer: The error rate calculation is not 100% accurate and may
             vary by ±1~1.5%.
@@ -380,4 +528,4 @@ const TypingTestSteno = () => {
   );
 };
 
-export default TypingTestSteno;
+export default TypingTestSte;

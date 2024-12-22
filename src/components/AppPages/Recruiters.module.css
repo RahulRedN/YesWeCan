@@ -1,0 +1,95 @@
+.container {
+  background: linear-gradient(to right, #e0f7fa, #e8f5e9);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px 40px; /* Adjusted for left-aligned structure */
+  font-family: "Arial", sans-serif;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00796b;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.loader {
+  font-size: 1.5rem;
+  color: #004d40;
+  margin-top: 20px;
+  animation: blink 1.5s linear infinite;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align items to the left */
+  gap: 15px; /* Space between items */
+  width: 100%; /* Full width for left alignment */
+  max-width: 600px; /* Optional: Restrict maximum width */
+}
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 100%; /* Match the container width */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #00796b; /* Default text color */
+}
+
+.linkItem:hover {
+  transform: translateX(5px); /* Subtle slide hover effect */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+  color: #004d40; /* Darker color on hover */
+}
+
+.noData {
+  font-size: 1.2rem;
+  color: #004d40;
+  margin-top: 10px;
+  text-align: left; /* Align with folder structure */
+  width: 100%; /* Match the width of the container */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .header {
+    font-size: 1.8rem;
+  }
+
+  .linkItem {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+}

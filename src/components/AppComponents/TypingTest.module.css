@@ -125,3 +125,180 @@
     transform: translateY(0);
   }
 }
+
+.typingTestWrapper {
+  display: flex;
+  flex-direction: row;
+  height: 78vh;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* LEFT SIDE: SCROLLABLE IMAGES */
+.imageContainer {
+  flex: 1;
+  max-width: 40%;
+  height: 90%;
+  overflow-y: auto;
+  background-color: #fff;
+  border-right: 2px solid #e0e0e0;
+  padding: 1rem;
+}
+
+.stenoImage {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* RIGHT SIDE: TYPING TEST */
+.testContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.timerContainer {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.inputArea {
+  width: 100%;
+  height: 60%;
+  font-size: 1.1rem;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.inputArea:disabled {
+  background-color: #f4f4f4;
+}
+
+.startButton {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.startButton:hover {
+  background-color: #45a049;
+}
+
+.resultsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #444;
+}
+
+.resultsContainer h2 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+}
+
+.resultsContainer p {
+  margin: 0.5rem 0;
+}
+
+.writingTestContainer {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.writingTestQuestionSection h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.writingTestTimerSection {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.writingTestInputArea {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.writingTestButtonContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.writingTestStartButton,
+.writingTestSubmitButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.writingTestStartButton:disabled,
+.writingTestSubmitButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.writingTestResultsContainer {
+  text-align: left;
+}
+
+.writingTestLoadingScreen {
+  font-size: 20px;
+  color: #555;
+  text-align: center;
+}
+
+.writingTestResultButton {
+  text-decoration: none;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.writingTestResultButton:hover {
+  background-color: #0056b3;
+}
+
+.writingTestEvaluationSection {
+  width: 50%;
+  border-left: 2px solid grey;
+  padding: 1rem;
+}

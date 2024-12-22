@@ -6,7 +6,6 @@ import {
   query,
   where,
   getDocs,
-  addDoc,
 } from "firebase/firestore";
 import styles from "./TypingMain.module.css"; // Import the modular CSS for styling
 import { db } from "../../Firebase/config";
@@ -15,7 +14,7 @@ import { useSelector } from "react-redux";
 import classes from "../AppComponents/TestCard.module.css";
 import { Link } from "react-router-dom";
 
-const TypingMain = () => {
+const TypingWritingMain = () => {
   const [courseData, setCourseData] = useState(null);
   const [tests, setTests] = useState([]);
   const [isCourseValid, setIsCourseValid] = useState(true);
@@ -32,8 +31,8 @@ const TypingMain = () => {
   useEffect(() => {
     const fetchCourseData = async () => {
       try {
-        // Fetch the course document using the ID "MX8z5Waz4PAb6pJzfJdk"
-        const courseDocRef = doc(db, "courses", "MX8z5Waz4PAb6pJzfJdk");
+        // Fetch the course document using the ID "xM7eVQmOzxtNq7RgJNtK"
+        const courseDocRef = doc(db, "courses", "xM7eVQmOzxtNq7RgJNtK");
         const courseDocSnap = await getDoc(courseDocRef);
 
         if (courseDocSnap.exists()) {
@@ -120,25 +119,18 @@ const TypingMain = () => {
                     <div className={classes.cardFooter}>
                       <Link
                         className={classes.start}
-                        to={
-                          selectedTest.title.includes("Stenographer")
-                            ? `/user/typingteststeno?selected=${selectedTest.id}&test=${idx}`
-                            : `/user/typingtest?selected=${selectedTest.id}&test=${idx}`
-                        }
+                        to={`/user/writingtest?selected=${selectedTest.id}&test=${idx}`}
                       >
                         START
                       </Link>
-                      {course.status[`${selectedTest.id}_${idx}`] && (
+                      {course.status[`writing_${selectedTest.id}_${idx}`] && (
                         <Link
                           to={
                             "/user/viewResultType?selected=" +
                             selectedTest.id +
                             "&test=" +
                             idx +
-                            "&type=" +
-                            (selectedTest.title.includes("Stenographer")
-                              ? "steno"
-                              : "typing")
+                            "&type=writing"
                           }
                         >
                           Result
@@ -151,7 +143,7 @@ const TypingMain = () => {
             </div>
           ) : (
             <>
-              <h2 className={styles.courseTitle}>Typing Tests</h2>
+              <h2 className={styles.courseTitle}>Descriptive Tests</h2>
               <div className={styles.testContainer}>
                 {tests?.map((test, idx) => (
                   <div
@@ -188,4 +180,4 @@ const TypingMain = () => {
   );
 };
 
-export default TypingMain;
+export default TypingWritingMain;

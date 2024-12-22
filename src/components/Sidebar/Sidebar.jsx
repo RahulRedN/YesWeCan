@@ -13,7 +13,8 @@ import { FaKeyboard } from "react-icons/fa";
 import { HiMiniHome } from "react-icons/hi2";
 import { FaWifi } from "react-icons/fa6";
 import { IoChatbox } from "react-icons/io5";
-import { TbLogout } from "react-icons/tb";
+import { TbLogout, TbWriting } from "react-icons/tb";
+import { GrAnnounce } from "react-icons/gr";
 
 const Sidebar = () => {
   const [data, setData] = useCourseFetch();
@@ -71,6 +72,34 @@ const Sidebar = () => {
           }}
         >
           <FaKeyboard size={25} /> Skill Typing Test
+        </NavLink>
+      </li>
+      <li className={classes.util}>
+        <NavLink
+          to="/user/writing"
+          end
+          style={({ isActive }) => {
+            return {
+              backgroundColor: isActive ? "white" : "",
+              color: isActive ? "black" : "",
+            };
+          }}
+        >
+          <TbWriting size={25} /> Writing Skill Test
+        </NavLink>
+      </li>
+      <li className={classes.util}>
+        <NavLink
+          to="/user/recruiters"
+          end
+          style={({ isActive }) => {
+            return {
+              backgroundColor: isActive ? "white" : "",
+              color: isActive ? "black" : "",
+            };
+          }}
+        >
+          <GrAnnounce size={25} /> Recruiters
         </NavLink>
       </li>
       <li className={classes.util}>

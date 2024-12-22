@@ -41,6 +41,14 @@ const ViewResultType = lazy(() =>
 );
 const TypingMain = lazy(() => import("./components/AppPages/TypingMain"));
 const TypingTest = lazy(() => import("./components/AppComponents/TypingTest"));
+const TypingWritingMain = lazy(() =>
+  import("./components/AppPages/TypingWritingMain")
+);
+const WritingTest = lazy(() =>
+  import("./components/AppComponents/WritingTest")
+);
+
+const Recruiters = lazy(() => import("./components/AppPages/Recruiters"));
 const Buy = lazy(() => import("./pages/Buy"));
 
 const Root = () => {
@@ -115,7 +123,10 @@ const Router = createBrowserRouter(
         <Route path="/user/typing" element={<TypingMain />} />
         <Route path="/user/typingtest" element={<TypingTest />} />
         <Route path="/user/typingtestSteno" element={<TypingTestSteno />} />
+        <Route path="/user/writing" element={<TypingWritingMain />} />
+        <Route path="/user/writingTest" element={<WritingTest />} />
         <Route path="/user/viewResultType" element={<ViewResultType />} />
+        <Route path="/user/recruiters" element={<Recruiters />} />
         <Route
           path="/user/viewResult"
           element={<ViewResult />}
